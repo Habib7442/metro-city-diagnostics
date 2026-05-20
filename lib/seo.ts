@@ -38,7 +38,7 @@ export const SITE = {
   url: 'https://metrocitydiagnostics.com',
   locale: 'en_IN',
   language: 'en-IN',
-  defaultOgImage: '/og/default.png', // 1200x630
+  defaultOgImage: '/og-image.jpg', // 1200x630
   themeColor: '#0A1F44', // navy.900
   twitterHandle: '@metrocitydiag', // placeholder
 
