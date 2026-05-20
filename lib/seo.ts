@@ -35,7 +35,7 @@ export const SITE = {
     'Metro-City Diagnostics is a leading diagnostic center in Silchar, Assam. ' +
     'Accurate pathology, radiology, ultrasound, ECG, and X-ray services with home sample collection. ' +
     '4.8-star rated by 824+ patients.',
-  url: 'https://www.metrocitydiagnostics.com',
+  url: 'https://metrocitydiagnostics.com',
   locale: 'en_IN',
   language: 'en-IN',
   defaultOgImage: '/og/default.png', // 1200x630
