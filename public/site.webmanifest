@@ -1,0 +1,15 @@
+{
+  "name": "Metro-City Diagnostics",
+  "short_name": "Metro-City",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0A1F44",
+  "background_color": "#FAFAFB",
+  "display": "standalone",
+  "start_url": "/"
+}

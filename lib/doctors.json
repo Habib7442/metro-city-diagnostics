@@ -1,0 +1,41 @@
+[
+  {
+    "id": "dr-debanjali-das",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Debanjali Das",
+      "qualification": [
+        "MBBS",
+        "MD (Medicine)"
+      ],
+      "designation": "Resident Physician",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "General Physician",
+      "image": "/assets/doctors/dr-debanjali-das.png"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "3:00 PM to 4:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  }
+]
