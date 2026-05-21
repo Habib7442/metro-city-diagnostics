@@ -41,7 +41,9 @@
 * Updated mobile sticky bottom bar ([MobileStickyBar.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/MobileStickyBar.tsx)): Replaced the WhatsApp link with a dedicated packages link (`/services?category=package`) styled in Gold with a pulsing red premium HOT badge, and styled the Call Now and Book Test buttons with clinical-grade white backgrounds for elegant contrast.
 * Refactored patient review cards inside [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx): Programmed robust string parsing to separate tag attributes (e.g. Accurate testing, Detailed reports, Clean rooms) from actual comments. Displayed parsed attributes as clean pill badges and styled reviews with dynamic color gradient user initials avatars, verified badges, gold star ratings, and quote callouts for a highly premium structured look.
 * Cleaned up standard test cards inside [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx) and [ServicesCatalog.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/ServicesCatalog.tsx) to remove the thick colored left-accent borders (`border-l-4`), keeping a clean, simple, and premium look while preserving the fine hued shadows and light border transitions on hover.
-
+* Separated Lab Test booking and specialist Doctor appointment booking into two completely distinct form layouts under a premium dual-tab selector inside [BookingForm.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/BookingForm.tsx).
+* Engineered dynamic scheduling logic inside `BookingForm.tsx` that extracts doctor-specific active weekdays from `doctors.json` and projects the next 6 valid calendar dates, factoring in same-day past session cut-off.
+* Implemented an interactive calendar slot selector displaying these next 6 dates as premium, accessible clickable cards with robust hover/active indicator systems, and customized WhatsApp submission message structures for both forms.
 
 ## Next Up
 * Remote deployment and monitoring.
