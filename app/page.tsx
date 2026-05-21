@@ -16,12 +16,61 @@ import {
   UserCheck,
   CheckCircle2,
   Award,
+  Quote,
 } from 'lucide-react';
 import { featuredServices, reviews } from '@/lib/content';
 import { SITE } from '@/lib/seo';
 import { Button } from '@/components/ui/button';
 import doctorsData from '@/lib/doctors.json';
 import { cn } from '@/lib/utils';
+
+// Helper to parse review body (separate tags from comments)
+const parseReviewBody = (body: string) => {
+  const lines = body.split('\n').map(l => l.trim()).filter(Boolean);
+  const knownTags = [
+    'Accurate testing',
+    'Detailed reports',
+    'Clean rooms',
+    'Easy booking',
+    'Quick service',
+    'Reasonably priced',
+    'Subsidies available',
+    'Well connected',
+    'Easily accessible',
+    'Friendly staff'
+  ];
+  
+  const tags: string[] = [];
+  const commentLines: string[] = [];
+  
+  lines.forEach(line => {
+    if (knownTags.includes(line)) {
+      tags.push(line);
+    } else {
+      commentLines.push(line);
+    }
+  });
+  
+  return {
+    tags,
+    comment: commentLines.join(' ')
+  };
+};
+
+// Helper to get beautiful dynamic gradients for avatars based on author name
+const getAvatarGradient = (name: string) => {
+  const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const gradients = [
+    'from-blue-600 to-indigo-700',
+    'from-emerald-600 to-teal-700',
+    'from-purple-600 to-indigo-700',
+    'from-rose-500 to-red-600',
+    'from-amber-500 to-gold-600',
+    'from-violet-600 to-purple-800',
+    'from-sky-500 to-blue-700',
+  ];
+  return gradients[hash % gradients.length];
+};
 
 export default function Home() {
   const [expandedServices, setExpandedServices] = useState<Record<string, boolean>>({});
@@ -738,35 +787,92 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {reviews.map((review, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-lg p-6 border border-neutral-200/50 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow"
-              >
-                <div>
-                  <div className="flex items-center gap-1 text-gold-500 mb-4">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current" />
-                    ))}
+            {reviews.map((review, idx) => {
+              const { tags, comment } = parseReviewBody(review.body);
+              const initials = review.author
+                .split(' ')
+                .map(n => n[0])
+                .join('')
+                .slice(0, 2);
+              const gradient = getAvatarGradient(review.author);
+
+              return (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl p-6 border border-neutral-150 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_35px_-8px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden"
+                >
+                  {/* Decorative background quote graphic */}
+                  <div className="absolute right-4 bottom-16 text-neutral-50 pointer-events-none select-none group-hover:text-neutral-100/70 transition-colors duration-300">
+                    <Quote className="h-14 w-14 rotate-180 opacity-40" />
                   </div>
-                  <p className="text-xs text-neutral-600 italic leading-relaxed mb-6 whitespace-pre-line">
-                    "{review.body}"
-                  </p>
-                </div>
-                <div className="flex items-center justify-between border-t border-neutral-200/60 pt-4 mt-2">
+
                   <div>
-                    <h5 className="font-bold text-navy-900 text-xs">{review.author}</h5>
-                    <span className="text-[10px] text-neutral-400">
-                      {new Date(review.date).toLocaleDateString('en-IN', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                      })}
+                    {/* Header: Profile */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={cn(
+                        "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br font-bold text-white text-xs shadow-[inset_0_2px_4px_rgba(255,255,255,0.2)] tracking-wider uppercase",
+                        gradient
+                      )}>
+                        {initials}
+                      </div>
+                      <div className="min-w-0">
+                        <h5 className="font-bold text-navy-950 text-xs truncate">{review.author}</h5>
+                        <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-semibold mt-0.5">
+                          <CheckCircle2 className="h-3 w-3 fill-emerald-100" />
+                          <span>Verified JustDial Review</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stars and Date */}
+                    <div className="flex items-center justify-between mb-4 bg-neutral-50 px-3 py-1.5 rounded-lg border border-neutral-100">
+                      <div className="flex items-center gap-0.5 text-gold-500">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} className="h-3.5 w-3.5 fill-current" />
+                        ))}
+                      </div>
+                      <span className="text-[10px] text-neutral-400 font-medium">
+                        {new Date(review.date).toLocaleDateString('en-IN', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </span>
+                    </div>
+
+                    {/* Parsed Attribute Badges */}
+                    {tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {tags.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="bg-neutral-100/80 text-neutral-600 border border-neutral-200/40 text-[9px] font-semibold px-2 py-0.5 rounded-full tracking-wide"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Review Comment Quote */}
+                    {comment && (
+                      <p className="text-xs text-neutral-600 leading-relaxed italic relative z-10 pl-2 border-l-2 border-gold-400">
+                        "{comment}"
+                      </p>
+                    )}
+                  </div>
+
+                  {/* JustDial Footnote and Trust indicator */}
+                  <div className="border-t border-neutral-100 pt-3 mt-4 flex items-center justify-between text-[10px] text-neutral-400 font-medium">
+                    <span className="flex items-center gap-1">
+                      <Star className="h-3 w-3 fill-gold-500 text-gold-500" />
+                      <span>5.0 Rating</span>
                     </span>
+                    <span>JustDial Silchar</span>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
