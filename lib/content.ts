@@ -26,10 +26,13 @@ export type Service = {
   shortDescription: string;
   longDescription: string;
   price?: number; // INR
+  originalPrice?: number; // INR
   priceNote?: string; // e.g. "Call for price"
   sampleType?: string;
   turnaroundHours?: number;
   preparation?: string[];
+  includes?: string[];
+  tests?: string[];
   relatedSlugs?: string[];
   featured?: boolean;
 };
@@ -122,7 +125,7 @@ const getSlug = (name: string) => {
     .replace(/\s+/g, '-');
 };
 
-export const services: Service[] = labtestsData.labTests.flatMap((catGroup) => {
+const parsedTests: Service[] = labtestsData.labTests.flatMap((catGroup) => {
   const categoryName = catGroup.category;
   const tsCategory = serviceCategoryMapping[categoryName] || 'blood';
 
@@ -149,8 +152,6 @@ export const services: Service[] = labtestsData.labTests.flatMap((catGroup) => {
   });
 });
 
-export const featuredServices = services.filter((s) => s.featured);
-
 // ─────────────────────────────────────────────────────────────────────────────
 // Health packages
 // ─────────────────────────────────────────────────────────────────────────────
@@ -163,45 +164,101 @@ export type Package = {
   originalPrice?: number;
   parameters: number;
   includes: string[];
+  tests?: string[];
   badge?: string;
 };
 
 export const packages: Package[] = [
   {
-    slug: 'essential',
-    name: 'Essential Health',
-    tagline: 'Recommended yearly for adults under 40',
-    price: 1499,
-    originalPrice: 2200,
-    parameters: 42,
-    includes: ['CBC', 'Lipid Profile', 'Blood Sugar', 'Urine Routine', 'Liver Function'],
-  },
-  {
-    slug: 'advanced',
-    name: 'Advanced Health',
-    tagline: 'Comprehensive checkup for adults 40+',
-    price: 2499,
-    originalPrice: 3500,
-    parameters: 65,
-    includes: [
-      'Essential package',
-      'Thyroid Profile',
-      'Kidney Function',
-      'ECG',
-      'Vitamin D, B12',
+    slug: 'mm673',
+    name: 'MM B2B SILVER',
+    tagline: 'Essential health screening with 7 key test profiles',
+    price: 1100,
+    originalPrice: 2940,
+    parameters: 7,
+    includes: ['Anemia', 'Diabetes', 'Liver', 'Kidney', 'Heart', 'Thyroid'],
+    tests: [
+      'Haemogram',
+      'Glucose (F)',
+      'HbA1c',
+      'LFT 2',
+      'RFT Profile - Mini',
+      'Lipid Profile',
+      'Thyroid Profile - 1',
     ],
-    badge: 'Most popular',
+    badge: 'Silver Package',
   },
   {
-    slug: 'cardiac',
-    name: 'Cardiac Care',
-    tagline: 'For heart health screening',
-    price: 3299,
-    originalPrice: 4500,
-    parameters: 70,
-    includes: ['Advanced package', 'ECG', 'Echo (referral)', 'HbA1c', 'hs-CRP'],
+    slug: 'mm674',
+    name: 'MM B2B GOLD',
+    tagline: 'Comprehensive health profile with 8 key test profiles',
+    price: 1200,
+    originalPrice: 3180,
+    parameters: 8,
+    includes: ['Anemia', 'Diabetes', 'Liver', 'Kidney', 'Heart', 'Thyroid', 'Bone Infection'],
+    tests: [
+      'Haemogram',
+      'Glucose (F)',
+      'LFT 2',
+      'RFT Profile - Mini',
+      'Lipid Profile',
+      'Thyroid Profile - 1',
+      'Calcium',
+      'ESR',
+    ],
+    badge: 'Gold Package',
+  },
+  {
+    slug: 'mm675',
+    name: 'MM B2B PLATINUM',
+    tagline: 'Premium full body checkup with Vitamin D & B12 screening',
+    price: 2200,
+    originalPrice: 5714,
+    parameters: 7,
+    includes: ['Anemia', 'Liver', 'Kidney', 'Heart', 'Thyroid', 'Bone', 'Vitamin Deficiency'],
+    tests: [
+      'Haemogram',
+      'Vitamin B12',
+      'LFT 2',
+      'RFT Profile - Mini',
+      'Lipid Profile',
+      'TSH',
+      'Vitamin D',
+    ],
+    badge: 'Platinum Package',
   },
 ];
+
+// Map packages to services so they are searchable, viewable, and bookable
+const mappedPackages: Service[] = packages.map((pkg) => {
+  const includesText = pkg.includes.join(', ');
+  const testsText = pkg.tests ? pkg.tests.join(', ') : includesText;
+  
+  return {
+    slug: pkg.slug,
+    name: pkg.name,
+    category: 'package',
+    shortDescription: `${pkg.tagline}. Covers: ${includesText}.`,
+    longDescription: `A full body diagnostic screening package: ${pkg.tagline}. This package covers ${pkg.parameters} key diagnostic profiles evaluating your: ${includesText}. Included tests: ${testsText}.`,
+    price: pkg.price,
+    originalPrice: pkg.originalPrice,
+    priceNote: pkg.originalPrice ? `Save ₹${pkg.originalPrice - pkg.price}` : undefined,
+    sampleType: 'Blood, Urine',
+    turnaroundHours: 24,
+    preparation: [
+      '12-hour overnight fasting required (water is permitted)',
+      'Avoid alcohol and heavy/fatty meals for 24 hours prior to sample collection',
+      'First morning urine sample may be required'
+    ],
+    includes: pkg.includes,
+    tests: pkg.tests,
+    featured: false,
+  };
+});
+
+export const services: Service[] = [...parsedTests, ...mappedPackages];
+
+export const featuredServices = services.filter((s) => s.featured);
 
 
 // ─────────────────────────────────────────────────────────────────────────────

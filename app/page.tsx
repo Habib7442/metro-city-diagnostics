@@ -12,10 +12,12 @@ import {
   ChevronRight,
   UserCheck,
   CheckCircle2,
+  Award,
 } from 'lucide-react';
 import { featuredServices, reviews } from '@/lib/content';
 import { SITE } from '@/lib/seo';
 import { Button } from '@/components/ui/button';
+import doctorsData from '@/lib/doctors.json';
 
 export default function Home() {
   return (
@@ -169,8 +171,137 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Featured Services & Packages */}
+      {/* 3.5 Specialist Consultants Section */}
       <section className="py-20 lg:py-28 bg-white border-y border-neutral-100">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <span className="text-xs uppercase tracking-widest font-bold text-gold-600">
+                Meet Our Experts
+              </span>
+              <h2 className="text-3xl font-bold font-display text-navy-900 sm:text-4xl mt-2">
+                Specialist Consultants
+              </h2>
+              <p className="text-sm text-neutral-500 mt-2 max-w-xl">
+                Consult with experienced medical specialists and directors at Metro-City Diagnostics.
+              </p>
+            </div>
+            <Link
+              href="/doctors"
+              className="inline-flex items-center text-sm font-bold text-navy-900 hover:text-gold-600 transition-colors group"
+              id="view-all-doctors-top"
+            >
+              View all doctors
+              <ChevronRight className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          {/* Doctors Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {doctorsData.slice(0, 6).map((entry) => {
+              return (
+                <div
+                  key={entry.id}
+                  className="bg-[#FAFAFB] rounded-lg border border-neutral-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow group/card"
+                >
+                  {/* Upper Body */}
+                  <div className="p-6 md:p-8">
+                    {/* Doctor Profile Image / Initials Avatar */}
+                    <div className="flex items-center gap-4 mb-6">
+                      {'image' in entry.doctor && typeof entry.doctor.image === 'string' ? (
+                        <div className="relative h-16 w-16 rounded-full overflow-hidden border border-neutral-200 flex-shrink-0">
+                          <Image
+                            src={entry.doctor.image}
+                            alt={entry.doctor.name}
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="h-16 w-16 rounded-full bg-navy-950 flex items-center justify-center text-white font-display text-xl font-bold flex-shrink-0">
+                          {entry.doctor.name
+                            .split(' ')
+                            .filter((n) => n !== 'Dr.')
+                            .map((n) => n[0])
+                            .join('')}
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="text-lg font-bold text-navy-900 leading-tight group-hover/card:text-gold-600 transition-colors">
+                          {entry.doctor.name}
+                        </h3>
+                        <p className="text-xs font-semibold text-gold-700 tracking-wider uppercase mt-1">
+                          {entry.doctor.designation}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 pt-4 border-t border-neutral-200/60">
+                      {/* Specialty */}
+                      <div className="flex gap-3">
+                        <UserCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
+                            Specialization
+                          </span>
+                          <span className="text-xs text-neutral-600">
+                            {entry.doctor.specialization}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Timings */}
+                      <div className="flex gap-3 bg-white rounded-lg p-3 border border-neutral-200/50 mt-1">
+                        <Clock className="h-4.5 w-4.5 text-navy-700 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <span className="text-[10px] font-bold text-navy-950 block uppercase tracking-wider">
+                            Timings
+                          </span>
+                          <span className="text-[11px] font-medium text-neutral-500 block mt-0.5">
+                            {entry.timing.days}
+                          </span>
+                          <span className="text-xs font-bold text-navy-900 block mt-0.5">
+                            {entry.timing.time}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Action button */}
+                  <div className="p-6 bg-neutral-100/50 border-t border-neutral-200/50">
+                    <Button
+                      asChild
+                      className="w-full bg-navy-900 hover:bg-navy-950 text-white font-bold h-10 rounded tracking-wide shadow-sm text-xs"
+                    >
+                      <Link href={`/book?doctor=${entry.id}`} id={`book-doctor-home-${entry.id}`}>
+                        Book Appointment
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* View All Button at bottom */}
+          <div className="mt-12 text-center">
+            <Button
+              asChild
+              variant="outline"
+              className="border-navy-900 text-navy-900 hover:bg-navy-50 font-bold rounded px-8 h-12 text-sm"
+            >
+              <Link href="/doctors" id="view-all-doctors-bottom">
+                View All Doctors
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Featured Services & Packages */}
+      <section className="py-20 lg:py-28 bg-[#FAFAFB]">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
@@ -244,21 +375,12 @@ export default function Home() {
                       </span>
                     )}
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="mt-2">
                     <Button
                       asChild
-                      variant="outline"
-                      size="sm"
-                      className="border-neutral-200 text-neutral-700 hover:bg-neutral-50 rounded"
+                      className="w-full bg-gold-500 hover:bg-gold-600 text-white font-bold rounded h-12 text-sm shadow-sm transition-all"
                     >
-                      <Link href={`/services/${service.slug}`}>Details</Link>
-                    </Button>
-                    <Button
-                      asChild
-                      size="sm"
-                      className="bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded"
-                    >
-                      <Link href={`/book?test=${service.slug}`}>Book</Link>
+                      <Link href={`/book?test=${service.slug}`}>Book Now</Link>
                     </Button>
                   </div>
                 </div>
@@ -278,16 +400,16 @@ export default function Home() {
                   Comprehensive Health Checkup Packages
                 </h3>
                 <p className="text-sm text-neutral-300 max-w-xl">
-                  Our essential and advanced health profiles combine complete blood counts, lipids, sugar, liver/kidney profiles, and thyroid levels to check your vital systems.
+                  Our Silver, Gold, and Platinum B2B health profiles offer a comprehensive analysis of complete blood counts, sugar, HbA1c, liver/kidney functions, lipids, thyroid, and vital vitamins.
                 </p>
                 <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
                   <span className="flex items-center gap-2 text-xs text-neutral-300">
                     <CheckCircle2 className="h-4 w-4 text-gold-500" />
-                    60+ Parameters Screened
+                    Up to 60+ Parameters Screened
                   </span>
                   <span className="flex items-center gap-2 text-xs text-neutral-300">
                     <CheckCircle2 className="h-4 w-4 text-gold-500" />
-                    Up to 40% Package Discount
+                    Up to 60%+ Package Discount
                   </span>
                 </div>
               </div>
@@ -295,7 +417,7 @@ export default function Home() {
                 <div className="text-left sm:text-right mb-6">
                   <p className="text-xs text-neutral-400">Starting from just</p>
                   <p className="text-3xl font-extrabold text-white mt-1">
-                    ₹1,499 <span className="text-sm text-neutral-400 line-through">₹2,200</span>
+                    ₹1,100 <span className="text-sm text-neutral-400 line-through">₹2,940</span>
                   </p>
                 </div>
                 <div className="flex gap-4 w-full sm:w-auto">
@@ -313,7 +435,7 @@ export default function Home() {
       </section>
 
       {/* 5. Video Media Showcase */}
-      <section className="py-20 lg:py-28 bg-[#FAFAFB]">
+      <section className="py-20 lg:py-28 bg-white border-y border-neutral-100">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
             {/* Left: Video */}
@@ -375,7 +497,7 @@ export default function Home() {
       </section>
 
       {/* 6. Patient Reviews Section */}
-      <section className="py-20 lg:py-28 bg-white border-y border-neutral-100">
+      <section className="py-20 lg:py-28 bg-[#FAFAFB]">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs uppercase tracking-widest font-bold text-gold-600">
@@ -393,7 +515,7 @@ export default function Home() {
             {reviews.map((review, idx) => (
               <div
                 key={idx}
-                className="bg-[#FAFAFB] rounded-lg p-6 border border-neutral-200/50 shadow-sm flex flex-col justify-between"
+                className="bg-white rounded-lg p-6 border border-neutral-200/50 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow"
               >
                 <div>
                   <div className="flex items-center gap-1 text-gold-500 mb-4">
@@ -424,7 +546,7 @@ export default function Home() {
       </section>
 
       {/* 7. Local Map Embed & Directions */}
-      <section className="py-20 lg:py-28 bg-[#FAFAFB]">
+      <section className="py-20 lg:py-28 bg-white border-t border-neutral-100">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left: Map Details */}

@@ -26,7 +26,12 @@
 * Updated the clinic exterior image in the Homepage Hero section with the new premium `.png` asset.
 * Reordered the doctor list in [doctors.json](file:///e:/Web%20Dev/metro-city-diagnostics/lib/doctors.json) to match the user's exact customized sorting sequence.
 * Removed "Swab Tests", "Plasma Tests", and "Laboratory Services" categories from `lib/labtests.json` (by user), and updated `lib/content.ts` and `components/ServicesCatalog.tsx` to align with these removals.
-* Verified clean next build and type compilation successfully.
+* Added three new health checkup packages (MM B2B SILVER, MM B2B GOLD, MM B2B PLATINUM) to the offline CMS database in [content.ts](file:///e:/Web%20Dev/metro-city-diagnostics/lib/content.ts) and mapped them into the unified `services` array to make them searchable, filterable, and bookable under `/services` and `/book`.
+* Updated the Services Catalog card UI and details page to display the crossed-out original prices alongside the discounted package prices.
+* Redesigned the package cards to present their target organ checkmarks ("Covers: Anemia, Diabetes, Liver, Kidney, Heart, Thyroid") as beautifully formatted grid bullet points using custom Lucide checkmark icons, and listed their specific constituent tests inside high-fidelity capsule badges.
+* Removed the "Details" buttons from all service and package catalog cards (both on the Homepage and the Services Catalog), and expanded the "Book Now" buttons to be full-width with an increased tall height of `h-12` (48px) for high-impact visual appeal and direct actionability.
+* Applied stunning, dynamic tier-based styling for the B2B packages: Silver packages feature elegant slate/silver styles; Gold packages highlight vibrant gold styling; and Platinum packages use premium cool-toned metallic sky-blue/platinum cosmetics permanently rather than using standard color themes.
+* Verified clean typescript compilation (`npx tsc --noEmit`) passes successfully.
 
 
 ## Next Up

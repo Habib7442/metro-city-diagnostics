@@ -144,82 +144,150 @@ export default function ServicesCatalog({ initialServices }: Props) {
       {/* Grid of Results */}
       {filteredServices.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredServices.map((service) => (
-            <div
-              key={service.slug}
-              className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-neutral-300 transition-all group"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="inline-block bg-navy-50 text-navy-900 text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded">
-                    {service.category === 'package' ? 'Health Package' : service.category === 'imaging' ? 'Imaging Scan' : `${service.category} Test`}
-                  </span>
-                  {service.turnaroundHours && (
-                    <span className="text-xs text-neutral-400 flex items-center gap-1.5 font-medium">
-                      <Clock className="h-3.5 w-3.5 text-gold-500" />
-                      {service.turnaroundHours} hr
+          {filteredServices.map((service) => {
+            const isSilver = service.name.toLowerCase().includes('silver');
+            const isGold = service.name.toLowerCase().includes('gold');
+            const isPlatinum = service.name.toLowerCase().includes('platinum');
+
+            // Dynamic styles based on package tier (Silver, Gold, Platinum) or generic test
+            let cardStyle = "hover:shadow-md hover:border-neutral-300";
+            let badgeStyle = "bg-navy-50 text-navy-900 border border-transparent";
+            let badgeLabel = service.category === 'package' ? 'Health Package' : service.category === 'imaging' ? 'Imaging Scan' : `${service.category} Test`;
+            let titleStyle = "text-navy-950 group-hover:text-gold-600";
+            let checkIconStyle = "text-gold-500";
+            let buttonStyle = "bg-gold-500 hover:bg-gold-600 text-white";
+
+            if (isSilver) {
+              cardStyle = "hover:shadow-md hover:shadow-slate-100/50 hover:border-slate-350";
+              badgeStyle = "bg-slate-100 text-slate-700 border border-slate-200/80";
+              badgeLabel = "Silver Package";
+              titleStyle = "text-slate-500 group-hover:text-slate-650";
+              checkIconStyle = "text-slate-400";
+              buttonStyle = "bg-slate-600 hover:bg-slate-750 text-white";
+            } else if (isGold) {
+              cardStyle = "hover:shadow-md hover:shadow-gold-50/50 hover:border-gold-300/80";
+              badgeStyle = "bg-gold-50 text-gold-700 border border-gold-200/60";
+              badgeLabel = "Gold Package";
+              titleStyle = "text-gold-600 group-hover:text-gold-750";
+              checkIconStyle = "text-gold-500";
+              buttonStyle = "bg-gold-600 hover:bg-gold-750 text-white";
+            } else if (isPlatinum) {
+              cardStyle = "hover:shadow-md hover:shadow-sky-50/50 hover:border-sky-200";
+              badgeStyle = "bg-sky-50 text-sky-800 border border-sky-200/50";
+              badgeLabel = "Platinum Package";
+              titleStyle = "text-sky-800 group-hover:text-sky-900";
+              checkIconStyle = "text-sky-500";
+              buttonStyle = "bg-sky-700 hover:bg-sky-800 text-white";
+            }
+
+            return (
+              <div
+                key={service.slug}
+                className={cn(
+                  "rounded-lg border border-neutral-200 bg-white p-6 shadow-sm flex flex-col justify-between transition-all group",
+                  cardStyle
+                )}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className={cn("inline-block text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded", badgeStyle)}>
+                      {badgeLabel}
                     </span>
+                    {service.turnaroundHours && (
+                      <span className="text-xs text-neutral-400 flex items-center gap-1.5 font-medium">
+                        <Clock className="h-3.5 w-3.5 text-gold-500" />
+                        {service.turnaroundHours} hr
+                      </span>
+                    )}
+                  </div>
+                  <h3 className={cn("text-lg font-bold mb-2 leading-snug transition-colors", titleStyle)}>
+                    {service.name}
+                  </h3>
+                  {service.category === 'package' && service.includes ? (
+                    <div className="mb-6 space-y-3.5">
+                      <p className="text-xs text-neutral-600 font-semibold leading-relaxed">
+                        {service.shortDescription.split('. Covers:')[0]}. Covers:
+                      </p>
+                      <ul className="grid grid-cols-2 gap-x-3 gap-y-2">
+                        {service.includes.map((item) => (
+                          <li key={item} className="flex items-center gap-2 text-xs text-neutral-600">
+                            <CheckCircle2 className={cn("h-4 w-4 flex-shrink-0", checkIconStyle)} />
+                            <span className="font-medium">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      {service.tests && (
+                        <div className="mt-4 pt-3 border-t border-neutral-100">
+                          <span className="text-[10px] text-neutral-400 uppercase font-bold block mb-2 tracking-wider">
+                            Key Tests Included:
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {service.tests.map((test) => (
+                              <span key={test} className="bg-navy-50/50 border border-navy-100/40 rounded-full px-2.5 py-0.5 text-[10px] text-navy-900 font-medium">
+                                {test}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-neutral-500 leading-relaxed mb-6 line-clamp-3">
+                      {service.shortDescription}
+                    </p>
                   )}
                 </div>
-                <h3 className="text-lg font-bold text-navy-950 mb-2 leading-snug group-hover:text-gold-600 transition-colors">
-                  {service.name}
-                </h3>
-                <p className="text-xs text-neutral-500 leading-relaxed mb-6 line-clamp-3">
-                  {service.shortDescription}
-                </p>
-              </div>
 
-              <div className="border-t border-neutral-100 pt-4 mt-2">
-                {/* Meta details */}
-                {service.sampleType && (
-                  <div className="flex items-center gap-1.5 text-xs text-neutral-400 mb-4">
-                    <span className="font-medium text-neutral-500">Sample:</span>
-                    <span>{service.sampleType}</span>
+                <div className="border-t border-neutral-100 pt-4 mt-2">
+                  {/* Meta details */}
+                  {service.sampleType && (
+                    <div className="flex items-center gap-1.5 text-xs text-neutral-400 mb-4">
+                      <span className="font-medium text-neutral-500">Sample:</span>
+                      <span>{service.sampleType}</span>
+                    </div>
+                  )}
+
+                  <div className="flex items-end justify-between mb-4">
+                    <div>
+                      <span className="text-[10px] text-neutral-400 uppercase font-semibold block leading-tight">
+                        Test Fee
+                      </span>
+                      {service.price ? (
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-xl font-extrabold text-navy-900">
+                            ₹{service.price}
+                          </span>
+                          {service.originalPrice && (
+                            <span className="text-sm text-neutral-400 line-through font-semibold">
+                              ₹{service.originalPrice}
+                            </span>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="text-sm font-bold text-gold-600">
+                          {service.priceNote || 'Call for price'}
+                        </span>
+                      )}
+                      {service.price && service.priceNote && (
+                        <span className="text-[10px] text-neutral-400 block mt-0.5">
+                          *{service.priceNote}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                )}
 
-                <div className="flex items-end justify-between mb-4">
-                  <div>
-                    <span className="text-[10px] text-neutral-400 uppercase font-semibold block leading-tight">
-                      Test Fee
-                    </span>
-                    {service.price ? (
-                      <span className="text-xl font-extrabold text-navy-900">
-                        ₹{service.price}
-                      </span>
-                    ) : (
-                      <span className="text-sm font-bold text-gold-600">
-                        {service.priceNote || 'Call for price'}
-                      </span>
-                    )}
-                    {service.price && service.priceNote && (
-                      <span className="text-[10px] text-neutral-400 block mt-0.5">
-                        *{service.priceNote}
-                      </span>
-                    )}
+                  <div className="mt-2">
+                    <Button
+                      asChild
+                      className={cn("w-full font-bold rounded h-12 text-sm shadow-sm transition-all", buttonStyle)}
+                    >
+                      <Link href={`/book?test=${service.slug}`}>Book Now</Link>
+                    </Button>
                   </div>
                 </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    className="border-neutral-200 text-neutral-700 hover:bg-neutral-50 rounded text-xs font-semibold"
-                  >
-                    <Link href={`/services/${service.slug}`}>Details</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    size="sm"
-                    className="bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded text-xs"
-                  >
-                    <Link href={`/book?test=${service.slug}`}>Book Now</Link>
-                  </Button>
-                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       ) : (
         <div className="text-center py-16 bg-white border border-neutral-200 rounded-lg shadow-sm">

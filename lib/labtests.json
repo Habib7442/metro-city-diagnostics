@@ -13,14 +13,14 @@
         },
         {
           "name": "Occult Blood Stool Test",
-          "price": 350,
+          "price": 250,
           "currency": "INR",
           "description": "Detects hidden blood in stool samples.",
           "unit": "per test"
         },
         {
           "name": "Stool Culture Test",
-          "price": 500,
+          "price": 1200,
           "currency": "INR",
           "description": "Checks bacterial infections in the digestive tract.",
           "unit": "per test"
@@ -47,28 +47,28 @@
         },
         {
           "name": "Lipid Profile Test",
-          "price": 600,
+          "price": 900,
           "currency": "INR",
           "description": "Measures cholesterol and triglyceride levels.",
           "unit": "per test"
         },
         {
-          "name": "Liver Function Test",
-          "price": 700,
+          "name": "Liver Function Test with GGT",
+          "price": 1000,
           "currency": "INR",
           "description": "Evaluates liver health and function.",
           "unit": "per test"
         },
         {
-          "name": "Kidney Function Test",
-          "price": 650,
+          "name": "Kidney Function Test with Electrolytes",
+          "price": 1200,
           "currency": "INR",
           "description": "Checks kidney performance and health.",
           "unit": "per test"
         },
         {
           "name": "Thyroid Profile Test",
-          "price": 800,
+          "price": 550,
           "currency": "INR",
           "description": "Assesses thyroid hormone levels.",
           "unit": "per test"
@@ -88,14 +88,14 @@
       "tests": [
         {
           "name": "Routine Urine Test",
-          "price": 150,
+          "price": 200,
           "currency": "INR",
           "description": "General urine analysis for infections and kidney issues.",
           "unit": "per test"
         },
         {
           "name": "Urine Culture Test",
-          "price": 500,
+          "price": 650,
           "currency": "INR",
           "description": "Detects urinary tract infections.",
           "unit": "per test"
