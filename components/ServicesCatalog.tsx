@@ -26,6 +26,10 @@ const CATEGORIES: { value: 'all' | ServiceCategory; label: string }[] = [
   { value: 'sputum', label: 'Sputum Tests' },
   { value: 'imaging', label: 'Imaging & Scans' },
   { value: 'package', label: 'Health Packages' },
+  { value: 'neurology', label: 'Neurology' },
+  { value: 'heart', label: 'Cardiology' },
+  { value: 'hearing', label: 'Hearing Tests' },
+  { value: 'vascular', label: 'Vascular' },
 ];
 
 export default function ServicesCatalog({ initialServices }: Props) {
@@ -86,7 +90,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
             <Search className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-neutral-400" />
             <input
               type="text"
-              placeholder="Search by test name, keywords (e.g., lipid, blood, ultrasound)..."
+              placeholder="Search by test name, keywords (e.g., lipid, blood, mri, eeg, ecg)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full rounded border border-neutral-200 py-3 pl-11 pr-10 text-sm focus:border-gold-500 focus:outline-none bg-neutral-50/50"
@@ -173,6 +177,10 @@ export default function ServicesCatalog({ initialServices }: Props) {
             const isStool = !isPackage && service.category === 'stool';
             const isSputum = !isPackage && service.category === 'sputum';
             const isImaging = !isPackage && service.category === 'imaging';
+            const isNeurology = !isPackage && service.category === 'neurology';
+            const isHeart = !isPackage && service.category === 'heart';
+            const isHearing = !isPackage && service.category === 'hearing';
+            const isVascular = !isPackage && service.category === 'vascular';
 
             // Dynamic styles based on package tier (Silver, Gold, Platinum) or generic test
             let cardStyle = "hover:shadow-md hover:border-neutral-300";
@@ -303,6 +311,30 @@ export default function ServicesCatalog({ initialServices }: Props) {
               badgeLabel = "Imaging Scan";
               titleStyle = "text-navy-950 group-hover:text-violet-600";
               buttonStyle = "bg-violet-600 hover:bg-violet-700 text-white";
+            } else if (isNeurology) {
+              cardStyle = "hover:shadow-md hover:shadow-indigo-50/50 hover:border-indigo-300";
+              badgeStyle = "bg-indigo-50 text-indigo-800 border border-indigo-200/50";
+              badgeLabel = "Neurology Test";
+              titleStyle = "text-navy-950 group-hover:text-indigo-600";
+              buttonStyle = "bg-indigo-600 hover:bg-indigo-700 text-white";
+            } else if (isHeart) {
+              cardStyle = "hover:shadow-md hover:shadow-fuchsia-50/50 hover:border-fuchsia-300";
+              badgeStyle = "bg-fuchsia-50 text-fuchsia-800 border border-fuchsia-200/50";
+              badgeLabel = "Heart Test";
+              titleStyle = "text-navy-950 group-hover:text-fuchsia-600";
+              buttonStyle = "bg-fuchsia-600 hover:bg-fuchsia-700 text-white";
+            } else if (isHearing) {
+              cardStyle = "hover:shadow-md hover:shadow-cyan-50/50 hover:border-cyan-300";
+              badgeStyle = "bg-cyan-50 text-cyan-800 border border-cyan-200/50";
+              badgeLabel = "Hearing Test";
+              titleStyle = "text-navy-950 group-hover:text-cyan-600";
+              buttonStyle = "bg-cyan-600 hover:bg-cyan-700 text-white";
+            } else if (isVascular) {
+              cardStyle = "hover:shadow-md hover:shadow-sky-50/50 hover:border-sky-300";
+              badgeStyle = "bg-sky-50 text-sky-800 border border-sky-200/50";
+              badgeLabel = "Vascular Test";
+              titleStyle = "text-navy-950 group-hover:text-sky-600";
+              buttonStyle = "bg-sky-600 hover:bg-sky-700 text-white";
             }
 
             return (

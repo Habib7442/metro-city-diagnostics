@@ -124,7 +124,7 @@
     },
     {
       "category": "Imaging Test",
-      "count": 4,
+      "count": 5,
       "tests": [
         {
           "name": "X-Ray",
@@ -141,18 +141,91 @@
           "unit": "per scan"
         },
         {
-          "name": "ECG",
-          "price": 500,
-          "currency": "INR",
-          "description": "Measures electrical activity of the heart.",
-          "unit": "per test"
-        },
-        {
           "name": "Echocardiography",
           "price": 2000,
           "currency": "INR",
           "description": "Ultrasound imaging for heart diagnosis.",
           "unit": "per scan"
+        },
+        {
+          "name": "MRI (Magnetic Resonance Imaging)",
+          "price": null,
+          "currency": "INR",
+          "description": "A medical imaging technique that uses magnetic fields and radio waves to create detailed images of organs, tissues, brain, spine, joints, and internal body structures.",
+          "unit": "per scan"
+        },
+        {
+          "name": "CT Scan (Computed Tomography Scan)",
+          "price": null,
+          "currency": "INR",
+          "description": "An advanced imaging test that combines multiple X-ray images to create cross-sectional views of the body for detecting injuries, infections, tumors, and internal conditions.",
+          "unit": "per scan"
+        }
+      ]
+    },
+    {
+      "category": "Neurology Test",
+      "count": 3,
+      "tests": [
+        {
+          "name": "NCV (Nerve Conduction Velocity)",
+          "price": 3000,
+          "currency": "INR",
+          "description": "A diagnostic test used to evaluate nerve damage and nerve function by measuring the speed of electrical signals through nerves.",
+          "unit": "per test"
+        },
+        {
+          "name": "EEG (Electroencephalogram)",
+          "price": 2000,
+          "currency": "INR",
+          "description": "A test that records electrical activity in the brain and helps diagnose epilepsy, seizures, sleep disorders, and other neurological conditions.",
+          "unit": "per test"
+        },
+        {
+          "name": "EMG (Electromyography)",
+          "price": 5500,
+          "currency": "INR",
+          "description": "A diagnostic procedure used to assess muscle health and nerve cells controlling muscles by measuring electrical activity.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Heart Test",
+      "count": 1,
+      "tests": [
+        {
+          "name": "ECG (Electrocardiogram)",
+          "price": 500,
+          "currency": "INR",
+          "description": "A heart monitoring test that records the electrical activity of the heart to detect irregular heartbeat, heart disease, and cardiac abnormalities.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Hearing Test",
+      "count": 1,
+      "tests": [
+        {
+          "name": "BERA (Brainstem Evoked Response Audiometry)",
+          "price": 3000,
+          "currency": "INR",
+          "description": "A hearing assessment test that evaluates the auditory nerve and brainstem response to sound, commonly used for infants and hearing disorder diagnosis.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Vascular Test",
+      "count": 1,
+      "tests": [
+        {
+          "name": "Doppler Study (Doppler Ultrasound Study)",
+          "price": null,
+          "currency": "INR",
+          "description": "A non-invasive ultrasound test used to measure blood flow through blood vessels and detect blockages, clots, or circulation problems.",
+          "unit": "per test"
         }
       ]
     }

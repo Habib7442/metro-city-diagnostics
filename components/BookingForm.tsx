@@ -297,7 +297,9 @@ export default function BookingForm() {
       let message = '';
       
       if (activeTab === 'lab') {
-        const selectedTest = services.find((s) => s.slug === formState.testSlug)?.name || 'N/A';
+        const selectedService = services.find((s) => s.slug === formState.testSlug);
+        const selectedTest = selectedService?.name || 'N/A';
+        const priceLabel = selectedService?.price ? `₹${selectedService.price}` : 'Price on Call (Quote Requested)';
         message = `Hello Metro-City Diagnostics,
 
 I would like to book a Diagnostic Lab Test. Here are my details:
@@ -309,6 +311,7 @@ I would like to book a Diagnostic Lab Test. Here are my details:
 
 🔬 DIAGNOSTIC TEST DETAILS:
 • Test/Package: ${selectedTest}
+• Price / Fee: ${priceLabel}
 • Preferred Date: ${formState.preferredDate}
 • Preferred Time: ${formState.preferredTime}
 
@@ -441,12 +444,23 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
               </div>
               
               {activeTab === 'lab' && formState.testSlug && (
-                <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
-                  <span className="text-neutral-400 font-medium">Selected Test:</span>
-                  <span className="font-extrabold text-navy-950">
-                    {services.find((s) => s.slug === formState.testSlug)?.name}
-                  </span>
-                </div>
+                <>
+                  <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
+                    <span className="text-neutral-400 font-medium">Selected Test:</span>
+                    <span className="font-extrabold text-navy-950">
+                      {services.find((s) => s.slug === formState.testSlug)?.name}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
+                    <span className="text-neutral-400 font-medium">Test Fee:</span>
+                    <span className="font-extrabold text-navy-950">
+                      {(() => {
+                        const s = services.find((s) => s.slug === formState.testSlug);
+                        return s?.price ? `₹${s.price}` : 'Price on Call';
+                      })()}
+                    </span>
+                  </div>
+                </>
               )}
               {activeTab === 'doctor' && formState.doctorId && (
                 <>
@@ -596,7 +610,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                       <option value="">-- Choose Diagnostic Test / Package --</option>
                       {services.map((service) => (
                         <option key={service.slug} value={service.slug}>
-                          {service.name} (₹{service.price})
+                          {service.name} ({service.price ? `₹${service.price}` : 'Price on Call'})
                         </option>
                       ))}
                     </select>

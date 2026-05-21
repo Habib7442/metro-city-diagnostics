@@ -17,7 +17,11 @@ export type ServiceCategory =
   | 'urine'
   | 'package'
   | 'sputum'
-  | 'imaging';
+  | 'imaging'
+  | 'neurology'
+  | 'heart'
+  | 'hearing'
+  | 'vascular';
 
 export type Service = {
   slug: string;
@@ -43,6 +47,10 @@ const serviceCategoryMapping: Record<string, ServiceCategory> = {
   'Urine Test': 'urine',
   'Sputum Test': 'sputum',
   'Imaging Test': 'imaging',
+  'Neurology Test': 'neurology',
+  'Heart Test': 'heart',
+  'Hearing Test': 'hearing',
+  'Vascular Test': 'vascular',
 };
 
 const sampleTypeMapping: Record<ServiceCategory, string | undefined> = {
@@ -52,6 +60,10 @@ const sampleTypeMapping: Record<ServiceCategory, string | undefined> = {
   sputum: 'Sputum',
   imaging: undefined,
   package: 'Blood, Urine',
+  neurology: undefined,
+  heart: undefined,
+  hearing: undefined,
+  vascular: undefined,
 };
 
 const turnaroundHoursMapping: Record<ServiceCategory, number> = {
@@ -61,6 +73,10 @@ const turnaroundHoursMapping: Record<ServiceCategory, number> = {
   sputum: 12,
   imaging: 2,
   package: 24,
+  neurology: 24,
+  heart: 2,
+  hearing: 24,
+  vascular: 12,
 };
 
 const preparationMapping: Record<string, string[]> = {
@@ -88,6 +104,14 @@ const preparationMapping: Record<string, string[]> = {
   'Ultrasound': ['Specific prep depends on study type — call ahead'],
   'ECG': ['Avoid lotions on chest area'],
   'Echocardiography': ['Wear comfortable two-piece clothing'],
+  'MRI (Magnetic Resonance Imaging)': ['Remove all jewelry, metal objects, and wearable electronic devices before the scan', 'Fast for 4-6 hours if a contrast study is requested'],
+  'CT Scan (Computed Tomography Scan)': ['Fast for 4 hours if a contrast media scan is ordered', 'Wear comfortable, loose clothing without metallic parts'],
+  'NCV (Nerve Conduction Velocity)': ['Ensure skin is clean and dry; avoid applying lotions or creams to body surfaces prior to the test', 'Keep hands and feet warm'],
+  'EEG (Electroencephalogram)': ['Wash hair the night before or morning of the test; avoid using hair oils, sprays, or gels', 'Eat a regular meal before the test; avoid caffeine'],
+  'ECG (Electrocardiogram)': ['Avoid applying lotions or oils to the chest area', 'Relax completely during the procedure'],
+  'BERA (Brainstem Evoked Response Audiometry)': ['Ensure ears are clean and wax-free', 'For infants, keeping them awake before the test is recommended so they sleep during the procedure'],
+  'EMG (Electromyography)': ['Avoid applying skin lotions or body creams on the day of the test', 'Inform the technician if you are taking blood thinners'],
+  'Doppler Study (Doppler Ultrasound Study)': ['Fast for 6-8 hours if an abdominal vascular study is requested', 'Otherwise, no specific preparation is required'],
 };
 
 const slugOverrides: Record<string, string> = {
@@ -98,8 +122,16 @@ const slugOverrides: Record<string, string> = {
   'Kidney Function Test': 'kidney-function-test',
   'X-Ray': 'x-ray',
   'Ultrasound': 'ultrasound',
-  'ECG': 'ecg',
+  'ECG': 'ecg-old',
   'Full Body Checkup': 'full-body-checkup',
+  'MRI (Magnetic Resonance Imaging)': 'mri',
+  'CT Scan (Computed Tomography Scan)': 'ct-scan',
+  'NCV (Nerve Conduction Velocity)': 'ncv',
+  'EEG (Electroencephalogram)': 'eeg',
+  'ECG (Electrocardiogram)': 'ecg',
+  'BERA (Brainstem Evoked Response Audiometry)': 'bera',
+  'EMG (Electromyography)': 'emg',
+  'Doppler Study (Doppler Ultrasound Study)': 'doppler-study',
 };
 
 const featuredServicesList = [
@@ -113,7 +145,7 @@ const featuredServicesList = [
   'Thyroid Profile Test',
   'X-Ray',
   'Ultrasound',
-  'ECG',
+  'ECG (Electrocardiogram)',
   'Echocardiography',
 ];
 

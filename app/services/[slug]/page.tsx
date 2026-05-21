@@ -141,11 +141,17 @@ export default async function ServiceDetailPage({ params }: Props) {
                   Diagnostics Fee
                 </span>
                 <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="text-3xl font-black text-white">₹{service.price}</span>
-                  {service.originalPrice && (
-                    <span className="text-sm text-neutral-400 line-through font-semibold">
-                      ₹{service.originalPrice}
-                    </span>
+                  {service.price ? (
+                    <>
+                      <span className="text-3xl font-black text-white">₹{service.price}</span>
+                      {service.originalPrice && (
+                        <span className="text-sm text-neutral-400 line-through font-semibold">
+                          ₹{service.originalPrice}
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <span className="text-2xl font-black text-white">Price on Call</span>
                   )}
                   {service.priceNote && (
                     <span className="text-xs text-neutral-400">*{service.priceNote}</span>
