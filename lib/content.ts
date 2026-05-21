@@ -516,7 +516,7 @@ export const faqs: Faq[] = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Reviews (from JustDial — 5.0 rating, 323+ reviews)
+// Reviews (5.0 rating, 323+ reviews)
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type Review = {
@@ -625,7 +625,7 @@ export const footerNav = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const trustBadges = [
-  { label: '5.0★ rated', sub: '323+ JustDial reviews' },
+  { label: '5.0★ rated', sub: '323+ verified reviews' },
   { label: '20+ years', sub: 'Serving Silchar' },
   { label: 'NABL', sub: 'Quality assured' }, // verify
   { label: 'Home collection', sub: 'Free across Silchar' },

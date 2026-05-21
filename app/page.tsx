@@ -819,7 +819,7 @@ export default function Home() {
                         <h5 className="font-bold text-navy-950 text-xs truncate">{review.author}</h5>
                         <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-semibold mt-0.5">
                           <CheckCircle2 className="h-3 w-3 fill-emerald-100" />
-                          <span>Verified JustDial Review</span>
+                          <span>Verified Review</span>
                         </div>
                       </div>
                     </div>
@@ -862,13 +862,13 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* JustDial Footnote and Trust indicator */}
+                  {/* Review Footnote and Trust indicator */}
                   <div className="border-t border-neutral-100 pt-3 mt-4 flex items-center justify-between text-[10px] text-neutral-400 font-medium">
                     <span className="flex items-center gap-1">
                       <Star className="h-3 w-3 fill-gold-500 text-gold-500" />
                       <span>5.0 Rating</span>
                     </span>
-                    <span>JustDial Silchar</span>
+                    <span>Silchar, Assam</span>
                   </div>
                 </div>
               );
