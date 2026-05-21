@@ -50,9 +50,10 @@
 * Configured specific diagnostic test pricing in [labtests.json](file:///e:/Web%20Dev/metro-city-diagnostics/lib/labtests.json) based on user instructions: ECG (Electrocardiogram) to ₹500, BERA to ₹3000, EEG to ₹2000, EMG to ₹5500, and NCV to ₹3000.
 * Programmed robust fallback styling rendering in [BookingForm.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/BookingForm.tsx) to show "Price on Call" parentheticals inside dropdown select selectors and the final success summary widget instead of broken undefined values.
 * Refactored service details hero sidebar in [/services/[slug]/page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/services/[slug]/page.tsx) to gracefully render "Price on Call" when prices are null/undefined.
+* Implemented an elegant emerald-green "Doctors" tab inside the Services Catalog filter bar ([ServicesCatalog.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/ServicesCatalog.tsx)) routing users directly to the specialist consultants `/doctors` catalogue.
 
 ## Next Up
-* Verify TypeScript build compilation runs successfully and review.
+* Commit and push the new Doctors catalog tab changes to remote.
 
 ## Open Questions
 * None. All questions have been resolved in direct collaboration with the user.

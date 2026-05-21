@@ -129,6 +129,12 @@ export default function ServicesCatalog({ initialServices }: Props) {
               {tab.label}
             </button>
           ))}
+          <Link
+            href="/doctors"
+            className="rounded px-4 py-2 text-xs font-bold uppercase tracking-wider border bg-emerald-50 text-emerald-800 border-emerald-250 hover:bg-emerald-100 hover:text-emerald-900 hover:border-emerald-300 transition-all duration-150 flex items-center gap-1.5 cursor-pointer shadow-sm"
+          >
+            <span>👨‍⚕️ Doctors</span>
+          </Link>
         </div>
       </div>
 
