@@ -14,10 +14,7 @@ import labtestsData from './labtests.json';
 export type ServiceCategory =
   | 'stool'
   | 'blood'
-  | 'plasma'
-  | 'swab'
   | 'urine'
-  | 'laboratory'
   | 'package'
   | 'sputum'
   | 'imaging';
@@ -40,10 +37,7 @@ export type Service = {
 const serviceCategoryMapping: Record<string, ServiceCategory> = {
   'Stool Test': 'stool',
   'Blood Test': 'blood',
-  'Plasma Test': 'plasma',
-  'Swab Test': 'swab',
   'Urine Test': 'urine',
-  'Laboratory Testing Services': 'laboratory',
   'Sputum Test': 'sputum',
   'Imaging Test': 'imaging',
 };
@@ -51,10 +45,7 @@ const serviceCategoryMapping: Record<string, ServiceCategory> = {
 const sampleTypeMapping: Record<ServiceCategory, string | undefined> = {
   stool: 'Stool',
   blood: 'Blood',
-  plasma: 'Plasma',
-  swab: 'Swab',
   urine: 'Urine',
-  laboratory: 'Blood, Urine',
   sputum: 'Sputum',
   imaging: undefined,
   package: 'Blood, Urine',
@@ -63,10 +54,7 @@ const sampleTypeMapping: Record<ServiceCategory, string | undefined> = {
 const turnaroundHoursMapping: Record<ServiceCategory, number> = {
   stool: 12,
   blood: 12,
-  plasma: 12,
-  swab: 12,
   urine: 12,
-  laboratory: 24,
   sputum: 12,
   imaging: 2,
   package: 24,
@@ -85,10 +73,6 @@ const preparationMapping: Record<string, string[]> = {
   'Kidney Function Test': ['No fasting required'],
   'Thyroid Profile Test': ['No fasting required'],
   'Hemoglobin Test': ['No fasting required'],
-  'Plasma Glucose Test': ['8-hour fasting required'],
-  'Throat Swab Test': ['Avoid eating or drinking 30 minutes before throat swab'],
-  'Nasal Swab Test': ['No specific preparation required'],
-  'Wound Swab Test': ['No specific preparation required'],
   'Routine Urine Test': ['First morning urine sample is preferred', 'Collect in a sterile container'],
   'Urine Culture Test': ['Mid-stream clean catch sample required', 'Collect in a sterile container'],
   'Protein Urine Test': ['Collect in a sterile container'],
@@ -140,7 +124,7 @@ const getSlug = (name: string) => {
 
 export const services: Service[] = labtestsData.labTests.flatMap((catGroup) => {
   const categoryName = catGroup.category;
-  const tsCategory = serviceCategoryMapping[categoryName] || 'laboratory';
+  const tsCategory = serviceCategoryMapping[categoryName] || 'blood';
 
   return catGroup.tests.map((test) => {
     const slug = getSlug(test.name);

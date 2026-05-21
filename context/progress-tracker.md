@@ -25,6 +25,7 @@
 * Resolved horizontal mobile viewport overflows by setting `overflow-x-hidden` on core layout tags.
 * Updated the clinic exterior image in the Homepage Hero section with the new premium `.png` asset.
 * Reordered the doctor list in [doctors.json](file:///e:/Web%20Dev/metro-city-diagnostics/lib/doctors.json) to match the user's exact customized sorting sequence.
+* Removed "Swab Tests", "Plasma Tests", and "Laboratory Services" categories from `lib/labtests.json` (by user), and updated `lib/content.ts` and `components/ServicesCatalog.tsx` to align with these removals.
 * Verified clean next build and type compilation successfully.
 
 

@@ -23,10 +23,7 @@ const CATEGORIES: { value: 'all' | ServiceCategory; label: string }[] = [
   { value: 'blood', label: 'Blood Tests' },
   { value: 'urine', label: 'Urine Tests' },
   { value: 'stool', label: 'Stool Tests' },
-  { value: 'plasma', label: 'Plasma Tests' },
-  { value: 'swab', label: 'Swab Tests' },
   { value: 'sputum', label: 'Sputum Tests' },
-  { value: 'laboratory', label: 'Laboratory Services' },
   { value: 'imaging', label: 'Imaging & Scans' },
   { value: 'package', label: 'Health Packages' },
 ];
@@ -155,7 +152,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="inline-block bg-navy-50 text-navy-900 text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded">
-                    {service.category === 'package' ? 'Health Package' : service.category === 'imaging' ? 'Imaging Scan' : service.category === 'laboratory' ? 'Lab Service' : `${service.category} Test`}
+                    {service.category === 'package' ? 'Health Package' : service.category === 'imaging' ? 'Imaging Scan' : `${service.category} Test`}
                   </span>
                   {service.turnaroundHours && (
                     <span className="text-xs text-neutral-400 flex items-center gap-1.5 font-medium">
