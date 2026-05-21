@@ -292,6 +292,14 @@ export default function Home() {
                     </div>
 
                     <div className="space-y-4 pt-4 border-t border-neutral-200/60">
+                      {/* Consultation Fee Pill */}
+                      <div className="flex items-center">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500">
+                          <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                          CONSULTATION FEE: ₹{entry.fees || 500}
+                        </span>
+                      </div>
+
                       {/* Specialty */}
                       <div className="flex gap-3">
                         <UserCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />

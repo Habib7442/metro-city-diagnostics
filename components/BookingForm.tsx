@@ -319,6 +319,7 @@ ${formState.homeCollection ? `• Address: ${formState.address}\n• Landmark: $
         const selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
         const doctorName = selectedDoctor ? selectedDoctor.doctor.name : 'N/A';
         const designation = selectedDoctor ? selectedDoctor.doctor.designation : 'N/A';
+        const fees = selectedDoctor ? (selectedDoctor.fees || 500) : 500;
         message = `Hello Metro-City Diagnostics,
 
 I would like to book a Specialist Doctor Consultation. Here are my details:
@@ -332,6 +333,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
 • Consultant Doctor: Dr. ${doctorName} (${designation})
 • Appointment Date: ${formState.preferredDate}
 • Timing Slot: ${formState.preferredTime}
+• Consultation Fee: ₹${fees}
 • Clinic Location: Near Vivekananda Co-operative, Meherpur, Silchar`;
       }
 
@@ -447,12 +449,20 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                 </div>
               )}
               {activeTab === 'doctor' && formState.doctorId && (
-                <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
-                  <span className="text-neutral-400 font-medium">Consulting Specialist:</span>
-                  <span className="font-extrabold text-navy-950">
-                    {doctorsData.find((d) => d.id === formState.doctorId)?.doctor.name}
-                  </span>
-                </div>
+                <>
+                  <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
+                    <span className="text-neutral-400 font-medium">Consulting Specialist:</span>
+                    <span className="font-extrabold text-navy-950">
+                      {doctorsData.find((d) => d.id === formState.doctorId)?.doctor.name}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
+                    <span className="text-neutral-400 font-medium">Consultation Fee:</span>
+                    <span className="font-extrabold text-emerald-700">
+                      ₹{doctorsData.find((d) => d.id === formState.doctorId)?.fees || 500}
+                    </span>
+                  </div>
+                </>
               )}
               
               <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
@@ -659,7 +669,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                       <option value="">-- Choose Specialist Doctor --</option>
                       {doctorsData.map((doc) => (
                         <option key={doc.id} value={doc.id}>
-                          {doc.doctor.name} - {doc.doctor.designation}
+                          {doc.doctor.name} - {doc.doctor.designation} (₹{doc.fees || 500})
                         </option>
                       ))}
                     </select>
@@ -728,10 +738,10 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                         <Clock className="h-5 w-5 text-navy-700 shrink-0 mt-0.5" />
                         <div>
                           <h4 className="text-xs font-bold text-navy-950 uppercase tracking-wide">
-                            Selected Timing Slot
+                            Selected Timing Slot & Fee
                           </h4>
                           <p className="mt-1 text-sm text-navy-800 font-medium">
-                            Dr. {selectedDoc.doctor.name} will consult on <span className="font-extrabold text-navy-950">{selectedDoc.timing.days}</span> at <span className="font-extrabold text-navy-950">{selectedDoc.timing.time}</span>.
+                            Dr. {selectedDoc.doctor.name} will consult on <span className="font-extrabold text-navy-950">{selectedDoc.timing.days}</span> at <span className="font-extrabold text-navy-950">{selectedDoc.timing.time}</span>. Consultation Fee: <span className="font-extrabold text-emerald-700">₹{selectedDoc.fees || 500}</span>.
                           </p>
                           <p className="mt-1.5 text-[10px] text-navy-600/80 leading-relaxed font-semibold italic">
                             * The appointment slot is dynamically pre-filled to match this doctor's precise hospital timing profile.
