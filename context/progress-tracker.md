@@ -24,7 +24,9 @@
 * Fixed raw double asterisks formatting across pages to render as proper strong HTML tags.
 * Resolved horizontal mobile viewport overflows by setting `overflow-x-hidden` on core layout tags.
 * Updated the clinic exterior image in the Homepage Hero section with the new premium `.png` asset.
+* Reordered the doctor list in [doctors.json](file:///e:/Web%20Dev/metro-city-diagnostics/lib/doctors.json) to match the user's exact customized sorting sequence.
 * Verified clean next build and type compilation successfully.
+
 
 ## Next Up
 * Remote deployment and monitoring.
