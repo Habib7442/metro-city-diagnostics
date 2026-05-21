@@ -110,6 +110,12 @@ export const defaultMetadata: Metadata = {
     'Birbal Bazar lab',
     'Meherpur diagnostics',
     'Barak Valley diagnostic',
+    'MM B2B health packages Silchar',
+    'TruHealth Expert checkup Silchar',
+    'TruHealth Champ junior package',
+    'full body health packages Silchar',
+    'affordable health checkups Silchar',
+    'B2B medical diagnostics Silchar',
   ],
   authors: [{ name: SITE.legalName, url: SITE.url }],
   creator: SITE.legalName,
@@ -204,7 +210,14 @@ export const pageSeo = {
       'Full catalog of diagnostic services at Metro-City Diagnostics, Silchar: ' +
       'blood tests, ultrasound, X-ray, ECG, ECHO, and health packages.',
     path: '/services',
-    keywords: ['diagnostic services Silchar', 'lab tests Silchar', 'ultrasound Silchar'],
+    keywords: [
+      'diagnostic services Silchar',
+      'lab tests Silchar',
+      'ultrasound Silchar',
+      'MM B2B health packages',
+      'TruHealth checkup packages',
+      'full body checkup packages Silchar',
+    ],
   },
   about: {
     title: 'About Us',
