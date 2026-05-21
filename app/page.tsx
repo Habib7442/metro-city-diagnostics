@@ -93,7 +93,7 @@ export default function Home() {
                 <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-lg border-2 border-gold-500/40" />
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-navy-800 shadow-2xl">
                   <Image
-                    src="/assets/metro-city-diagnostics-exterior.jpeg"
+                    src="/assets/metro-city-diagnostics-exterior.png"
                     alt="Metro-City Diagnostics Clinic Entrance, Silchar"
                     fill
                     sizes="(max-w-768px) 100vw, 50vw"

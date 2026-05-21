@@ -23,6 +23,7 @@
 * Synced the new global operating hours (`Monday - Saturday: 7:30 AM - 8:30 PM`, `Sunday: Closed`) across all UI pages, footers, headers, sitemaps, and FAQs.
 * Fixed raw double asterisks formatting across pages to render as proper strong HTML tags.
 * Resolved horizontal mobile viewport overflows by setting `overflow-x-hidden` on core layout tags.
+* Updated the clinic exterior image in the Homepage Hero section with the new premium `.png` asset.
 * Verified clean next build and type compilation successfully.
 
 ## Next Up
