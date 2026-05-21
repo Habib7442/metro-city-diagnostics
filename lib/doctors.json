@@ -80,6 +80,46 @@
     }
   },
   {
+    "id": "dr-aviraj-sarma",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Aviraj Sarma",
+      "qualification": [
+        "MBBS",
+        "MD (Medicine)",
+        "DM (Pulmonology)"
+      ],
+      "designation": "Super Specialist Pulmonologist",
+      "hospital_affiliation": "Metro-City Diagnostics",
+      "specialization": "Pulmonology",
+      "image": "/assets/doctors/dr-aviraj-sarma.png"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Once in a month",
+      "time": "10:00 AM onwards",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
     "id": "dr-debanjali-das",
     "hospital": {
       "name": "METRO-CITY DIAGNOSTICS",
