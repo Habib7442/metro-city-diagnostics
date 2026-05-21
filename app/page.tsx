@@ -506,31 +506,31 @@ export default function Home() {
                 checkIconStyle = "text-emerald-500";
                 buttonStyle = "bg-emerald-700 hover:bg-emerald-800 text-white";
               } else if (isBlood) {
-                cardStyle = "hover:shadow-md hover:shadow-rose-50/50 hover:border-rose-300 border-l-4 border-l-rose-500";
+                cardStyle = "hover:shadow-md hover:shadow-rose-50/50 hover:border-rose-300";
                 badgeStyle = "bg-rose-50 text-rose-700 border border-rose-200/50";
                 badgeLabel = "Blood Test";
                 titleStyle = "text-navy-950 group-hover:text-rose-600";
                 buttonStyle = "bg-rose-600 hover:bg-rose-700 text-white";
               } else if (isUrine) {
-                cardStyle = "hover:shadow-md hover:shadow-amber-50/50 hover:border-amber-300 border-l-4 border-l-amber-500";
+                cardStyle = "hover:shadow-md hover:shadow-amber-50/50 hover:border-amber-300";
                 badgeStyle = "bg-amber-50 text-amber-800 border border-amber-200/50";
                 badgeLabel = "Urine Test";
                 titleStyle = "text-navy-950 group-hover:text-amber-600";
                 buttonStyle = "bg-amber-600 hover:bg-amber-700 text-white";
               } else if (isStool) {
-                cardStyle = "hover:shadow-md hover:shadow-emerald-50/50 hover:border-emerald-300 border-l-4 border-l-emerald-500";
+                cardStyle = "hover:shadow-md hover:shadow-emerald-50/50 hover:border-emerald-300";
                 badgeStyle = "bg-emerald-50 text-emerald-800 border border-emerald-200/50";
                 badgeLabel = "Stool Test";
                 titleStyle = "text-navy-950 group-hover:text-emerald-600";
                 buttonStyle = "bg-emerald-600 hover:bg-emerald-700 text-white";
               } else if (isSputum) {
-                cardStyle = "hover:shadow-md hover:shadow-teal-50/50 hover:border-teal-300 border-l-4 border-l-teal-500";
+                cardStyle = "hover:shadow-md hover:shadow-teal-50/50 hover:border-teal-300";
                 badgeStyle = "bg-teal-50 text-teal-800 border border-teal-200/50";
                 badgeLabel = "Sputum Test";
                 titleStyle = "text-navy-950 group-hover:text-teal-600";
                 buttonStyle = "bg-teal-600 hover:bg-teal-700 text-white";
               } else if (isImaging) {
-                cardStyle = "hover:shadow-md hover:shadow-violet-50/50 hover:border-violet-300 border-l-4 border-l-violet-500";
+                cardStyle = "hover:shadow-md hover:shadow-violet-50/50 hover:border-violet-300";
                 badgeStyle = "bg-violet-50 text-violet-800 border border-violet-200/50";
                 badgeLabel = "Imaging Scan";
                 titleStyle = "text-navy-950 group-hover:text-violet-600";
