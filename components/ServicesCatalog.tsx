@@ -36,6 +36,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
   // Search input state
   const activeCategory = (searchParams.get('category') || 'all') as 'all' | ServiceCategory;
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
+  const [expandedServices, setExpandedServices] = useState<Record<string, boolean>>({});
 
   // Synchronize category or query to URL search parameters
   const updateParams = (category: string, query: string) => {
@@ -145,9 +146,33 @@ export default function ServicesCatalog({ initialServices }: Props) {
       {filteredServices.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredServices.map((service) => {
-            const isSilver = service.name.toLowerCase().includes('silver');
-            const isGold = service.name.toLowerCase().includes('gold');
-            const isPlatinum = service.name.toLowerCase().includes('platinum');
+            const isExpanded = !!expandedServices[service.slug];
+            const limit = 8;
+            const displayTests = isExpanded ? (service.tests || []) : (service.tests || []).slice(0, limit);
+            const hasMore = service.tests && service.tests.length > limit;
+
+            const isPackage = service.category === 'package';
+            const nameLower = service.name.toLowerCase();
+            const isSilver = isPackage && nameLower.includes('silver');
+            const isGold = isPackage && nameLower.includes('gold');
+            const isPlatinum = isPackage && nameLower.includes('platinum');
+            const isExpert = isPackage && nameLower.includes('expert');
+            const isProActive = isPackage && nameLower.includes('proactive');
+            const isActive = isPackage && nameLower.includes('active') && !nameLower.includes('proactive');
+            const isVitalPlus = isPackage && nameLower.includes('vital plus');
+            const isVital = isPackage && nameLower.includes('vital') && !nameLower.includes('plus');
+            const isEssential = isPackage && nameLower.includes('essential');
+            const isBasic = isPackage && nameLower.includes('basic');
+            const isChamp1 = isPackage && nameLower.includes('champ 1');
+            const isChamp2 = isPackage && nameLower.includes('champ 2');
+            const isChamp3 = isPackage && nameLower.includes('champ 3');
+
+            // Test category classification
+            const isBlood = !isPackage && service.category === 'blood';
+            const isUrine = !isPackage && service.category === 'urine';
+            const isStool = !isPackage && service.category === 'stool';
+            const isSputum = !isPackage && service.category === 'sputum';
+            const isImaging = !isPackage && service.category === 'imaging';
 
             // Dynamic styles based on package tier (Silver, Gold, Platinum) or generic test
             let cardStyle = "hover:shadow-md hover:border-neutral-300";
@@ -178,6 +203,106 @@ export default function ServicesCatalog({ initialServices }: Props) {
               titleStyle = "text-sky-800 group-hover:text-sky-900";
               checkIconStyle = "text-sky-500";
               buttonStyle = "bg-sky-700 hover:bg-sky-800 text-white";
+            } else if (isExpert) {
+              cardStyle = "hover:shadow-md hover:shadow-purple-50/50 hover:border-purple-200";
+              badgeStyle = "bg-purple-50 text-purple-700 border border-purple-200/50";
+              badgeLabel = "Expert Package";
+              titleStyle = "text-purple-800 group-hover:text-purple-900";
+              checkIconStyle = "text-purple-500";
+              buttonStyle = "bg-purple-700 hover:bg-purple-800 text-white";
+            } else if (isProActive) {
+              cardStyle = "hover:shadow-md hover:shadow-fuchsia-50/50 hover:border-fuchsia-200";
+              badgeStyle = "bg-fuchsia-50 text-fuchsia-700 border border-fuchsia-200/50";
+              badgeLabel = "ProActive Package";
+              titleStyle = "text-fuchsia-800 group-hover:text-fuchsia-900";
+              checkIconStyle = "text-fuchsia-500";
+              buttonStyle = "bg-fuchsia-700 hover:bg-fuchsia-800 text-white";
+            } else if (isActive) {
+              cardStyle = "hover:shadow-md hover:shadow-emerald-50/50 hover:border-emerald-200";
+              badgeStyle = "bg-emerald-50 text-emerald-700 border border-emerald-200/50";
+              badgeLabel = "Active Package";
+              titleStyle = "text-emerald-800 group-hover:text-emerald-900";
+              checkIconStyle = "text-emerald-500";
+              buttonStyle = "bg-emerald-700 hover:bg-emerald-800 text-white";
+            } else if (isVitalPlus) {
+              cardStyle = "hover:shadow-md hover:shadow-rose-50/50 hover:border-rose-200";
+              badgeStyle = "bg-rose-50 text-rose-700 border border-rose-200/50";
+              badgeLabel = "Vital Plus Package";
+              titleStyle = "text-rose-800 group-hover:text-rose-900";
+              checkIconStyle = "text-rose-500";
+              buttonStyle = "bg-rose-700 hover:bg-rose-800 text-white";
+            } else if (isVital) {
+              cardStyle = "hover:shadow-md hover:shadow-indigo-50/50 hover:border-indigo-200";
+              badgeStyle = "bg-indigo-50 text-indigo-700 border border-indigo-200/50";
+              badgeLabel = "Vital Package";
+              titleStyle = "text-indigo-800 group-hover:text-indigo-900";
+              checkIconStyle = "text-indigo-500";
+              buttonStyle = "bg-indigo-700 hover:bg-indigo-800 text-white";
+            } else if (isEssential) {
+              cardStyle = "hover:shadow-md hover:shadow-amber-50/50 hover:border-amber-200";
+              badgeStyle = "bg-amber-50 text-amber-700 border border-amber-200/50";
+              badgeLabel = "Essential Package";
+              titleStyle = "text-amber-800 group-hover:text-amber-900";
+              checkIconStyle = "text-amber-500";
+              buttonStyle = "bg-amber-700 hover:bg-amber-800 text-white";
+            } else if (isBasic) {
+              cardStyle = "hover:shadow-md hover:shadow-blue-50/50 hover:border-blue-200";
+              badgeStyle = "bg-blue-50 text-blue-700 border border-blue-200/50";
+              badgeLabel = "Basic Package";
+              titleStyle = "text-blue-800 group-hover:text-blue-900";
+              checkIconStyle = "text-blue-500";
+              buttonStyle = "bg-blue-700 hover:bg-blue-800 text-white";
+            } else if (isChamp1) {
+              cardStyle = "hover:shadow-md hover:shadow-cyan-50/50 hover:border-cyan-200";
+              badgeStyle = "bg-cyan-50 text-cyan-800 border border-cyan-200/50";
+              badgeLabel = "Champ 1 Package";
+              titleStyle = "text-cyan-800 group-hover:text-cyan-900";
+              checkIconStyle = "text-cyan-500";
+              buttonStyle = "bg-cyan-700 hover:bg-cyan-800 text-white";
+            } else if (isChamp2) {
+              cardStyle = "hover:shadow-md hover:shadow-teal-50/50 hover:border-teal-200";
+              badgeStyle = "bg-teal-50 text-teal-800 border border-teal-200/50";
+              badgeLabel = "Champ 2 Package";
+              titleStyle = "text-teal-800 group-hover:text-teal-900";
+              checkIconStyle = "text-teal-500";
+              buttonStyle = "bg-teal-700 hover:bg-teal-800 text-white";
+            } else if (isChamp3) {
+              cardStyle = "hover:shadow-md hover:shadow-emerald-50/50 hover:border-emerald-200";
+              badgeStyle = "bg-emerald-50 text-emerald-800 border border-emerald-200/50";
+              badgeLabel = "Champ 3 Package";
+              titleStyle = "text-emerald-800 group-hover:text-emerald-900";
+              checkIconStyle = "text-emerald-500";
+              buttonStyle = "bg-emerald-700 hover:bg-emerald-800 text-white";
+            } else if (isBlood) {
+              cardStyle = "hover:shadow-md hover:shadow-rose-50/50 hover:border-rose-300 border-l-4 border-l-rose-500";
+              badgeStyle = "bg-rose-50 text-rose-700 border border-rose-200/50";
+              badgeLabel = "Blood Test";
+              titleStyle = "text-navy-950 group-hover:text-rose-600";
+              buttonStyle = "bg-rose-600 hover:bg-rose-700 text-white";
+            } else if (isUrine) {
+              cardStyle = "hover:shadow-md hover:shadow-amber-50/50 hover:border-amber-300 border-l-4 border-l-amber-500";
+              badgeStyle = "bg-amber-50 text-amber-800 border border-amber-200/50";
+              badgeLabel = "Urine Test";
+              titleStyle = "text-navy-950 group-hover:text-amber-600";
+              buttonStyle = "bg-amber-600 hover:bg-amber-700 text-white";
+            } else if (isStool) {
+              cardStyle = "hover:shadow-md hover:shadow-emerald-50/50 hover:border-emerald-300 border-l-4 border-l-emerald-500";
+              badgeStyle = "bg-emerald-50 text-emerald-800 border border-emerald-200/50";
+              badgeLabel = "Stool Test";
+              titleStyle = "text-navy-950 group-hover:text-emerald-600";
+              buttonStyle = "bg-emerald-600 hover:bg-emerald-700 text-white";
+            } else if (isSputum) {
+              cardStyle = "hover:shadow-md hover:shadow-teal-50/50 hover:border-teal-300 border-l-4 border-l-teal-500";
+              badgeStyle = "bg-teal-50 text-teal-800 border border-teal-200/50";
+              badgeLabel = "Sputum Test";
+              titleStyle = "text-navy-950 group-hover:text-teal-600";
+              buttonStyle = "bg-teal-600 hover:bg-teal-700 text-white";
+            } else if (isImaging) {
+              cardStyle = "hover:shadow-md hover:shadow-violet-50/50 hover:border-violet-300 border-l-4 border-l-violet-500";
+              badgeStyle = "bg-violet-50 text-violet-800 border border-violet-200/50";
+              badgeLabel = "Imaging Scan";
+              titleStyle = "text-navy-950 group-hover:text-violet-600";
+              buttonStyle = "bg-violet-600 hover:bg-violet-700 text-white";
             }
 
             return (
@@ -222,11 +347,31 @@ export default function ServicesCatalog({ initialServices }: Props) {
                             Key Tests Included:
                           </span>
                           <div className="flex flex-wrap gap-1.5">
-                            {service.tests.map((test) => (
+                            {displayTests.map((test) => (
                               <span key={test} className="bg-navy-50/50 border border-navy-100/40 rounded-full px-2.5 py-0.5 text-[10px] text-navy-900 font-medium">
                                 {test}
                               </span>
                             ))}
+                            {hasMore && (
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setExpandedServices(prev => ({
+                                    ...prev,
+                                    [service.slug]: !prev[service.slug]
+                                  }));
+                                }}
+                                className={cn(
+                                  "border rounded-full px-2.5 py-0.5 text-[10px] font-bold shadow-sm transition-all cursor-pointer",
+                                  isExpanded
+                                    ? "bg-neutral-200 border-neutral-300 text-neutral-700 hover:bg-neutral-350"
+                                    : "bg-navy-950/10 border-navy-950/20 text-navy-950 hover:bg-navy-950/20"
+                                )}
+                              >
+                                {isExpanded ? 'Show Less' : `+${service.tests.length - limit} more`}
+                              </button>
+                            )}
                           </div>
                         </div>
                       )}
