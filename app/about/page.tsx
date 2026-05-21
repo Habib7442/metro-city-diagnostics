@@ -1,15 +1,31 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ShieldCheck, Award, Users, ChevronRight, Activity, Clock, CheckCircle2 } from 'lucide-react';
+import { 
+  ShieldCheck, 
+  MapPin, 
+  History, 
+  Users, 
+  Activity, 
+  CheckCircle2, 
+  Star, 
+  Clock, 
+  HeartHandshake, 
+  Sparkles 
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { buildMetadata, pageSeo, jsonLdProps, organizationJsonLd } from '@/lib/seo';
+import { buildMetadata, jsonLdProps, organizationJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'About Us — Trusted Diagnostic Lab in Silchar since 1976',
+  title: 'About Metro-City Diagnostics — Meherpur, Silchar',
   description:
-    'Learn about Metro-City Diagnostics, serving Silchar and Cachar since 1976. Explore our high-precision pathology analyzers, digital X-rays, expert medical directors, and quality certifications.',
+    'Learn about Metro-City Diagnostics in Meherpur, Silchar. Established in 01-2025, offering comprehensive medical diagnostics, lab testing, and sonography services.',
   path: '/about',
-  keywords: ['about Metro City Diagnostics', 'best lab in Silchar'],
+  keywords: [
+    'Metro-City Diagnostics Silchar',
+    'about Metro-City Diagnostics',
+    'diagnostic lab Meherpur',
+    'Sonography Centres Silchar'
+  ],
 });
 
 export default function AboutPage() {
@@ -21,205 +37,243 @@ export default function AboutPage() {
       <script {...jsonLdProps(orgSchema)} />
 
       {/* Hero Banner Section */}
-      <section className="bg-navy-950 text-white py-16 md:py-24 relative overflow-hidden">
+      <section className="bg-navy-950 text-white py-20 md:py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950 opacity-90 z-0" />
+        {/* Subtle decorative background shapes */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <span className="inline-block bg-gold-500/20 text-gold-300 border border-gold-500/30 text-xs font-extrabold px-3 py-1 rounded uppercase tracking-wider mb-4">
-              Our Legacy Since 1976
+          <div className="max-w-4xl">
+            <span className="inline-flex items-center gap-1.5 bg-gold-500/20 text-gold-300 border border-gold-500/30 text-xs font-extrabold px-3.5 py-1.5 rounded uppercase tracking-wider mb-6">
+              <Sparkles className="h-3.5 w-3.5" />
+              Established 01-2025
             </span>
             <h1 className="text-4xl font-extrabold font-display leading-tight sm:text-5xl md:text-6xl mb-6">
-              A Legacy of Clinical Trust and Care in Silchar
+              About Metro-City Diagnostics
             </h1>
-            <p className="text-neutral-300 text-lg leading-relaxed mb-8">
-              Metro-City Diagnostics has been at the forefront of providing accurate pathology, high-resolution digital X-rays, and modern obstetric sonography to the people of Cachar and the Barak Valley for half a century.
+            <p className="text-neutral-300 text-lg sm:text-xl leading-relaxed max-w-3xl">
+              A trusted partner in your healthcare journey, delivering high-precision laboratory testing, expert pathology audits, and patient-first diagnostics.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button
-                asChild
-                className="bg-gold-500 hover:bg-gold-600 text-white font-bold h-12 rounded px-6 shadow-sm"
-              >
-                <Link href="/services">Explore Services</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 font-bold h-12 rounded px-6"
-              >
-                <Link href="/contact">Get Directions</Link>
-              </Button>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Core Narrative */}
+      {/* Main Content Grid */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Image/Branding Card */}
-            <div className="lg:col-span-5">
-              <div className="bg-navy-900 text-white p-8 md:p-12 rounded-2xl relative overflow-hidden shadow-lg border border-navy-800">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-2xl pointer-events-none" />
-                <h3 className="text-2xl font-bold font-display mb-4">Why Metro-City?</h3>
-                <p className="text-sm text-neutral-300 leading-relaxed mb-6">
-                  For nearly 50 years, our core focus has remained unchanged: combining clinical authority and strict control systems with a warm, caring environment for our patients.
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            {/* Left Column: Detailed Sections */}
+            <div className="lg:col-span-8 space-y-12">
+              
+              {/* SECTION 1: Metro-City Diagnostics in Meherpur, Silchar */}
+              <div className="bg-white rounded-2xl border border-neutral-200 p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="h-10 w-10 rounded-lg bg-navy-50 text-navy-700 flex items-center justify-center">
+                    <Activity className="h-5.5 w-5.5" />
+                  </div>
+                  <h2 className="text-2xl font-bold font-display text-navy-950">
+                    Metro-City Diagnostics in Meherpur, Silchar
+                  </h2>
+                </div>
+                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+                  Located in Meherpur, Silchar, Metro-City Diagnostics is a trusted name in the healthcare and diagnostic field, offering comprehensive medical diagnostics, lab testing, and healthcare services. Established in 01-2025, Metro-City Diagnostics is committed to providing high-quality, reliable healthcare solutions to patients of all ages. Operating from Monday:- 7:30 am - 8:30 pm, Tuesday:- 7:30 am - 8:30 pm, Wednesday:- 7:30 am - 8:30 pm, Thursday:- 7:30 am - 8:30 pm, Friday:- 7:30 am - 8:30 pm, Saturday:- 7:30 am - 8:30 pm, Sunday:- Closed, the center strives to ensure accuracy, comfort, and convenience for all clients and patients alike.
                 </p>
+              </div>
+
+              {/* SECTION 2: Overview and Location */}
+              <div className="bg-white rounded-2xl border border-neutral-200 p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="h-10 w-10 rounded-lg bg-navy-50 text-navy-700 flex items-center justify-center">
+                    <MapPin className="h-5.5 w-5.5" />
+                  </div>
+                  <h2 className="text-2xl font-bold font-display text-navy-950">
+                    Overview and Location
+                  </h2>
+                </div>
+                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+                  Metro-City Diagnostics specializes in Sonography Centres and a broad range of medical diagnostic and testing services, including both patient-focused diagnostics and specialized lab services for product testing. Conveniently situated near Near Vivekananda Co-Operative, Silchar Medical College Road, the center's accessible location in Meherpur, Silchar enables timely and efficient service, making it an ideal choice for individuals, healthcare providers, and companies requiring specialized diagnostic solutions.
+                </p>
+              </div>
+
+              {/* SECTION 3: History and Commitment */}
+              <div className="bg-white rounded-2xl border border-neutral-200 p-8 shadow-sm transition-all duration-300 hover:shadow-md relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-gold-500/5 rounded-full blur-2xl pointer-events-none" />
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="h-10 w-10 rounded-lg bg-navy-50 text-navy-700 flex items-center justify-center">
+                    <History className="h-5.5 w-5.5" />
+                  </div>
+                  <h2 className="text-2xl font-bold font-display text-navy-950">
+                    History and Commitment
+                  </h2>
+                </div>
+                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed mb-6">
+                  Since its founding, Metro-City Diagnostics has been a leader in the Sonography Centres sector, consistently earning the trust of its clients through a commitment to accuracy and patient care. With a high rating of 5.0 stars based on 323 reviews, the center continues to be a cornerstone for healthcare needs, recognized for its dedication to patient and client satisfaction.
+                </p>
+
+                {/* Trust and Reviews Stats Display */}
+                <div className="flex flex-wrap items-center gap-6 p-4 rounded-xl bg-[#FAFAFB] border border-neutral-200/60">
+                  <div className="flex items-center gap-1.5 text-gold-500">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-current" />
+                    ))}
+                  </div>
+                  <div className="text-xs sm:text-sm font-semibold text-navy-950">
+                    5.0 / 5.0 Star Rating
+                  </div>
+                  <div className="h-4 w-px bg-neutral-300 hidden sm:block" />
+                  <div className="text-xs sm:text-sm text-neutral-500">
+                    Based on 323 Verified Customer Reviews
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION 4: Expert Team of Professionals */}
+              <div className="bg-white rounded-2xl border border-neutral-200 p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="h-10 w-10 rounded-lg bg-navy-50 text-navy-700 flex items-center justify-center">
+                    <Users className="h-5.5 w-5.5" />
+                  </div>
+                  <h2 className="text-2xl font-bold font-display text-navy-950">
+                    Expert Team of Professionals
+                  </h2>
+                </div>
+                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+                  At Metro-City Diagnostics in Meherpur, Silchar, patients and clients are supported by a team of highly skilled professionals, including licensed doctors, certified lab technicians and specialized staff trained in advanced diagnostic techniques. The team's dedication to accuracy, patient comfort, and care ensures that every diagnostic process—from routine tests to specialized screenings—is conducted with precision and empathy.
+                </p>
+              </div>
+
+              {/* SECTION 5: Services Offered */}
+              <div className="bg-white rounded-2xl border border-neutral-200 p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+                <div className="flex items-center gap-3.5 mb-5">
+                  <div className="h-10 w-10 rounded-lg bg-navy-50 text-navy-700 flex items-center justify-center">
+                    <ShieldCheck className="h-5.5 w-5.5" />
+                  </div>
+                  <h2 className="text-2xl font-bold font-display text-navy-950">
+                    Services Offered
+                  </h2>
+                </div>
+                <div className="text-neutral-600 text-sm sm:text-base leading-relaxed space-y-4">
+                  <p>
+                    Metro-City Diagnostics offers a comprehensive range of medical and diagnostic services designed to meet diverse healthcare needs. For patient diagnostics, they provide specialized testing such as RCT (Root Canal), Sinusitis, Fistula Treatment, and advanced imaging solutions. They also offer a variety of preventive health packages tailored for all age groups, as well as wellness assessments to support proactive health management.
+                  </p>
+                  <p>
+                    Additionally, Metro-City Diagnostics provides high-standard diagnostic lab services for product testing, catering to industries that require quality control and compliance checks.
+                  </p>
+                </div>
+              </div>
+
+              {/* SECTION 6: Summary */}
+              <div className="bg-navy-950 text-white rounded-2xl p-8 md:p-10 shadow-sm relative overflow-hidden border border-navy-900">
+                <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="flex items-center gap-3.5 mb-5 relative z-10">
+                  <div className="h-10 w-10 rounded-lg bg-gold-500/20 text-gold-300 flex items-center justify-center">
+                    <HeartHandshake className="h-5.5 w-5.5" />
+                  </div>
+                  <h2 className="text-2xl font-bold font-display text-white">
+                    Summary
+                  </h2>
+                </div>
+                <p className="text-neutral-300 text-sm sm:text-base leading-relaxed relative z-10 mb-8">
+                  Metro-City Diagnostics in Meherpur, Silchar is dedicated to delivering reliable and high-quality diagnostic and lab testing services. With a team of experienced professionals, a wide range of diagnostic options, and a reputation for precision, Metro-City Diagnostics ensures that every patient and client receives the care, accuracy, and efficiency they deserve. For healthcare and diagnostic solutions in Silchar, Metro-City Diagnostics remains a trusted provider, committed to excellence in every aspect of patient and client care.
+                </p>
+                <div className="flex flex-wrap gap-4 relative z-10">
+                  <Button
+                    asChild
+                    className="bg-gold-500 hover:bg-gold-600 text-white font-bold h-11 rounded shadow-xs"
+                  >
+                    <Link href="/services">View Available Services</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="border-white/20 text-white hover:bg-white/10 font-bold h-11 rounded"
+                  >
+                    <Link href="/contact">Get Location Directions</Link>
+                  </Button>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Column: Sidebar / Operating Info Panel */}
+            <div className="lg:col-span-4 space-y-8">
+              
+              {/* Quick Details Card */}
+              <div className="bg-white rounded-2xl border border-neutral-200 p-6 shadow-sm">
+                <h3 className="font-bold text-navy-950 text-lg border-b border-neutral-100 pb-3 mb-4">
+                  Quick Details
+                </h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <Clock className="h-5 w-5 text-gold-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-semibold text-neutral-400 uppercase block">
+                        Operating Hours
+                      </span>
+                      <span className="text-sm font-bold text-navy-950 mt-1 block">
+                        Monday - Saturday
+                      </span>
+                      <span className="text-xs text-neutral-600 block mt-0.5">
+                        7:30 AM - 8:30 PM
+                      </span>
+                      <span className="text-sm font-bold text-red-600 mt-2 block">
+                        Sunday
+                      </span>
+                      <span className="text-xs text-neutral-600 block mt-0.5">
+                        Closed
+                      </span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3 border-t border-neutral-100 pt-4">
+                    <MapPin className="h-5 w-5 text-gold-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-semibold text-neutral-400 uppercase block">
+                        Address Location
+                      </span>
+                      <span className="text-xs text-neutral-600 leading-relaxed block mt-1">
+                        Near Vivekananda Co-Operative, Silchar Medical College Road, Meherpur, Silchar, Assam 788015
+                      </span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3 border-t border-neutral-100 pt-4">
+                    <ShieldCheck className="h-5 w-5 text-gold-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-semibold text-neutral-400 uppercase block">
+                        Our Certifications
+                      </span>
+                      <span className="text-xs text-neutral-600 leading-relaxed block mt-1">
+                        High-quality lab infrastructure, specialized Sonography Centres compliance, and expert pathologists.
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Core Quality Pillars */}
+              <div className="bg-navy-900 text-white rounded-2xl p-6 shadow-sm border border-navy-800">
+                <h3 className="font-bold text-white text-lg border-b border-navy-800 pb-3 mb-4">
+                  Our Commitment
+                </h3>
                 <ul className="space-y-4">
                   {[
-                    'Automated hematology & bio-chemistry analyzers',
-                    'High-resolution digital X-ray equipment',
-                    'Strict internal quality audit controls',
-                    'Convenient home sample collection across Silchar',
-                  ].map((value, idx) => (
-                    <li key={idx} className="flex gap-3 text-xs leading-relaxed text-neutral-200">
-                      <CheckCircle2 className="h-5 w-5 text-gold-500 flex-shrink-0" />
-                      <span>{value}</span>
+                    '5.0 Star Rated Quality Care',
+                    '323 Verified Customer Reviews',
+                    'Accurate Sonography Screening',
+                    'Reliable Product Testing Diagnostics',
+                    'Expert Licensed Pathologist Audits'
+                  ].map((item, i) => (
+                    <li key={i} className="flex gap-2.5 text-xs text-neutral-200">
+                      <CheckCircle2 className="h-4.5 w-4.5 text-gold-500 flex-shrink-0" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+
             </div>
 
-            {/* Right Column: Narrative */}
-            <div className="lg:col-span-7 space-y-6">
-              <h2 className="text-3xl font-bold font-display text-navy-900 leading-tight sm:text-4xl">
-                Serving Cachar with Uncompromising Quality
-              </h2>
-              <p className="text-neutral-600 text-base leading-relaxed">
-                Founded in **1976**, Metro-City Diagnostics was established with a singular vision: bringing world-class laboratory pathology and diagnostic facilities to Silchar. Over the decades, we have continually upgraded our machinery and medical practices to align with national and global guidelines.
-              </p>
-              <p className="text-neutral-600 text-base leading-relaxed">
-                Our facilities are managed by experienced medical pathologists and radiologist advisors who inspect every report to guarantee extreme precision. Whether it is a routine blood cell panel or specialized thyroid profile, our clinical team works diligently to deliver verified reports back to your phone via WhatsApp in record time.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-neutral-200">
-                <div>
-                  <span className="text-3xl font-black text-navy-950 font-display block">1976</span>
-                  <span className="text-xs font-semibold text-neutral-400 uppercase mt-1 block">
-                    Established Year
-                  </span>
-                </div>
-                <div>
-                  <span className="text-3xl font-black text-navy-950 font-display block">100k+</span>
-                  <span className="text-xs font-semibold text-neutral-400 uppercase mt-1 block">
-                    Patients Served
-                  </span>
-                </div>
-                <div>
-                  <span className="text-3xl font-black text-navy-950 font-display block">24 Hours</span>
-                  <span className="text-xs font-semibold text-neutral-400 uppercase mt-1 block">
-                    Report Turnaround
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-16 md:py-24 bg-white border-y border-neutral-200">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold font-display text-navy-900 leading-tight sm:text-4xl mb-4">
-              Our Core Operational Pillars
-            </h2>
-            <p className="text-neutral-500 text-sm sm:text-base leading-relaxed">
-              Every sample, report, and booking is processed with precision, ensuring absolute peace of mind for you and your family.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: ShieldCheck,
-                title: 'Clinical Accuracy',
-                desc: 'Our laboratory operates under strict internal controls and external quality assurance schemes, yielding double-verified diagnostic metrics.',
-              },
-              {
-                icon: Clock,
-                title: 'Fast Turnaround',
-                desc: 'We optimize laboratory processing pipelines to deliver digital reports via WhatsApp and Email within 12 to 24 hours.',
-              },
-              {
-                icon: Users,
-                title: 'Patient-First Focus',
-                desc: 'From our clean clinic lobby to professional home collection technicians, we treat every patient like a valued neighbor.',
-              },
-              {
-                icon: Award,
-                title: 'Fair Pricing',
-                desc: 'We are committed to providing premium diagnostics services at accessible rates across the entire Barak Valley region.',
-              },
-            ].map((pillar, idx) => {
-              const IconComp = pillar.icon;
-              return (
-                <div key={idx} className="p-6 bg-neutral-50 rounded-xl border border-neutral-200/60 shadow-xs flex flex-col justify-between">
-                  <div className="mb-4">
-                    <div className="h-12 w-12 bg-navy-50 text-navy-950 rounded-lg flex items-center justify-center mb-4">
-                      <IconComp className="h-6 w-6 text-navy-700" />
-                    </div>
-                    <h3 className="text-lg font-bold text-navy-950 mb-2">{pillar.title}</h3>
-                    <p className="text-xs text-neutral-500 leading-relaxed">{pillar.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Laboratory Equipment & Infrastructure */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold font-display text-navy-900 leading-tight sm:text-4xl mb-6">
-                Advanced Laboratory Infrastructure
-              </h2>
-              <p className="text-neutral-600 text-sm sm:text-base leading-relaxed mb-6">
-                To guarantee extreme accuracy, our laboratory pathology center is equipped with modern, fully-automated analysis instrumentation. We systematically eliminate human error using barcoded samples and direct interface analyzers.
-              </p>
-              <div className="space-y-4">
-                {[
-                  {
-                    title: 'Automated Biochemistry Analyzers',
-                    desc: 'Direct-read spectrometry for highly accurate blood sugars, lipid profiles, liver, and kidney panels.',
-                  },
-                  {
-                    title: 'High-Resolution Obstetric Sonography',
-                    desc: 'Safe, radiation-free pelvic scanning to examine fetal health, soft tissues, and abdomens.',
-                  },
-                  {
-                    title: 'Low-Exposure Digital Radiology',
-                    desc: 'Instant chest and bone X-ray scans with reduced dosage, finalized within minutes.',
-                  },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex gap-3">
-                    <div className="h-2 w-2 rounded-full bg-gold-500 mt-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-navy-950 text-sm">{item.title}</h4>
-                      <p className="text-xs text-neutral-500 leading-relaxed mt-0.5">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="bg-navy-950 p-8 rounded-xl text-white relative overflow-hidden border border-navy-900 shadow-md">
-              <span className="text-[10px] font-extrabold uppercase bg-gold-500/20 text-gold-300 px-3 py-1 rounded tracking-wider border border-gold-500/20 mb-4 inline-block">
-                Our Guarantee
-              </span>
-              <h3 className="text-2xl font-bold font-display mb-4">Double-Checked Verified Reports</h3>
-              <p className="text-xs text-neutral-400 leading-relaxed mb-6">
-                All clinical profiles (CBC, Liver Panels, Hormones) are validated under strict diagnostic checks. Should any parameter deviate from expected limits, we run repeat assays to confirm metrics before dispatching the final digital report.
-              </p>
-              <Button
-                asChild
-                className="bg-gold-500 hover:bg-gold-600 text-white font-bold h-11 rounded"
-              >
-                <Link href="/book">Book Sample Collection Now</Link>
-              </Button>
-            </div>
           </div>
         </div>
       </section>

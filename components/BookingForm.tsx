@@ -121,8 +121,39 @@ export default function BookingForm() {
     setIsSubmitting(true);
 
     try {
-      // Simulate booking API delay
-      await new Promise((resolve) => setTimeout(resolve, 1800));
+      const selectedTest = formState.testSlug 
+        ? services.find((s) => s.slug === formState.testSlug)?.name 
+        : 'None selected';
+        
+      const selectedDoctor = formState.doctorId 
+        ? doctorsData.find((d) => d.id === formState.doctorId)?.doctor.name 
+        : 'None selected';
+
+      // Build WhatsApp message
+      const message = `Hello Metro-City Diagnostics,
+
+I would like to book a diagnostic appointment. Here are my details:
+
+📋 PATIENT DETAILS:
+• Name: ${formState.name}
+• Mobile: ${formState.phone}
+• Email: ${formState.email || 'N/A'}
+
+🔬 APPOINTMENT DETAILS:
+• Test/Package: ${selectedTest}
+• Doctor Consultation: ${selectedDoctor}
+• Preferred Date: ${formState.preferredDate}
+• Preferred Time: ${formState.preferredTime}
+
+🏠 SAMPLE COLLECTION:
+• Home Collection: ${formState.homeCollection ? 'Yes (Requested)' : 'No (Walk-in)'}
+${formState.homeCollection ? `• Address: ${formState.address}\n• Landmark: ${formState.landmark || 'N/A'}` : ''}`;
+
+      const whatsappUrl = `https://wa.me/919957357278?text=${encodeURIComponent(message)}`;
+      
+      // Open in a new tab
+      window.open(whatsappUrl, '_blank');
+      
       setSubmitSuccess(true);
     } catch (err) {
       console.error(err);

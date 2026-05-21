@@ -20,10 +20,14 @@ type Props = {
 
 const CATEGORIES: { value: 'all' | ServiceCategory; label: string }[] = [
   { value: 'all', label: 'All Services' },
-  { value: 'pathology', label: 'Pathology / Blood Tests' },
-  { value: 'radiology', label: 'Digital X-Ray' },
-  { value: 'imaging', label: 'Ultrasound / Sonography' },
-  { value: 'cardiac', label: 'ECG & Cardiology' },
+  { value: 'blood', label: 'Blood Tests' },
+  { value: 'urine', label: 'Urine Tests' },
+  { value: 'stool', label: 'Stool Tests' },
+  { value: 'plasma', label: 'Plasma Tests' },
+  { value: 'swab', label: 'Swab Tests' },
+  { value: 'sputum', label: 'Sputum Tests' },
+  { value: 'laboratory', label: 'Laboratory Services' },
+  { value: 'imaging', label: 'Imaging & Scans' },
   { value: 'package', label: 'Health Packages' },
 ];
 
@@ -151,7 +155,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="inline-block bg-navy-50 text-navy-900 text-[10px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded">
-                    {service.category === 'package' ? 'Health Package' : service.category}
+                    {service.category === 'package' ? 'Health Package' : service.category === 'imaging' ? 'Imaging Scan' : service.category === 'laboratory' ? 'Lab Service' : `${service.category} Test`}
                   </span>
                   {service.turnaroundHours && (
                     <span className="text-xs text-neutral-400 flex items-center gap-1.5 font-medium">
@@ -182,10 +186,16 @@ export default function ServicesCatalog({ initialServices }: Props) {
                     <span className="text-[10px] text-neutral-400 uppercase font-semibold block leading-tight">
                       Test Fee
                     </span>
-                    <span className="text-xl font-extrabold text-navy-900">
-                      ₹{service.price}
-                    </span>
-                    {service.priceNote && (
+                    {service.price ? (
+                      <span className="text-xl font-extrabold text-navy-900">
+                        ₹{service.price}
+                      </span>
+                    ) : (
+                      <span className="text-sm font-bold text-gold-600">
+                        {service.priceNote || 'Call for price'}
+                      </span>
+                    )}
+                    {service.price && service.priceNote && (
                       <span className="text-[10px] text-neutral-400 block mt-0.5">
                         *{service.priceNote}
                       </span>

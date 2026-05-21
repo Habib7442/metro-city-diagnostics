@@ -87,11 +87,11 @@ export default function ContactPage() {
                   <div className="text-xs sm:text-sm text-neutral-500 space-y-2">
                     <p className="flex justify-between border-b border-neutral-100 pb-2">
                       <span className="font-semibold text-neutral-700">Monday - Saturday:</span>
-                      <span className="font-bold text-navy-900">7:00 AM - 8:00 PM</span>
+                      <span className="font-bold text-navy-900">7:30 AM - 8:30 PM</span>
                     </p>
                     <p className="flex justify-between">
                       <span className="font-semibold text-neutral-700">Sunday:</span>
-                      <span className="font-bold text-navy-900">7:00 AM - 1:00 PM</span>
+                      <span className="font-bold text-navy-900">Closed</span>
                     </p>
                   </div>
                 </div>
@@ -102,11 +102,11 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-bold text-navy-900 text-base mb-3">Landmarks & Directions</h3>
                   <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
-                    Metro-City Diagnostics is centrally located in **Meherpur, Birbal Bazar, Silchar**, easily accessible via major town transit routes:
+                    Metro-City Diagnostics is centrally located in <strong className="font-semibold text-navy-950">Meherpur, Birbal Bazar, Silchar</strong>, easily accessible via major town transit routes:
                   </p>
                   <ul className="list-disc pl-5 mt-3 space-y-2 text-xs sm:text-sm text-neutral-500">
-                    <li>Located near the **Vivekananda Statue Co-operative Building** right off the highway.</li>
-                    <li>Approximately **1.8 km** from Silchar Medical College & Hospital.</li>
+                    <li>Located near the <strong className="font-semibold text-navy-950">Vivekananda Statue Co-operative Building</strong> right off the highway.</li>
+                    <li>Approximately <strong className="font-semibold text-navy-950">1.8 km</strong> from Silchar Medical College & Hospital.</li>
                     <li>Easily accessible by local auto-rickshaws and cabs with designated parking space directly in front of our entrance.</li>
                   </ul>
                 </div>
@@ -121,7 +121,7 @@ export default function ContactPage() {
                   <span className="text-xs font-bold text-navy-900">Google Maps Navigation Location</span>
                 </div>
                 <a
-                  href="https://google.com" // Update with real GBP link
+                  href="https://www.google.com/maps/search/?api=1&query=Metro-City+Diagnostics+Silchar"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[11px] font-bold text-gold-700 hover:text-gold-800 flex items-center gap-1 transition-colors"
@@ -133,7 +133,7 @@ export default function ContactPage() {
               <div className="h-[350px] w-full bg-neutral-100">
                 <iframe
                   title="Metro-City Diagnostics Location Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.6655167664366!2d92.78453477610018!3d24.806822243292415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374e49f69742ad5d%3A0xe543e49e29a997e5!2sMetro-City%20Diagnostics!5e0!3m2!1sen!2sin!4v1716200000000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7243.64653953248!2d92.78565079895019!3d24.801504468480108!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374e4bcc779b118d%3A0xf60370683024c700!2sMetro-City%20Diagnostics!5e0!3m2!1sen!2sin!4v1779330698021!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

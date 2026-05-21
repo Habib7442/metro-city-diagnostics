@@ -55,8 +55,18 @@ export default function ContactForm() {
     setSubmitError('');
 
     try {
-      // Simulate submission endpoint delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const message = `💬 NEW CONTACT INQUIRY:
+• Name: ${formState.name}
+• Mobile: ${formState.phone}
+• Email: ${formState.email || 'N/A'}
+
+✉️ MESSAGE:
+${formState.message}`;
+
+      const whatsappUrl = `https://wa.me/919957357278?text=${encodeURIComponent(message)}`;
+      
+      // Open in a new tab
+      window.open(whatsappUrl, '_blank');
       
       setSubmitSuccess(true);
       setFormState({
@@ -66,7 +76,7 @@ export default function ContactForm() {
         message: '',
       });
     } catch (err) {
-      setSubmitError('Failed to send message. Please try calling us directly.');
+      setSubmitError('Failed to open WhatsApp. Please try calling us directly.');
     } finally {
       setIsSubmitting(false);
     }

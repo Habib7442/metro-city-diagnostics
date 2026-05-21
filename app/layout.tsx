@@ -35,7 +35,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "h-full antialiased",
+        "h-full antialiased overflow-x-hidden",
         inter.variable,
         fraunces.variable,
         jetbrainsMono.variable
@@ -43,7 +43,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="min-h-full flex flex-col bg-background text-foreground font-sans pb-16 md:pb-0"
+        className="min-h-full flex flex-col bg-background text-foreground font-sans pb-16 md:pb-0 overflow-x-hidden"
         suppressHydrationWarning
       >
         <Navbar />

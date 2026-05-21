@@ -13,7 +13,7 @@ import {
   UserCheck,
   CheckCircle2,
 } from 'lucide-react';
-import { featuredServices, packages, reviews, trustBadges } from '@/lib/content';
+import { featuredServices, reviews } from '@/lib/content';
 import { SITE } from '@/lib/seo';
 import { Button } from '@/components/ui/button';
 
@@ -30,10 +30,10 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
             {/* Left Column: Hero Content */}
             <div className="space-y-6 lg:col-span-7">
-              {/* Google Rating Tag */}
+              {/* Trust Badge */}
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold tracking-wide text-gold-300 backdrop-blur-sm border border-white/10">
-                <Star className="h-3.5 w-3.5 fill-current text-gold-500" />
-                <span>4.8★ Google Rating (824+ Patients Verified)</span>
+                <ShieldCheck className="h-3.5 w-3.5 text-gold-500" />
+                <span>Your Trusted Health Partner in Silchar</span>
               </div>
 
               <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.1]">
@@ -103,25 +103,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Trust Metrics Bar */}
-      <section className="bg-white py-10 shadow-sm border-b border-neutral-100">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            {trustBadges.map((badge, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-center text-center p-3 border-r last:border-none border-neutral-100 last:border-r-0"
-              >
-                <span className="text-xl font-bold font-display text-navy-900 md:text-2xl">
-                  {badge.label}
-                </span>
-                <span className="text-xs text-neutral-500 mt-1">{badge.sub}</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -204,7 +185,7 @@ export default function Home() {
               href="/services"
               className="inline-flex items-center text-sm font-bold text-navy-900 hover:text-gold-600 transition-colors group"
             >
-              View all 60+ tests
+              View all
               <ChevronRight className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -242,12 +223,20 @@ export default function Home() {
                       <span className="text-[10px] text-neutral-400 uppercase font-semibold block leading-tight">
                         Price
                       </span>
-                      {service.priceNote && (
-                        <span className="text-xs text-neutral-400 mr-1">{service.priceNote}</span>
+                      {service.price ? (
+                        <>
+                          {service.priceNote && (
+                            <span className="text-xs text-neutral-400 mr-1">{service.priceNote}</span>
+                          )}
+                          <span className="text-xl font-extrabold text-navy-900">
+                            ₹{service.price}
+                          </span>
+                        </>
+                      ) : (
+                        <span className="text-sm font-bold text-gold-600">
+                          {service.priceNote || 'Call for price'}
+                        </span>
                       )}
-                      <span className="text-xl font-extrabold text-navy-900">
-                        ₹{service.price}
-                      </span>
                     </div>
                     {service.sampleType && (
                       <span className="text-xs text-neutral-500 bg-neutral-100 px-2 py-0.5 rounded">
@@ -412,7 +401,7 @@ export default function Home() {
                       <Star key={i} className="h-4 w-4 fill-current" />
                     ))}
                   </div>
-                  <p className="text-xs text-neutral-600 italic leading-relaxed mb-6">
+                  <p className="text-xs text-neutral-600 italic leading-relaxed mb-6 whitespace-pre-line">
                     "{review.body}"
                   </p>
                 </div>
@@ -427,9 +416,6 @@ export default function Home() {
                       })}
                     </span>
                   </div>
-                  <span className="text-[9px] font-bold text-neutral-400 bg-neutral-200/60 px-2 py-0.5 rounded uppercase">
-                    Google Review
-                  </span>
                 </div>
               </div>
             ))}
@@ -492,7 +478,7 @@ export default function Home() {
                   className="bg-navy-900 hover:bg-navy-950 text-white font-semibold rounded px-6 h-11"
                 >
                   <a
-                    href="https://maps.google.com/?q=Birbal+Bazar,+Meherpur,+Silchar,+Assam+788015"
+                    href="https://www.google.com/maps/search/?api=1&query=Metro-City+Diagnostics+Silchar"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -506,7 +492,7 @@ export default function Home() {
             <div className="lg:col-span-7">
               <div className="relative aspect-video w-full rounded-lg overflow-hidden border border-neutral-200 shadow-md bg-white">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.3582496229566!2d92.79159937515437!3d24.800344477969137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374e49ee0164c017%3A0xe54d4ff46b9a896d!2sBirbal%20Bazar%2C%20Meherpur%2C%20Silchar%2C%20Assam%20788015!5e0!3m2!1sen!2sin!4v1716210000000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7243.64653953248!2d92.78565079895019!3d24.801504468480108!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374e4bcc779b118d%3A0xf60370683024c700!2sMetro-City%20Diagnostics!5e0!3m2!1sen!2sin!4v1779330698021!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

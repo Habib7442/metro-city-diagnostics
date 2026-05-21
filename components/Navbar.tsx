@@ -12,7 +12,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Phone, Clock } from 'lucide-react';
-import { primaryNav, trustBadges } from '@/lib/content';
+import { primaryNav } from '@/lib/content';
 import { SITE } from '@/lib/seo';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -32,7 +32,7 @@ export default function Navbar() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5">
               <Clock className="h-3.5 w-3.5 text-gold-500" />
-              Mon - Sat: 7:00 AM - 8:00 PM | Sun: 7:00 AM - 1:00 PM
+              Mon - Sat: 7:30 AM - 8:30 PM | Sun: Closed
             </span>
             <span className="font-medium text-gold-300">
               📍 Birbal Bazar, Meherpur, Silchar
@@ -169,7 +169,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3 text-sm text-neutral-600">
               <Clock className="h-5 w-5 text-gold-500 flex-shrink-0" />
               <span>
-                Mon - Sat: 7 AM - 8 PM <br /> Sun: 7 AM - 1 PM
+                Mon - Sat: 7:30 AM - 8:30 PM <br /> Sun: Closed
               </span>
             </div>
             <a

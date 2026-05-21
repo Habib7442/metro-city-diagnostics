@@ -2,21 +2,25 @@
  * content.ts
  * Structured content for Metro-City Diagnostics.
  *
- * Acts as a lightweight CMS — services, doctors, packages, FAQs, reviews.
- * Migrate to a headless CMS (Sanity, Payload, Contentful) when content
- * editing needs to happen outside of code.
+ * Dynamically generated from JSON data stores.
  */
+
+import labtestsData from './labtests.json';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Services
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type ServiceCategory =
-  | 'pathology'
-  | 'radiology'
-  | 'cardiac'
-  | 'imaging'
-  | 'package';
+  | 'stool'
+  | 'blood'
+  | 'plasma'
+  | 'swab'
+  | 'urine'
+  | 'laboratory'
+  | 'package'
+  | 'sputum'
+  | 'imaging';
 
 export type Service = {
   slug: string;
@@ -33,131 +37,133 @@ export type Service = {
   featured?: boolean;
 };
 
-export const services: Service[] = [
-  {
-    slug: 'complete-blood-count',
-    name: 'Complete Blood Count (CBC)',
-    category: 'pathology',
-    shortDescription:
-      'A standard panel measuring red and white blood cells, platelets, and hemoglobin.',
-    longDescription:
-      'The Complete Blood Count (CBC) is a routine blood test used to screen for a wide range of conditions including anemia, infection, and many other diseases. It is one of the most frequently ordered tests and provides a snapshot of overall health.',
-    price: 350,
-    sampleType: 'Blood',
-    turnaroundHours: 4,
-    preparation: ['No fasting required', 'Stay hydrated before sample collection'],
-    relatedSlugs: ['lipid-profile', 'thyroid-profile'],
-    featured: true,
-  },
-  {
-    slug: 'lipid-profile',
-    name: 'Lipid Profile',
-    category: 'pathology',
-    shortDescription:
-      'Measures cholesterol, triglycerides, HDL, and LDL to assess cardiovascular risk.',
-    longDescription:
-      'A Lipid Profile measures different types of fats (lipids) in your blood. It helps assess your risk for heart disease and stroke.',
-    price: 600,
-    sampleType: 'Blood',
-    turnaroundHours: 6,
-    preparation: ['12-hour overnight fast required', 'Water is allowed', 'Avoid alcohol for 24 hours'],
-    relatedSlugs: ['liver-function-test', 'complete-blood-count'],
-    featured: true,
-  },
-  {
-    slug: 'thyroid-profile',
-    name: 'Thyroid Profile (T3, T4, TSH)',
-    category: 'pathology',
-    shortDescription:
-      'Evaluates thyroid gland function — T3, T4, and TSH levels.',
-    longDescription:
-      'A Thyroid Profile checks how well your thyroid gland is working. It measures T3, T4, and TSH hormones in the blood.',
-    price: 550,
-    sampleType: 'Blood',
-    turnaroundHours: 6,
-    preparation: ['No fasting required', 'Inform technician if on thyroid medication'],
-    relatedSlugs: ['complete-blood-count'],
-  },
-  {
-    slug: 'liver-function-test',
-    name: 'Liver Function Test (LFT)',
-    category: 'pathology',
-    shortDescription:
-      'Assesses liver health via enzymes, bilirubin, and protein levels.',
-    longDescription:
-      'A Liver Function Test (LFT) measures different proteins, enzymes, and substances made by the liver to evaluate liver health.',
-    price: 700,
-    sampleType: 'Blood',
-    turnaroundHours: 6,
-    preparation: ['8-hour fast recommended', 'Avoid alcohol for 24 hours'],
-  },
-  {
-    slug: 'kidney-function-test',
-    name: 'Kidney Function Test (KFT)',
-    category: 'pathology',
-    shortDescription:
-      'Measures urea, creatinine, and electrolytes to evaluate kidney health.',
-    longDescription:
-      'A Kidney Function Test (KFT) is a group of blood tests that measure how well your kidneys are working.',
-    price: 700,
-    sampleType: 'Blood',
-    turnaroundHours: 6,
-    preparation: ['No fasting required'],
-  },
-  {
-    slug: 'x-ray',
-    name: 'Digital X-Ray',
-    category: 'radiology',
-    shortDescription:
-      'High-resolution digital X-ray imaging for chest, bones, and abdomen.',
-    longDescription:
-      'Our digital X-ray service provides high-resolution images with low radiation exposure. Results are typically available within an hour.',
-    price: 400,
-    priceNote: 'Starting from',
-    turnaroundHours: 1,
-    preparation: ['Wear loose-fitting clothing', 'Remove jewelry and metal objects'],
-  },
-  {
-    slug: 'ultrasound',
-    name: 'Ultrasound / Sonography',
-    category: 'imaging',
-    shortDescription:
-      'Whole-abdomen, pelvis, obstetric, and KUB ultrasound by experienced radiologists.',
-    longDescription:
-      'Ultrasound uses sound waves to create images of organs and structures inside the body. Safe, painless, and radiation-free.',
-    price: 1200,
-    priceNote: 'Starting from',
-    turnaroundHours: 2,
-    preparation: ['Specific prep depends on study type — call ahead'],
-    featured: true,
-  },
-  {
-    slug: 'ecg',
-    name: 'Electrocardiogram (ECG)',
-    category: 'cardiac',
-    shortDescription:
-      'Records the electrical activity of the heart — quick and painless.',
-    longDescription:
-      'An ECG is a quick, painless test that records the electrical signals in your heart. It is commonly used to detect heart problems and monitor heart health.',
-    price: 300,
-    turnaroundHours: 1,
-    preparation: ['Avoid lotions on chest area'],
-  },
-  {
-    slug: 'full-body-checkup',
-    name: 'Full-Body Health Checkup',
-    category: 'package',
-    shortDescription:
-      'Comprehensive panel covering 60+ parameters — ideal annual checkup.',
-    longDescription:
-      'Our Full-Body Health Checkup package screens 60+ parameters including CBC, lipid profile, thyroid, liver and kidney function, blood sugar, and urine routine. Includes a consultation.',
-    price: 2499,
-    sampleType: 'Blood, Urine',
-    turnaroundHours: 24,
-    preparation: ['12-hour overnight fast', 'Carry photo ID', 'Avoid alcohol 24h prior'],
-    featured: true,
-  },
+const serviceCategoryMapping: Record<string, ServiceCategory> = {
+  'Stool Test': 'stool',
+  'Blood Test': 'blood',
+  'Plasma Test': 'plasma',
+  'Swab Test': 'swab',
+  'Urine Test': 'urine',
+  'Laboratory Testing Services': 'laboratory',
+  'Sputum Test': 'sputum',
+  'Imaging Test': 'imaging',
+};
+
+const sampleTypeMapping: Record<ServiceCategory, string | undefined> = {
+  stool: 'Stool',
+  blood: 'Blood',
+  plasma: 'Plasma',
+  swab: 'Swab',
+  urine: 'Urine',
+  laboratory: 'Blood, Urine',
+  sputum: 'Sputum',
+  imaging: undefined,
+  package: 'Blood, Urine',
+};
+
+const turnaroundHoursMapping: Record<ServiceCategory, number> = {
+  stool: 12,
+  blood: 12,
+  plasma: 12,
+  swab: 12,
+  urine: 12,
+  laboratory: 24,
+  sputum: 12,
+  imaging: 2,
+  package: 24,
+};
+
+const preparationMapping: Record<string, string[]> = {
+  'Stool pH Test': ['Collect in a sterile, dry container', 'Avoid contamination with urine or water'],
+  'Stool Analysis Test': ['Collect in a sterile container'],
+  'Occult Blood Stool Test': ['Collect in a sterile container'],
+  'Stool Culture Test': ['Collect in a sterile container'],
+  'Parasite Stool Test': ['Collect in a sterile container'],
+  'Complete Blood Count (CBC)': ['No fasting required', 'Stay hydrated before sample collection'],
+  'Blood Sugar Test': ['8-hour fasting required'],
+  'Lipid Profile Test': ['12-hour overnight fast required', 'Water is allowed', 'Avoid alcohol for 24 hours'],
+  'Liver Function Test': ['8-hour fast recommended', 'Avoid alcohol for 24 hours'],
+  'Kidney Function Test': ['No fasting required'],
+  'Thyroid Profile Test': ['No fasting required'],
+  'Hemoglobin Test': ['No fasting required'],
+  'Plasma Glucose Test': ['8-hour fasting required'],
+  'Throat Swab Test': ['Avoid eating or drinking 30 minutes before throat swab'],
+  'Nasal Swab Test': ['No specific preparation required'],
+  'Wound Swab Test': ['No specific preparation required'],
+  'Routine Urine Test': ['First morning urine sample is preferred', 'Collect in a sterile container'],
+  'Urine Culture Test': ['Mid-stream clean catch sample required', 'Collect in a sterile container'],
+  'Protein Urine Test': ['Collect in a sterile container'],
+  'Pregnancy Urine Test': ['First morning sample is recommended for highest accuracy'],
+  'Diabetes Screening': ['Fasting required (8-12 hours)'],
+  'Full Body Checkup': ['12-hour overnight fast', 'Avoid alcohol 24h prior'],
+  'Cardiac Risk Profile': ['12-hour overnight fast recommended'],
+  'Sputum Culture Test': ['Rinse mouth with water before collecting sputum', 'Collect first morning deep-cough sample'],
+  'X-Ray': ['Wear loose-fitting clothing', 'Remove jewelry and metal objects'],
+  'Ultrasound': ['Specific prep depends on study type — call ahead'],
+  'ECG': ['Avoid lotions on chest area'],
+  'Echocardiography': ['Wear comfortable two-piece clothing'],
+};
+
+const slugOverrides: Record<string, string> = {
+  'Complete Blood Count (CBC)': 'complete-blood-count',
+  'Lipid Profile Test': 'lipid-profile',
+  'Thyroid Profile Test': 'thyroid-profile',
+  'Liver Function Test': 'liver-function-test',
+  'Kidney Function Test': 'kidney-function-test',
+  'X-Ray': 'x-ray',
+  'Ultrasound': 'ultrasound',
+  'ECG': 'ecg',
+  'Full Body Checkup': 'full-body-checkup',
+};
+
+const featuredServicesList = [
+  'Complete Blood Count (CBC)',
+  'Lipid Profile Test',
+  'Blood Sugar Test',
+  'Routine Urine Test',
+  'Urine Culture Test',
+  'Liver Function Test',
+  'Kidney Function Test',
+  'Thyroid Profile Test',
+  'X-Ray',
+  'Ultrasound',
+  'ECG',
+  'Echocardiography',
 ];
+
+const getSlug = (name: string) => {
+  if (slugOverrides[name]) return slugOverrides[name];
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-');
+};
+
+export const services: Service[] = labtestsData.labTests.flatMap((catGroup) => {
+  const categoryName = catGroup.category;
+  const tsCategory = serviceCategoryMapping[categoryName] || 'laboratory';
+
+  return catGroup.tests.map((test) => {
+    const slug = getSlug(test.name);
+    const preparation = preparationMapping[test.name] || ['No specific preparation required'];
+    const sampleType = sampleTypeMapping[tsCategory];
+    const turnaroundHours = turnaroundHoursMapping[tsCategory];
+    const featured = featuredServicesList.includes(test.name);
+
+    return {
+      slug,
+      name: test.name,
+      category: tsCategory,
+      shortDescription: test.description,
+      longDescription: test.description,
+      price: test.price || undefined,
+      priceNote: test.price ? (test.unit === 'per test' ? undefined : test.unit) : 'Call for price',
+      sampleType,
+      turnaroundHours,
+      preparation,
+      featured,
+    };
+  });
+});
 
 export const featuredServices = services.filter((s) => s.featured);
 
@@ -213,41 +219,6 @@ export const packages: Package[] = [
   },
 ];
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Doctors / consultants
-// ─────────────────────────────────────────────────────────────────────────────
-
-export type Doctor = {
-  slug: string;
-  name: string;
-  title: string;
-  specialty: string;
-  qualifications: string[];
-  bio: string;
-  photo: string;
-};
-
-export const doctors: Doctor[] = [
-  // Placeholders — replace with actual team
-  {
-    slug: 'dr-placeholder-1',
-    name: 'Dr. [Name]',
-    title: 'Chief Pathologist',
-    specialty: 'Clinical Pathology',
-    qualifications: ['MBBS', 'MD (Pathology)'],
-    bio: 'Over 20 years of clinical pathology experience serving the Barak Valley.',
-    photo: '/team/dr-1.jpg',
-  },
-  {
-    slug: 'dr-placeholder-2',
-    name: 'Dr. [Name]',
-    title: 'Consultant Radiologist',
-    specialty: 'Radiology',
-    qualifications: ['MBBS', 'DMRD', 'DNB (Radiology)'],
-    bio: 'Specialist in ultrasound and digital imaging.',
-    photo: '/team/dr-2.jpg',
-  },
-];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // FAQ
@@ -264,7 +235,7 @@ export const faqs: Faq[] = [
     category: 'general',
     question: 'What are your opening hours?',
     answer:
-      'We are open Monday to Saturday from 7:00 AM to 8:00 PM, and Sunday from 7:00 AM to 1:00 PM. Sample collection is available throughout these hours.',
+      'We are open Monday to Saturday from 7:30 AM to 8:30 PM, and Closed on Sunday. Sample collection is available throughout these hours.',
   },
   {
     category: 'booking',
@@ -304,7 +275,7 @@ export const faqs: Faq[] = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Reviews (curated from Google reviews — pull manually for v1)
+// Reviews (from JustDial — 5.0 rating, 323+ reviews)
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type Review = {
@@ -312,37 +283,68 @@ export type Review = {
   rating: number;
   date: string; // ISO
   body: string;
-  source: 'google' | 'manual';
 };
 
 export const reviews: Review[] = [
   {
-    author: 'Joydeep Sen',
+    author: 'Suman Goala',
     rating: 5,
-    date: '2026-01-15',
-    body: 'Excellent and very professional home collection service. The technician arrived on time and collected the sample painlessly. Got reports on WhatsApp by evening.',
-    source: 'google',
+    date: '2025-10-16',
+    body: 'Accurate testing\nDetailed reports\nClean rooms\nEasy booking\nQuick service\nReasonably priced\nSubsidies available\nWell connected\nEasily accessible\nMy experience at Metro-City Di...',
   },
   {
-    author: 'Priyanka Roy',
+    author: 'Mondira Paul',
     rating: 5,
-    date: '2026-02-02',
-    body: 'The lab is highly hygienic and clean. Reports are highly accurate and verified by specialists. Definitely the best diagnostic center in Silchar.',
-    source: 'google',
+    date: '2025-10-14',
+    body: 'Subsidies available\nReasonably priced\nClean rooms\nMetro-City Diagnostics is truly a gem among pathology labs. The subsidies they offer make quality healthcare accessible to all.',
   },
   {
-    author: 'Debashish Nath',
+    author: 'Kunal Shinde',
     rating: 5,
-    date: '2026-03-10',
-    body: 'Very prompt responses over phone and WhatsApp. Digital X-ray and ultrasound services are handled by very polite radiologists. Prices are also reasonable.',
-    source: 'google',
+    date: '2025-09-04',
+    body: 'Detailed reports\nFriendly staff\nMetro-City Diagnostics offers detailed reports that are clear and easy to understand.',
   },
   {
-    author: 'Sushmita Das',
+    author: 'Angad Singh',
     rating: 5,
-    date: '2026-04-18',
-    body: 'A trusted pathology lab in Meherpur. Been booking tests for my parents for 3 years now. Their home collection service is extremely convenient.',
-    source: 'google',
+    date: '2025-09-04',
+    body: 'Friendly staff\nQuick service\nMetro-City Diagnostics is a great place! The staff are very friendly and helpful.',
+  },
+  {
+    author: 'Soumya Shrivastava',
+    rating: 5,
+    date: '2025-09-04',
+    body: 'Friendly staff\nQuick service\nThey made me feel comfortable during my tests. I did not wait long, and they explained everything clearly.',
+  },
+  {
+    author: 'Trisha Chauhan',
+    rating: 5,
+    date: '2025-09-04',
+    body: 'Quick service\nClean rooms\nThe lab is exceptionally well-connected, with a streamlined communication system that ensures quick results.',
+  },
+  {
+    author: 'Rahul Chauhan',
+    rating: 5,
+    date: '2025-09-04',
+    body: 'Reasonably priced\nSubsidies available\nThe lab offers various financial assistance programs that make essential diagnostic services more accessible.',
+  },
+  {
+    author: 'Nitin Singh',
+    rating: 5,
+    date: '2025-09-04',
+    body: 'Accurate testing\nClean rooms\nIt is well-equipped with modern machines and tools. The staff is friendly and helps everyone.',
+  },
+  {
+    author: 'Utkarsh Sharma',
+    rating: 5,
+    date: '2025-09-04',
+    body: 'Friendly staff\nDetailed reports\nThe staff was friendly and helped me quickly. The place was clean and organized.',
+  },
+  {
+    author: 'Aneet Padda',
+    rating: 5,
+    date: '2025-09-04',
+    body: 'Easily accessible\nQuick service\nThe lab is easily accessible, with ample parking. Upon arrival, the staff were welcoming and efficient.',
   },
 ];
 
@@ -361,16 +363,15 @@ export const primaryNav = [
 
 export const footerNav = {
   services: [
-    { label: 'Pathology', href: '/services?category=pathology' },
-    { label: 'Radiology', href: '/services?category=radiology' },
-    { label: 'Ultrasound', href: '/services/ultrasound' },
+    { label: 'Blood Tests', href: '/services?category=blood' },
+    { label: 'Urine Tests', href: '/services?category=urine' },
+    { label: 'Imaging & Scans', href: '/services?category=imaging' },
     { label: 'Health Packages', href: '/services?category=package' },
   ],
   company: [
     { label: 'About Us', href: '/about' },
     { label: 'Our Doctors', href: '/doctors' },
     { label: 'Contact', href: '/contact' },
-    { label: 'FAQs', href: '/faq' },
   ],
   legal: [
     { label: 'Privacy Policy', href: '/privacy' },
@@ -383,7 +384,7 @@ export const footerNav = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const trustBadges = [
-  { label: '4.8★ rated', sub: '824+ Google reviews' },
+  { label: '5.0★ rated', sub: '323+ JustDial reviews' },
   { label: '20+ years', sub: 'Serving Silchar' },
   { label: 'NABL', sub: 'Quality assured' }, // verify
   { label: 'Home collection', sub: 'Free across Silchar' },

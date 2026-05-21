@@ -14,7 +14,7 @@
       "designation": "Resident Physician",
       "hospital_affiliation": "Silchar Medical College & Hospital",
       "specialization": "General Physician",
-      "image": "/assets/doctors/dr-debanjali-das.png"
+      "image": "/assets/doctors/dr-debanjali-das.webp"
     },
     "location": {
       "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
@@ -32,6 +32,596 @@
     "timing": {
       "days": "Every Monday to Saturday",
       "time": "3:00 PM to 4:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-jahir-abbas-laskar",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Jahir Abbas Laskar",
+      "qualification": [
+        "MBBS",
+        "MD"
+      ],
+      "designation": "General Medicine Specialist",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "General Medicine",
+      "image": "/assets/doctors/dr-jahir-abbas-laskar.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "4:00 PM to 6:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-fakrul-islam-mozumder",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Fakrul Islam Mozumder",
+      "qualification": [
+        "MBBS",
+        "MS (ENT)"
+      ],
+      "designation": "Consultant ENT, Head & Neck Surgeon",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "ENT (Ear, Nose & Throat)",
+      "image": "/assets/doctors/dr-fakrul-islam-mozumder.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-anusuya-deb-deshmukh",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Anusuya Deb Deshmukh",
+      "qualification": [
+        "MBBS",
+        "DLO (ENT)"
+      ],
+      "designation": "Head & Neck Surgeon",
+      "hospital_affiliation": "SMCH, Silchar",
+      "specialization": "ENT (Ear, Nose & Throat)",
+      "image": "/assets/doctors/dr-anusuya-deb-deshmukh.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-mahua-das",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Mahua Das",
+      "qualification": [
+        "MBBS",
+        "MS (OBS & GYNAE)"
+      ],
+      "designation": "Obstetrician & Gynecologist",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "Obstetrics & Gynecology",
+      "image": "/assets/doctors/dr-mahua-das.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-s-baishakhi",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. S. Baishakhi",
+      "qualification": [
+        "MBBS",
+        "MS (OBS & GYNAE)"
+      ],
+      "designation": "Consultant Obstetrician & Gynecologist",
+      "hospital_affiliation": "Guwahati Medical College & Hospital",
+      "specialization": "Obstetrics & Gynecology",
+      "image": "/assets/doctors/dr-s-baishakhi.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-saptarshi-deshmukh",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Saptarshi Deshmukh",
+      "qualification": [
+        "MBBS",
+        "MS (AVMC, Pondicherry, Chennai)"
+      ],
+      "designation": "Consultant Orthopedic Surgeon",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "Orthopedics",
+      "image": "/assets/doctors/dr-saptarshi-deshmukh.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-biprajit-biswas",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Biprajit Biswas",
+      "qualification": [
+        "MBBS",
+        "MS (Ortho)"
+      ],
+      "designation": "Consultant Orthopedic Surgeon",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "Orthopedics",
+      "image": "/assets/doctors/dr-biprajit-biswas.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-sachui-rongmei",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Sachui Rongmei",
+      "qualification": [
+        "MBBS",
+        "MS",
+        "MCH (Neurosurgery)"
+      ],
+      "designation": "Consultant Neuro-Surgeon",
+      "hospital_affiliation": "Ex-Consultant Neurosurgeon, NEIGRIMS, Shillong",
+      "specialization": "Neurosurgery",
+      "image": "/assets/doctors/dr-sachui-rongmei.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:30 PM to 3:30 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-dd-rongmei",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. D. D. Rongmei",
+      "qualification": [
+        "MBBS",
+        "MD (Psychiatry)"
+      ],
+      "designation": "Consultant Neuro-Psychiatrist",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "Psychiatry",
+      "image": "/assets/doctors/dr-dd-rongmei.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-rajneel-bhattacharjee",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Rajneel Bhattacharjee",
+      "qualification": [
+        "MBBS",
+        "MS (Ophthalmology)"
+      ],
+      "designation": "Consultant Eye Surgeon",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "Ophthalmology",
+      "image": "/assets/doctors/dr-rajneel-bhattacharjee.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:30 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-hameed-uddin-ahmed",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Hameed Uddin Ahmed",
+      "qualification": [
+        "MBBS",
+        "MD (Paediatrics)"
+      ],
+      "designation": "Child Specialist",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "Paediatrics",
+      "image": "/assets/doctors/dr-hameed-uddin-ahmed.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 2:30 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-rohan-nath",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Rohan Nath",
+      "qualification": [
+        "MBBS",
+        "MS",
+        "MCH (GMCH)"
+      ],
+      "designation": "Consultation Urologist",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "Urology",
+      "image": "/assets/doctors/dr-rohan-nath.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "4:00 PM to 4:30 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-az-ahmed-barbhuiya",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. A.Z Ahmed Barbhuiya",
+      "qualification": [
+        "MBBS (Bangalore)",
+        "Dip. Family Medicine (Hyderabad)",
+        "Dip. Diabetes Management (Apollo, Chennai)",
+        "PG Advanced Diabetes (Harvard Medical University)"
+      ],
+      "designation": "Medicine & Diabetology Specialist",
+      "hospital_affiliation": "",
+      "specialization": "Medicine & Diabetology",
+      "image": "/assets/doctors/dr-az-ahmed-barbhuiya.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Tuesday & Friday",
+      "time": "3:00 PM to 4:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-binayak-sadhya",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Binayak Sadhya",
+      "qualification": [
+        "MBBS",
+        "MS (General Surgery)",
+        "FIAGES"
+      ],
+      "designation": "Consultant General & Laparoscopic Surgeon",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "General & Laparoscopic Surgery",
+      "image": "/assets/doctors/dr-binayak-sadhya.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
+      "appointment_required": true
+    },
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "dr-musfitur-rahman-barbhuiya",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Musfitur Rahman Barbhuiya",
+      "qualification": [
+        "MBBS",
+        "MS (General Surgery)"
+      ],
+      "designation": "Consultant General & Laparoscopic Surgeon",
+      "hospital_affiliation": "Silchar Medical College & Hospital",
+      "specialization": "General & Laparoscopic Surgery",
+      "image": "/assets/doctors/dr-musfitur-rahman-barbhuiya.webp"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "2:00 PM to 3:00 PM",
       "appointment_required": true
     },
     "services": {

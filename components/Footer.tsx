@@ -40,11 +40,11 @@ export default function Footer() {
                 <div className="text-sm text-neutral-400 space-y-1">
                   <p className="flex justify-between gap-4">
                     <span>Mon - Sat:</span>
-                    <span className="font-medium text-neutral-300">7:00 AM - 8:00 PM</span>
+                    <span className="font-medium text-neutral-300">7:30 AM - 8:30 PM</span>
                   </p>
                   <p className="flex justify-between gap-4">
                     <span>Sunday:</span>
-                    <span className="font-medium text-neutral-300">7:00 AM - 1:00 PM</span>
+                    <span className="font-medium text-neutral-300">Closed</span>
                   </p>
                 </div>
               </div>

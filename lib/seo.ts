@@ -33,8 +33,7 @@ export const SITE = {
   tagline: 'Trusted diagnostics for the Barak Valley',
   description:
     'Metro-City Diagnostics is a leading diagnostic center in Silchar, Assam. ' +
-    'Accurate pathology, radiology, ultrasound, ECG, and X-ray services with home sample collection. ' +
-    '4.8-star rated by 824+ patients.',
+    'Accurate pathology, radiology, ultrasound, ECG, and X-ray services with home sample collection.',
   url: 'https://metrocitydiagnostics.com',
   locale: 'en_IN',
   language: 'en-IN',

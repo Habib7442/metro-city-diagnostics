@@ -1,0 +1,325 @@
+{
+  "labTests": [
+    {
+      "category": "Stool Test",
+      "count": 5,
+      "tests": [
+        {
+          "name": "Stool pH Test",
+          "price": 200,
+          "currency": "INR",
+          "description": "Measures acidity or alkalinity of stool to identify digestive issues.",
+          "unit": "per test"
+        },
+        {
+          "name": "Stool Analysis Test",
+          "price": 400,
+          "currency": "INR",
+          "description": "Comprehensive stool examination for infections and digestive disorders.",
+          "unit": "per test"
+        },
+        {
+          "name": "Occult Blood Stool Test",
+          "price": 350,
+          "currency": "INR",
+          "description": "Detects hidden blood in stool samples.",
+          "unit": "per test"
+        },
+        {
+          "name": "Stool Culture Test",
+          "price": 500,
+          "currency": "INR",
+          "description": "Checks bacterial infections in the digestive tract.",
+          "unit": "per test"
+        },
+        {
+          "name": "Parasite Stool Test",
+          "price": 450,
+          "currency": "INR",
+          "description": "Detects parasites and intestinal worms.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Blood Test",
+      "count": 7,
+      "tests": [
+        {
+          "name": "Complete Blood Count (CBC)",
+          "price": 300,
+          "currency": "INR",
+          "description": "Measures overall health and detects disorders.",
+          "unit": "per test"
+        },
+        {
+          "name": "Blood Sugar Test",
+          "price": 150,
+          "currency": "INR",
+          "description": "Checks glucose level in blood.",
+          "unit": "per test"
+        },
+        {
+          "name": "Lipid Profile Test",
+          "price": 600,
+          "currency": "INR",
+          "description": "Measures cholesterol and triglyceride levels.",
+          "unit": "per test"
+        },
+        {
+          "name": "Liver Function Test",
+          "price": 700,
+          "currency": "INR",
+          "description": "Evaluates liver health and function.",
+          "unit": "per test"
+        },
+        {
+          "name": "Kidney Function Test",
+          "price": 650,
+          "currency": "INR",
+          "description": "Checks kidney performance and health.",
+          "unit": "per test"
+        },
+        {
+          "name": "Thyroid Profile Test",
+          "price": 800,
+          "currency": "INR",
+          "description": "Assesses thyroid hormone levels.",
+          "unit": "per test"
+        },
+        {
+          "name": "Hemoglobin Test",
+          "price": 120,
+          "currency": "INR",
+          "description": "Measures hemoglobin concentration in blood.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Plasma Test",
+      "count": 5,
+      "tests": [
+        {
+          "name": "Plasma Glucose Test",
+          "price": 180,
+          "currency": "INR",
+          "description": "Measures glucose levels in plasma.",
+          "unit": "per test"
+        },
+        {
+          "name": "Plasma Protein Test",
+          "price": 450,
+          "currency": "INR",
+          "description": "Checks protein levels in plasma.",
+          "unit": "per test"
+        },
+        {
+          "name": "Coagulation Plasma Test",
+          "price": 550,
+          "currency": "INR",
+          "description": "Evaluates blood clotting ability.",
+          "unit": "per test"
+        },
+        {
+          "name": "Electrolyte Plasma Test",
+          "price": 500,
+          "currency": "INR",
+          "description": "Measures sodium, potassium, and chloride levels.",
+          "unit": "per test"
+        },
+        {
+          "name": "Plasma Enzyme Test",
+          "price": 600,
+          "currency": "INR",
+          "description": "Detects abnormal enzyme activity.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Swab Test",
+      "count": 3,
+      "tests": [
+        {
+          "name": "Throat Swab Test",
+          "price": 350,
+          "currency": "INR",
+          "description": "Detects bacterial or viral throat infections.",
+          "unit": "per test"
+        },
+        {
+          "name": "Nasal Swab Test",
+          "price": 400,
+          "currency": "INR",
+          "description": "Used for respiratory infection diagnosis.",
+          "unit": "per test"
+        },
+        {
+          "name": "Wound Swab Test",
+          "price": 450,
+          "currency": "INR",
+          "description": "Identifies infection-causing organisms in wounds.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Urine Test",
+      "count": 13,
+      "tests": [
+        {
+          "name": "Routine Urine Test",
+          "price": 150,
+          "currency": "INR",
+          "description": "General urine analysis for infections and kidney issues.",
+          "unit": "per test"
+        },
+        {
+          "name": "Urine Culture Test",
+          "price": 500,
+          "currency": "INR",
+          "description": "Detects urinary tract infections.",
+          "unit": "per test"
+        },
+        {
+          "name": "Protein Urine Test",
+          "price": 200,
+          "currency": "INR",
+          "description": "Measures protein levels in urine.",
+          "unit": "per test"
+        },
+        {
+          "name": "Pregnancy Urine Test",
+          "price": 120,
+          "currency": "INR",
+          "description": "Detects pregnancy hormones.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Laboratory Testing Services",
+      "count": 13,
+      "tests": [
+        {
+          "name": "Microbiology Laboratory Service",
+          "price": null,
+          "currency": "INR",
+          "description": "Microbiology laboratories are specialized facilities dedicated to the study and analysis of microorganisms, including bacteria, viruses, fungi, and more.",
+          "unit": "per test"
+        },
+        {
+          "name": "Microbiology Lab Analysis",
+          "price": null,
+          "currency": "INR",
+          "description": "Microbiology Lab Analysis involves the systematic examination of microorganisms in various samples, including water, food, and clinical specimens.",
+          "unit": "per test"
+        },
+        {
+          "name": "Laboratory Analysis (Microbiology)",
+          "price": null,
+          "currency": "INR",
+          "description": "Laboratory Analysis (Microbiology) involves the study and examination of microorganisms, including bacteria, viruses, fungi, and parasites.",
+          "unit": "per test"
+        },
+        {
+          "name": "Microbial Testing Service",
+          "price": null,
+          "currency": "INR",
+          "description": "Microbial Testing Service is essential for ensuring the safety and quality of various products and environments. This service involves the analysis of microorganisms.",
+          "unit": "per test"
+        },
+        {
+          "name": "Scientific Testing Services",
+          "price": null,
+          "currency": "INR",
+          "description": "Scientific Testing Services encompass a wide array of analytical and experimental evaluations designed to ensure the quality, safety, and compliance of products.",
+          "unit": "per test"
+        },
+        {
+          "name": "Lab Analysis Services",
+          "price": null,
+          "currency": "INR",
+          "description": "Lab Analysis Services provide comprehensive testing and evaluation of various samples, including biological, chemical, and environmental specimens.",
+          "unit": "per test"
+        },
+        {
+          "name": "Clinical Laboratory Services",
+          "price": null,
+          "currency": "INR",
+          "description": "Clinical Laboratory Services encompass a wide range of diagnostic tests and analyses performed on bodily fluids and tissues.",
+          "unit": "per test"
+        },
+        {
+          "name": "Pathogen Analysis Laboratories",
+          "price": null,
+          "currency": "INR",
+          "description": "Pathogen Analysis Laboratories specialize in the detection, identification, and quantification of harmful microorganisms in various samples.",
+          "unit": "per test"
+        },
+        {
+          "name": "Microbial Testing Labs",
+          "price": null,
+          "currency": "INR",
+          "description": "The service encompasses comprehensive microbiology laboratory testing, including pathogen identification and antibiotic susceptibility testing.",
+          "unit": "per test"
+        },
+        {
+          "name": "Bacteriology & Virology Labs",
+          "price": null,
+          "currency": "INR",
+          "description": "The Bacteriology & Virology Labs service encompasses comprehensive analysis and testing. This service includes sample processing, microbial identification, and more.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Sputum Test",
+      "count": 1,
+      "tests": [
+        {
+          "name": "Sputum Culture Test",
+          "price": 600,
+          "currency": "INR",
+          "description": "Checks lung infections using sputum samples.",
+          "unit": "per test"
+        }
+      ]
+    },
+    {
+      "category": "Imaging Test",
+      "count": 4,
+      "tests": [
+        {
+          "name": "X-Ray",
+          "price": 700,
+          "currency": "INR",
+          "description": "Imaging test for bones and chest diagnosis.",
+          "unit": "per scan"
+        },
+        {
+          "name": "Ultrasound",
+          "price": 1200,
+          "currency": "INR",
+          "description": "Diagnostic imaging using sound waves.",
+          "unit": "per scan"
+        },
+        {
+          "name": "ECG",
+          "price": 300,
+          "currency": "INR",
+          "description": "Measures electrical activity of the heart.",
+          "unit": "per test"
+        },
+        {
+          "name": "Echocardiography",
+          "price": 2500,
+          "currency": "INR",
+          "description": "Ultrasound imaging for heart diagnosis.",
+          "unit": "per scan"
+        }
+      ]
+    }
+  ]
+}
