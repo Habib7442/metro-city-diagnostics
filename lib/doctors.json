@@ -123,6 +123,69 @@
     }
   },
   {
+    "id": "ihr-opd",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "IHR - Institute of Human Reproduction",
+      "qualification": [
+        "Infertility Treatment",
+        "Test Tube Baby",
+        "IVF Consultation"
+      ],
+      "designation": "IVF & Infertility OPD (Guwahati)",
+      "hospital_affiliation": "Goenka Nursing Home, Guwahati",
+      "specialization": "IVF & Infertility Treatment",
+      "image": "/assets/doctors/ihr-opd.png"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Doctor visit from Guwahati - Starting Soon",
+      "time": "Register/Book Your Spot Now",
+      "appointment_required": true
+    },
+    "fees": "Contact for pricing",
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    },
+    "highlights": [
+      {
+        "title": "Since",
+        "value": "1980"
+      },
+      {
+        "title": "Successful Deliveries",
+        "value": "50,000+"
+      },
+      {
+        "title": "IVF Cases",
+        "value": "30,000+"
+      }
+    ],
+    "description": {
+      "english": "The dream may come a little late, but nothing is impossible in today's medical treatment.",
+      "bengali": [
+        "আপনার মাতৃত্বের স্বপ্ন পূরণের সঙ্গী",
+        "আজই করুন পরামর্শ, নতুন জীবনের শুরু হোক এখান থেকেই!",
+        "যোগাযোগ করুন !!"
+      ]
+    }
+  },
+  {
     "id": "dr-debanjali-das",
     "hospital": {
       "name": "METRO-CITY DIAGNOSTICS",

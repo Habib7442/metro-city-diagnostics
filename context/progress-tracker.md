@@ -51,9 +51,16 @@
 * Programmed robust fallback styling rendering in [BookingForm.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/BookingForm.tsx) to show "Price on Call" parentheticals inside dropdown select selectors and the final success summary widget instead of broken undefined values.
 * Refactored service details hero sidebar in [/services/[slug]/page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/services/[slug]/page.tsx) to gracefully render "Price on Call" when prices are null/undefined.
 * Implemented an elegant emerald-green "Doctors" tab inside the Services Catalog filter bar ([ServicesCatalog.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/ServicesCatalog.tsx)) routing users directly to the specialist consultants `/doctors` catalogue.
+* Updated the clinic exterior image in the Homepage Hero section with the new premium `.png` asset (`public/assets/metro-city-diagnostics-exterior.png`).
+* Committed and pushed all recent changes (including Doctors tab on Services page and premium Clinic Exterior image) to the remote repository successfully.
+* Integrated the new "IHR OPD at Silchar Starting Soon" record into the 4th position of the doctors list (`lib/doctors.json`), mapping services to qualifications and writing the organization name instead of doctor name.
+* Generated a high-fidelity minimalist medical logo icon for the IHR OPD at `public/assets/doctors/ihr-opd.png`.
+* Programmed advanced card features in `app/doctors/page.tsx` that render multi-column stat highlights (e.g. Since 1980, 50k+ Deliveries) and stylized dual English/Bengali taglines when present.
+* Removed the credentials expandable accordion toggle button (`"Show/Hide Credentials & Info"`) from [DoctorCard.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/DoctorCard.tsx), making all consultant/doctor credentials, affiliation records, highlight stats, and descriptions statically and fully visible on page load.
+* Adjusted the Homepage Hero clinic entrance image height and crop offset (`-top-[17.5%]` and `h-[117.5%]`) inside [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx), rendering the yellow clinic signboard and its white circular green cross logo fully without any vertical cropping or border clipping, and removed the decorative absolute gold border frame (`border-2 border-gold-500/40`) from behind the entrance image.
 
 ## Next Up
-* Commit and push the new Doctors catalog tab changes to remote.
+* Verify the live local layout and ensure correct rendering.
 
 ## Open Questions
 * None. All questions have been resolved in direct collaboration with the user.

@@ -144,18 +144,19 @@ export default function Home() {
 
             {/* Right Column: Hero Visual Container */}
             <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-[450px] lg:max-w-none">
-                {/* Decorative border frame */}
-                <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-lg border-2 border-gold-500/40" />
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-navy-800 shadow-2xl">
-                  <Image
-                    src="/assets/metro-city-diagnostics-exterior.png"
-                    alt="Metro-City Diagnostics Clinic Entrance, Silchar"
-                    fill
-                    sizes="(max-w-768px) 100vw, 50vw"
-                    priority
-                    className="object-cover"
-                  />
+              <div className="relative mx-auto max-w-[500px] lg:max-w-none">
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-navy-800 shadow-2xl">
+                  {/* Shift up to hide the green 'Metropolis' top brand banner and show the 'Metro-City Diagnostics' yellow signboard and logo fully without clipping */}
+                  <div className="absolute inset-0 -top-[17.5%] h-[117.5%] w-full">
+                    <Image
+                      src="/assets/metro-city-diagnostics-exterior.png"
+                      alt="Metro-City Diagnostics Clinic Entrance, Silchar"
+                      fill
+                      sizes="(max-w-768px) 100vw, 50vw"
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -294,10 +295,22 @@ export default function Home() {
                     <div className="space-y-4 pt-4 border-t border-neutral-200/60">
                       {/* Consultation Fee Pill */}
                       <div className="flex items-center">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500">
-                          <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                          CONSULTATION FEE: ₹{entry.fees || 500}
-                        </span>
+                        {typeof entry.fees === 'string' ? (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500 uppercase tracking-wider">
+                            <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
+                            Consultation Fee: {entry.fees}
+                          </span>
+                        ) : entry.fees === null ? (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500 uppercase tracking-wider">
+                            <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
+                            Consultation Fee: Contact for Pricing
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500 uppercase tracking-wider">
+                            <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
+                            Consultation Fee: ₹{entry.fees !== undefined && entry.fees !== null ? entry.fees : 500}
+                          </span>
+                        )}
                       </div>
 
                       {/* Specialty */}
@@ -333,14 +346,25 @@ export default function Home() {
 
                   {/* Action button */}
                   <div className="p-6 bg-neutral-100/50 border-t border-neutral-200/50">
-                    <Button
-                      asChild
-                      className="w-full bg-navy-900 hover:bg-navy-950 text-white font-bold h-10 rounded tracking-wide shadow-sm text-xs"
-                    >
-                      <Link href={`/book?doctor=${entry.id}`} id={`book-doctor-home-${entry.id}`}>
-                        Book Appointment
-                      </Link>
-                    </Button>
+                    {entry.id === 'ihr-opd' ? (
+                      <Button
+                        asChild
+                        className="w-full bg-navy-900 hover:bg-navy-950 text-white font-bold h-10 rounded tracking-wide shadow-sm text-xs"
+                      >
+                        <a href={`tel:${entry.contact.phone_numbers[0]}`} id={`call-doctor-home-${entry.id}`}>
+                          Call to Pre-register Spot
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        asChild
+                        className="w-full bg-navy-900 hover:bg-navy-950 text-white font-bold h-10 rounded tracking-wide shadow-sm text-xs"
+                      >
+                        <Link href={`/book?doctor=${entry.id}`} id={`book-doctor-home-${entry.id}`}>
+                          Book Appointment
+                        </Link>
+                      </Button>
+                    )}
                   </div>
                 </div>
               );

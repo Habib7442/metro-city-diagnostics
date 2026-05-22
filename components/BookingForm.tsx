@@ -322,7 +322,8 @@ ${formState.homeCollection ? `• Address: ${formState.address}\n• Landmark: $
         const selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
         const doctorName = selectedDoctor ? selectedDoctor.doctor.name : 'N/A';
         const designation = selectedDoctor ? selectedDoctor.doctor.designation : 'N/A';
-        const fees = selectedDoctor ? (selectedDoctor.fees || 500) : 500;
+        const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : 500) : 500;
+        const feeText = typeof fees === 'string' ? fees : `₹${fees || 500}`;
         message = `Hello Metro-City Diagnostics,
 
 I would like to book a Specialist Doctor Consultation. Here are my details:
@@ -336,7 +337,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
 • Consultant Doctor: Dr. ${doctorName} (${designation})
 • Appointment Date: ${formState.preferredDate}
 • Timing Slot: ${formState.preferredTime}
-• Consultation Fee: ₹${fees}
+• Consultation Fee: ${feeText}
 • Clinic Location: Near Vivekananda Co-operative, Meherpur, Silchar`;
       }
 
@@ -473,7 +474,11 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                   <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
                     <span className="text-neutral-400 font-medium">Consultation Fee:</span>
                     <span className="font-extrabold text-emerald-700">
-                      ₹{doctorsData.find((d) => d.id === formState.doctorId)?.fees || 500}
+                      {(() => {
+                        const feeVal = doctorsData.find((d) => d.id === formState.doctorId)?.fees;
+                        const fees = feeVal !== undefined ? feeVal : 500;
+                        return typeof fees === 'string' ? fees : `₹${fees || 500}`;
+                      })()}
                     </span>
                   </div>
                 </>
@@ -683,7 +688,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                       <option value="">-- Choose Specialist Doctor --</option>
                       {doctorsData.map((doc) => (
                         <option key={doc.id} value={doc.id}>
-                          {doc.doctor.name} - {doc.doctor.designation} (₹{doc.fees || 500})
+                          {doc.doctor.name} - {doc.doctor.designation} ({typeof doc.fees === 'string' ? doc.fees : `₹${doc.fees || 500}`})
                         </option>
                       ))}
                     </select>
@@ -755,7 +760,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                             Selected Timing Slot & Fee
                           </h4>
                           <p className="mt-1 text-sm text-navy-800 font-medium">
-                            Dr. {selectedDoc.doctor.name} will consult on <span className="font-extrabold text-navy-950">{selectedDoc.timing.days}</span> at <span className="font-extrabold text-navy-950">{selectedDoc.timing.time}</span>. Consultation Fee: <span className="font-extrabold text-emerald-700">₹{selectedDoc.fees || 500}</span>.
+                            Dr. {selectedDoc.doctor.name} will consult on <span className="font-extrabold text-navy-950">{selectedDoc.timing.days}</span> at <span className="font-extrabold text-navy-950">{selectedDoc.timing.time}</span>. Consultation Fee: <span className="font-extrabold text-emerald-700">{typeof selectedDoc.fees === 'string' ? selectedDoc.fees : `₹${selectedDoc.fees || 500}`}</span>.
                           </p>
                           <p className="mt-1.5 text-[10px] text-navy-600/80 leading-relaxed font-semibold italic">
                             * The appointment slot is dynamically pre-filled to match this doctor's precise hospital timing profile.
