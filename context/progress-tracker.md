@@ -57,7 +57,7 @@
 * Generated a high-fidelity minimalist medical logo icon for the IHR OPD at `public/assets/doctors/ihr-opd.png`.
 * Programmed advanced card features in `app/doctors/page.tsx` that render multi-column stat highlights (e.g. Since 1980, 50k+ Deliveries) and stylized dual English/Bengali taglines when present.
 * Removed the credentials expandable accordion toggle button (`"Show/Hide Credentials & Info"`) from [DoctorCard.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/DoctorCard.tsx), making all consultant/doctor credentials, affiliation records, highlight stats, and descriptions statically and fully visible on page load.
-* Adjusted the Homepage Hero clinic entrance image height and crop offset (`-top-[17.5%]` and `h-[117.5%]`) inside [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx), rendering the yellow clinic signboard and its white circular green cross logo fully without any vertical cropping or border clipping, and removed the decorative absolute gold border frame (`border-2 border-gold-500/40`) from behind the entrance image.
+* Restored the Homepage Hero clinic entrance image to its original uncropped format inside [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx), rendering the complete photo in its default 3:2 aspect ratio (`aspect-[3/2]`) with no top/bottom vertical cropping or shifting offsets, and removed the decorative absolute gold border frame.
 
 ## Next Up
 * Verify the live local layout and ensure correct rendering.

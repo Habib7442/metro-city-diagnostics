@@ -39,10 +39,10 @@ const parseReviewBody = (body: string) => {
     'Easily accessible',
     'Friendly staff'
   ];
-  
+
   const tags: string[] = [];
   const commentLines: string[] = [];
-  
+
   lines.forEach(line => {
     if (knownTags.includes(line)) {
       tags.push(line);
@@ -50,7 +50,7 @@ const parseReviewBody = (body: string) => {
       commentLines.push(line);
     }
   });
-  
+
   return {
     tags,
     comment: commentLines.join(' ')
@@ -81,7 +81,7 @@ export default function Home() {
         {/* Background micro-graphics */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(200,162,79,0.15),transparent_50%)]" />
         <div className="absolute -left-48 top-12 h-96 w-96 rounded-full bg-navy-500/10 blur-3xl" />
-        
+
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
             {/* Left Column: Hero Content */}
@@ -145,18 +145,15 @@ export default function Home() {
             {/* Right Column: Hero Visual Container */}
             <div className="lg:col-span-5 relative">
               <div className="relative mx-auto max-w-[500px] lg:max-w-none">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-navy-800 shadow-2xl">
-                  {/* Shift up to hide the green 'Metropolis' top brand banner and show the 'Metro-City Diagnostics' yellow signboard and logo fully without clipping */}
-                  <div className="absolute inset-0 -top-[17.5%] h-[117.5%] w-full">
-                    <Image
-                      src="/assets/metro-city-diagnostics-exterior.png"
-                      alt="Metro-City Diagnostics Clinic Entrance, Silchar"
-                      fill
-                      sizes="(max-w-768px) 100vw, 50vw"
-                      priority
-                      className="object-cover"
-                    />
-                  </div>
+                <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg bg-navy-800 shadow-2xl">
+                  <Image
+                    src="/assets/metro-city-diagnostics-exterior.png"
+                    alt="Metro-City Diagnostics Clinic Entrance, Silchar"
+                    fill
+                    sizes="(max-w-768px) 100vw, 50vw"
+                    priority
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </div>
