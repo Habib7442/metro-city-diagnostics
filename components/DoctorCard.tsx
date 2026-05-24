@@ -116,7 +116,7 @@ export default function DoctorCard({ entry }: DoctorCardProps) {
               <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
                 Specialization
               </span>
-              <span className="text-xs text-neutral-600">
+              <span className="inline-block mt-1 text-xs font-bold text-navy-900 bg-navy-50/80 border border-navy-100/80 px-2.5 py-0.5 rounded-md shadow-sm">
                 {entry.doctor.specialization}
               </span>
             </div>

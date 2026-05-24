@@ -55,15 +55,30 @@ export default function Navbar() {
         <div className="flex h-20 items-center justify-between">
           {/* Logo Area */}
           <div className="flex flex-shrink-0 items-center">
-            <Link href="/" onClick={closeMenu} id="nav-logo" className="relative block">
-              <Image
-                src="/logo.png"
-                alt="Metro-City Diagnostics Logo"
-                width={190}
-                height={50}
-                className="h-11 w-auto object-contain md:h-12"
-                priority
-              />
+            <Link
+              href="/"
+              onClick={closeMenu}
+              id="nav-logo"
+              className="flex items-center gap-2.5 hover:opacity-95 transition-opacity group"
+            >
+              <div className="bg-white rounded-full p-1.5 flex items-center justify-center shadow-sm w-11 h-11 border border-neutral-200/60 flex-shrink-0 overflow-hidden">
+                <Image
+                  src="/logo.png"
+                  alt="Metro-City Diagnostics Logo"
+                  width={32}
+                  height={32}
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-display font-black text-navy-950 text-sm md:text-base tracking-wider leading-tight group-hover:text-gold-600 transition-colors">
+                  METRO-CITY
+                </span>
+                <span className="font-display font-extrabold text-gold-600 text-[10px] md:text-[11px] tracking-widest uppercase leading-none mt-0.5">
+                  DIAGNOSTICS
+                </span>
+              </div>
             </Link>
           </div>
 

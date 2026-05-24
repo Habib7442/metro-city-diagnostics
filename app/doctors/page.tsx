@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import doctorsData from '@/lib/doctors.json';
-import DoctorCard from '@/components/DoctorCard';
+import DoctorsCatalog from '@/components/DoctorsCatalog';
 import { buildMetadata, jsonLdProps, organizationJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
@@ -34,12 +34,8 @@ export default function DoctorsPage() {
           </p>
         </div>
 
-        {/* Doctors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {doctorsData.map((entry) => (
-            <DoctorCard key={entry.id} entry={entry} />
-          ))}
-        </div>
+        {/* Interactive Doctors Catalog */}
+        <DoctorsCatalog doctors={doctorsData} />
       </div>
     </div>
   );

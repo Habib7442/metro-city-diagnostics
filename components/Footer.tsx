@@ -26,9 +26,10 @@ export default function Footer() {
                   {SITE.address.streetAddress},<br />
                   {SITE.address.addressLocality}, {SITE.address.addressRegion} {SITE.address.postalCode}
                 </p>
-                <span className="inline-block mt-2 text-xs font-semibold text-gold-300 bg-navy-800/60 px-2.5 py-1 rounded">
-                  📍 Near Vivekananda Statue
-                </span>
+                <p className="text-xs font-bold text-gold-300 mt-2.5 flex items-center gap-1.5">
+                  <span>📍</span>
+                  <span>Near Vivekananda Statue</span>
+                </p>
               </div>
             </div>
 
@@ -37,14 +38,16 @@ export default function Footer() {
               <Clock className="h-6 w-6 text-gold-500 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold text-white mb-2">Working Hours</h4>
-                <div className="text-sm text-neutral-400 space-y-1">
-                  <p className="flex justify-between gap-4">
-                    <span>Mon - Sat:</span>
-                    <span className="font-medium text-neutral-300">7:30 AM - 8:30 PM</span>
+                <div className="text-sm text-neutral-400 space-y-2">
+                  <p className="flex items-center gap-2">
+                    <span className="font-medium text-neutral-400 w-20 flex-shrink-0">Mon - Sat:</span>
+                    <span className="font-semibold text-neutral-200">7:30 AM - 8:30 PM</span>
                   </p>
-                  <p className="flex justify-between gap-4">
-                    <span>Sunday:</span>
-                    <span className="font-medium text-neutral-300">Closed</span>
+                  <p className="flex items-center gap-2">
+                    <span className="font-medium text-neutral-400 w-20 flex-shrink-0">Sunday:</span>
+                    <span className="inline-flex items-center font-extrabold text-[10px] uppercase tracking-wider text-rose-400 bg-rose-950/40 border border-rose-900/40 px-2 py-0.5 rounded shadow-sm">
+                      Closed
+                    </span>
                   </p>
                 </div>
               </div>
@@ -103,14 +106,24 @@ export default function Footer() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
             {/* Brand pane */}
             <div className="lg:col-span-2 space-y-6">
-              <Link href="/" className="inline-block bg-white rounded p-2.5 max-w-[200px]">
-                <Image
-                  src="/logo.png"
-                  alt="Metro-City Diagnostics Logo"
-                  width={180}
-                  height={45}
-                  className="h-9 w-auto object-contain"
-                />
+              <Link href="/" className="inline-flex items-center gap-3.5 hover:opacity-90 transition-opacity group">
+                <div className="bg-white rounded-lg p-2 flex items-center justify-center shadow-sm w-12 h-12 flex-shrink-0 overflow-hidden">
+                  <Image
+                    src="/logo.png"
+                    alt="Metro-City Diagnostics Logo"
+                    width={32}
+                    height={32}
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-display font-black text-white text-base tracking-wider leading-tight group-hover:text-gold-300 transition-colors">
+                    METRO-CITY
+                  </span>
+                  <span className="font-display font-extrabold text-gold-500 text-[11px] tracking-widest uppercase leading-none mt-0.5">
+                    DIAGNOSTICS
+                  </span>
+                </div>
               </Link>
               <p className="text-sm leading-relaxed text-neutral-400 max-w-md">
                 A premium diagnostic center and pathology laboratory located in Meherpur, Silchar.

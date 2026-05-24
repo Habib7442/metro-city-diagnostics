@@ -58,9 +58,12 @@
 * Programmed advanced card features in `app/doctors/page.tsx` that render multi-column stat highlights (e.g. Since 1980, 50k+ Deliveries) and stylized dual English/Bengali taglines when present.
 * Removed the credentials expandable accordion toggle button (`"Show/Hide Credentials & Info"`) from [DoctorCard.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/DoctorCard.tsx), making all consultant/doctor credentials, affiliation records, highlight stats, and descriptions statically and fully visible on page load.
 * Restored the Homepage Hero clinic entrance image to its original uncropped format inside [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx), rendering the complete photo in its default 3:2 aspect ratio (`aspect-[3/2]`) with no top/bottom vertical cropping or shifting offsets, and removed the decorative absolute gold border frame.
+* Created a highly interactive [DoctorsCatalog.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/DoctorsCatalog.tsx) client component to enable responsive, real-time filtering of doctor cards by specialization (Medicine, Neurosurgery, Surgery, Gynaecology, Orthopedics, ENT, Paediatrics, Urology, Pulmonology, etc.) and direct keyword search. Mapped the main consultants page to use this interactive container.
+* Highlighted specializations in both the `/doctors` and homepage doctor cards by enclosing the specialization text inside a highly premium, high-contrast Navy-blue capsule badge (`bg-navy-50 text-navy-900 border-navy-100`) with light shadow styling.
+* Redesigned and corrected the "Working Hours" column layout in [Footer.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/Footer.tsx), replacing the unbalanced justify-between gaps with a clean, left-aligned structured layout containing fixed-width day labels and a gorgeous rose-colored "Closed" indicator badge.
 
 ## Next Up
-* Verify the live local layout and ensure correct rendering.
+* Await user confirmation before staging and pushing local edits to the GitHub master branch.
 
 ## Open Questions
 * None. All questions have been resolved in direct collaboration with the user.
