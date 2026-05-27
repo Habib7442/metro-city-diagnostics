@@ -630,6 +630,7 @@ export const primaryNav = [
   { label: 'Services', href: '/services' },
   { label: 'Packages', href: '/services?category=package' },
   { label: 'Doctors', href: '/doctors' },
+  { label: 'Gallery', href: '/gallery' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const;
@@ -644,6 +645,7 @@ export const footerNav = {
   company: [
     { label: 'About Us', href: '/about' },
     { label: 'Our Doctors', href: '/doctors' },
+    { label: 'Gallery', href: '/gallery' },
     { label: 'Contact', href: '/contact' },
   ],
   legal: [

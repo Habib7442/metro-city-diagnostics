@@ -233,6 +233,13 @@ export const pageSeo = {
     path: '/doctors',
     keywords: ['pathologist Silchar', 'radiologist Silchar', 'diagnostic consultant Silchar'],
   },
+  gallery: {
+    title: 'Facility Wings & Imaging Suites Gallery',
+    description:
+      'Explore the state-of-the-art diagnostics laboratories, sonography suites, and imaging rooms at Metro-City Diagnostics, Silchar.',
+    path: '/gallery',
+    keywords: ['diagnostic center gallery Silchar', 'Metro City Diagnostics photos', 'pathology lab photos Silchar'],
+  },
   book: {
     title: 'Book a Test Online',
     description:

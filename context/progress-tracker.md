@@ -75,6 +75,9 @@
 * Updated profile details for consultant Dr. A.Z Ahmed Barbhuiya in the doctors database (`lib/doctors.json`), changing his designation and specialization to "Medicine & Diabetologist", adding his "Metro-City Diagnostics" hospital affiliation, and updating his consulting hours to 3:00 PM - 6:00 PM.
 * Engineered a smart, interactive expand/collapse system for doctor qualifications inside `components/DoctorCard.tsx`. If a doctor has more than 2 qualifications, it neatly truncates to two lines with a gold "Expand More" button, expanding smoothly on click to show the full list and offering a "Show Less" option.
 * Updated profile details in the doctors database (`lib/doctors.json`) for Dr. Rupanjali Deshmukh (changed her hospital affiliation to "Metro-City Diagnostics" and removed her registration number) and Dr. Fakrul Islam Mozumder (updated his designation and specialization to "ENT Head & Neck Surgeon").
+* Programmed a high-performance Node.js image compression script inside the workspace, leveraging `sharp` to convert all massive gallery raw PNG files (~9.5 MB) inside `public/assets/gallery/` into high-fidelity WebPs (~850 KB, representing a ~90% compression ratio) for stellar performance and page speed, removing the original PNGs.
+* Designed and built a dedicated, highly interactive, and premium Facility Wings Gallery page (`app/gallery/page.tsx` & `components/GalleryCatalog.tsx`). Features an interactive category tab filter, detailed descriptions of each clinical wing (Pathology, Radiology, Sonography, Care), cards with micro-animations, glassmorphic hover overlays, and a gorgeous full-screen modal lightbox view supporting image-to-image sliding navigation and detailed caption panes.
+* Integrated the new `/gallery` page into the global sticky Navbar (both desktop and mobile slide-out drawer) and the company Footer navigation systems.
 * Verified error-free compilation of the entire codebase.
 
 ## Next Up
