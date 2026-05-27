@@ -182,7 +182,7 @@
 .animate-marquee-ltr {
   display: flex;
   width: max-content;
-  animation: marquee-ltr 20s linear infinite;
+  animation: marquee-ltr 42s linear infinite;
 }
 
 .animate-marquee-ltr:hover {

@@ -79,10 +79,10 @@
 * Designed and built a dedicated, highly interactive, and premium Facility Wings Gallery page (`app/gallery/page.tsx` & `components/GalleryCatalog.tsx`). Features an interactive category tab filter, detailed descriptions of each clinical wing (Pathology, Radiology, Sonography, Care), cards with micro-animations, glassmorphic hover overlays, and a gorgeous full-screen modal lightbox view supporting image-to-image sliding navigation and detailed caption panes.
 * Integrated the new `/gallery` page into the global sticky Navbar (both desktop and mobile slide-out drawer) and the company Footer navigation systems.
 * Verified error-free compilation of the entire codebase.
-* Implemented an ultra-premium, continuous infinite horizontal scrolling gallery marquee (left-to-right) on the Homepage Hero section directly underneath the trust badges. Features a glassmorphic container matching the hero visual frame, glowing gold borders around the thumbnails, responsive micro-interactions (pause on hover and scale animation), and side-fade gradients for smooth visual blending.
+* Implemented an ultra-premium, full-width continuous infinite horizontal scrolling gallery marquee (left-to-right) on the Homepage Hero section, positioned directly underneath the columns grid. Features larger aspect-ratio thumbnails with glowing gold borders, a slowed-down loop timing of 42s for relaxed readability, an outer glassmorphic container with wider side fade gradients, and interactive hover-pause scaling features.
 
 ## Next Up
-* Await user confirmation of the new horizontal scrolling gallery and layout styles.
+* Await user confirmation of the full-width horizontal scrolling gallery and layout styles.
 
 ## Open Questions
 * None. All questions have been resolved in direct collaboration with the user.

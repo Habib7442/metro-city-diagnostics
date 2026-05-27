@@ -147,40 +147,6 @@ export default function Home() {
                   <span className="text-xs text-neutral-300 font-medium">Home Sample Pickup</span>
                 </div>
               </div>
-
-              {/* Continuous Scrolling Gallery */}
-              <div className="border-t border-white/10 pt-6">
-                <span className="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-3">
-                  Facility Walkthrough & Patient Care
-                </span>
-                <div className="relative overflow-hidden w-full rounded-xl bg-white/5 border border-white/10 p-2.5 backdrop-blur-sm">
-                  {/* Left and Right Fade Gradients */}
-                  <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-navy-950 to-transparent pointer-events-none z-10" />
-                  <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-navy-950 to-transparent pointer-events-none z-10" />
-                  
-                  <div className="flex overflow-hidden w-full">
-                    <div className="flex gap-3 animate-marquee-ltr min-w-max">
-                      {/* Triple rendering for longer, seamless loop track */}
-                      {[...GALLERY_THUMBNAILS, ...GALLERY_THUMBNAILS, ...GALLERY_THUMBNAILS].map((src, idx) => (
-                        <div
-                          key={idx}
-                          className="relative w-[130px] h-[82px] flex-shrink-0 rounded-lg overflow-hidden border-2 border-gold-500/80 shadow-md shadow-black/40 hover:scale-[1.04] hover:border-gold-400 transition-all duration-300 group cursor-pointer"
-                        >
-                          <Image
-                            src={src}
-                            alt={`Clinic facility preview ${idx + 1}`}
-                            width={130}
-                            height={82}
-                            className="object-cover rounded-md w-full h-full"
-                          />
-                          {/* Inner overlay on hover */}
-                          <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Right Column: Hero Visual Container */}
@@ -200,6 +166,40 @@ export default function Home() {
                     {/* Absolute gold border overlay to force perfect rounded corners */}
                     <div className="absolute inset-0 rounded-xl border-[3px] border-gold-500/90 pointer-events-none z-10" />
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Continuous Scrolling Gallery (Full-Width) */}
+          <div className="border-t border-white/10 pt-8 mt-12 sm:mt-16">
+            <span className="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-4 text-center sm:text-left">
+              Facility Walkthrough & Patient Care Gallery
+            </span>
+            <div className="relative overflow-hidden w-full rounded-xl bg-white/5 border border-white/10 p-2.5 backdrop-blur-sm">
+              {/* Left and Right Fade Gradients */}
+              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-navy-950 to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-navy-950 to-transparent pointer-events-none z-10" />
+              
+              <div className="flex overflow-hidden w-full">
+                <div className="flex gap-4 animate-marquee-ltr min-w-max">
+                  {/* Quad rendering for longer track (since container is wider now) */}
+                  {[...GALLERY_THUMBNAILS, ...GALLERY_THUMBNAILS, ...GALLERY_THUMBNAILS, ...GALLERY_THUMBNAILS].map((src, idx) => (
+                    <div
+                      key={idx}
+                      className="relative w-[180px] h-[112px] flex-shrink-0 rounded-lg overflow-hidden border-2 border-gold-500/80 shadow-md shadow-black/40 hover:scale-[1.04] hover:border-gold-400 transition-all duration-300 group cursor-pointer"
+                    >
+                      <Image
+                        src={src}
+                        alt={`Clinic facility preview ${idx + 1}`}
+                        width={180}
+                        height={112}
+                        className="object-cover rounded-md w-full h-full"
+                      />
+                      {/* Inner overlay on hover */}
+                      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
