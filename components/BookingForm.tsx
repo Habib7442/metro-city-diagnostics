@@ -517,7 +517,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                   landmark: '',
                 });
               }}
-              className="bg-gold-500 hover:bg-gold-600 text-white font-extrabold h-11 px-6 rounded cursor-pointer"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold h-11 px-6 rounded cursor-pointer"
             >
               Submit Another Booking
             </Button>
@@ -722,16 +722,16 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                                   setErrors((prev) => ({ ...prev, preferredDate: '' }));
                                 }}
                                 className={cn(
-                                  "flex flex-col items-center justify-center p-3 rounded-xl border text-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2",
+                                  "flex flex-col items-center justify-center p-3 rounded-xl border text-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
                                   isSelected
-                                    ? "bg-gold-50/80 border-gold-500 text-gold-950 shadow-sm"
+                                    ? "bg-blue-50/80 border-blue-500 text-blue-950 shadow-sm"
                                     : "bg-white border-neutral-200 text-navy-950 hover:border-neutral-300 hover:bg-neutral-50/50"
                                 )}
                                 style={{ minHeight: '56px' }}
                               >
                                 <span className={cn(
                                   "text-[10px] font-bold uppercase tracking-wider mb-0.5",
-                                  isSelected ? "text-gold-700" : "text-neutral-400"
+                                  isSelected ? "text-blue-700" : "text-neutral-400"
                                 )}>
                                   {dateInfo.displayDay}
                                 </span>
@@ -739,7 +739,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                                   {dateInfo.displayDate}
                                 </span>
                                 {isSelected && (
-                                  <div className="mt-1 bg-gold-500 text-white rounded-full p-0.5">
+                                  <div className="mt-1 bg-blue-650 text-white rounded-full p-0.5">
                                     <Check className="h-3 w-3 font-bold" />
                                   </div>
                                 )}
@@ -851,7 +851,7 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-gold-500 hover:bg-gold-600 text-white font-extrabold h-12 px-8 rounded tracking-wide shadow-sm w-full sm:w-auto cursor-pointer"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold h-12 px-8 rounded tracking-wide shadow-sm w-full sm:w-auto cursor-pointer"
               >
                 {isSubmitting ? 'Confirming Appointment...' : 'Submit Booking Request'}
               </Button>

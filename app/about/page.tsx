@@ -181,7 +181,7 @@ export default function AboutPage() {
                 <div className="flex flex-wrap gap-4 relative z-10">
                   <Button
                     asChild
-                    className="bg-gold-500 hover:bg-gold-600 text-white font-bold h-11 rounded shadow-xs"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold h-11 rounded shadow-xs"
                   >
                     <Link href="/services">View Available Services</Link>
                   </Button>

@@ -122,7 +122,7 @@ export default function Navbar() {
             </a>
             <Button
               asChild
-              className="bg-gold-500 font-semibold text-white hover:bg-gold-600 hover:shadow-md transition-all rounded px-5 h-11"
+              className="bg-blue-600 font-semibold text-white hover:bg-blue-700 hover:shadow-md transition-all rounded px-5 h-11"
             >
               <Link href="/book" id="nav-cta-book">
                 Book a Test
@@ -196,7 +196,7 @@ export default function Navbar() {
             </a>
             <Button
               asChild
-              className="bg-gold-500 font-semibold text-white hover:bg-gold-600 w-full py-4 h-12 text-base rounded shadow-sm"
+              className="bg-blue-600 font-semibold text-white hover:bg-blue-700 w-full py-4 h-12 text-base rounded shadow-sm"
               onClick={closeMenu}
             >
               <Link href="/book" id="mobile-nav-cta-book">

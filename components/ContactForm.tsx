@@ -181,7 +181,7 @@ ${formState.message}`;
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-gold-500 hover:bg-gold-600 text-white font-bold h-11 px-6 rounded tracking-wide shadow-sm flex items-center justify-center gap-2 w-full md:w-auto"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold h-11 px-6 rounded tracking-wide shadow-sm flex items-center justify-center gap-2 w-full md:w-auto"
           >
             {isSubmitting ? 'Sending Message...' : 'Send Message'}
             {!isSubmitting && <Send className="h-4 w-4" />}

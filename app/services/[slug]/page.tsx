@@ -176,7 +176,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <div className="border-t border-white/10 pt-6 space-y-4">
                 <Button
                   asChild
-                  className="bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold w-full h-12 rounded transition-all shadow-sm"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold w-full h-12 rounded transition-all shadow-sm"
                 >
                   <Link href={`/book?test=${service.slug}`}>Book Sample Collection</Link>
                 </Button>

@@ -123,69 +123,6 @@
     }
   },
   {
-    "id": "ihr-opd",
-    "hospital": {
-      "name": "METRO-CITY DIAGNOSTICS",
-      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
-    },
-    "doctor": {
-      "name": "IHR - Institute of Human Reproduction",
-      "qualification": [
-        "Infertility Treatment",
-        "Test Tube Baby",
-        "IVF Consultation"
-      ],
-      "designation": "IVF & Infertility OPD (Guwahati)",
-      "hospital_affiliation": "Goenka Nursing Home, Guwahati",
-      "specialization": "IVF & Infertility Treatment",
-      "image": "/assets/doctors/ihr-opd.png"
-    },
-    "location": {
-      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
-      "pin_code": "788015",
-      "city": "Silchar",
-      "state": "Assam"
-    },
-    "contact": {
-      "phone_numbers": [
-        "9957357278",
-        "9954025101"
-      ],
-      "whatsapp_number": "9957357278"
-    },
-    "timing": {
-      "days": "Doctor visit from Guwahati - Starting Soon",
-      "time": "Register/Book Your Spot Now",
-      "appointment_required": true
-    },
-    "fees": "Contact for pricing",
-    "services": {
-      "trusted_general_physician_near": "Silchar"
-    },
-    "highlights": [
-      {
-        "title": "Since",
-        "value": "1980"
-      },
-      {
-        "title": "Successful Deliveries",
-        "value": "50,000+"
-      },
-      {
-        "title": "IVF Cases",
-        "value": "30,000+"
-      }
-    ],
-    "description": {
-      "english": "The dream may come a little late, but nothing is impossible in today's medical treatment.",
-      "bengali": [
-        "আপনার মাতৃত্বের স্বপ্ন পূরণের সঙ্গী",
-        "আজই করুন পরামর্শ, নতুন জীবনের শুরু হোক এখান থেকেই!",
-        "যোগাযোগ করুন !!"
-      ]
-    }
-  },
-  {
     "id": "dr-debanjali-das",
     "hospital": {
       "name": "METRO-CITY DIAGNOSTICS",
@@ -317,9 +254,9 @@
         "MBBS",
         "MS (ENT)"
       ],
-      "designation": "Consultant ENT, Head & Neck Surgeon",
+      "designation": "ENT Head & Neck Surgeon",
       "hospital_affiliation": "Silchar Medical College & Hospital",
-      "specialization": "ENT (Ear, Nose & Throat)",
+      "specialization": "ENT Head & Neck Surgeon",
       "image": "/assets/doctors/dr-fakrul-islam-mozumder.webp"
     },
     "location": {
@@ -519,9 +456,9 @@
         "Dip. Diabetes Management (Apollo, Chennai)",
         "PG Advanced Diabetes (Harvard Medical University)"
       ],
-      "designation": "Medicine & Diabetology Specialist",
-      "hospital_affiliation": "",
-      "specialization": "Medicine & Diabetology",
+      "designation": "Medicine & Diabetologist",
+      "hospital_affiliation": "Metro-City Diagnostics",
+      "specialization": "Medicine & Diabetologist",
       "image": "/assets/doctors/dr-az-ahmed-barbhuiya.webp"
     },
     "location": {
@@ -539,7 +476,7 @@
     },
     "timing": {
       "days": "Every Tuesday & Friday",
-      "time": "3:00 PM to 4:00 PM",
+      "time": "3:00 PM to 6:00 PM",
       "appointment_required": true
     },
     "fees": 500,
@@ -741,6 +678,109 @@
     "timing": {
       "days": "Every Monday to Saturday",
       "time": "4:00 PM to 6:00 PM",
+      "appointment_required": true
+    },
+    "fees": 500,
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
+  },
+  {
+    "id": "ihr-opd",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "IHR - Institute of Human Reproduction",
+      "qualification": [
+        "Infertility Treatment",
+        "Test Tube Baby",
+        "IVF Consultation"
+      ],
+      "designation": "IVF & Infertility OPD (Guwahati)",
+      "hospital_affiliation": "Metro-City Diagnostics",
+      "specialization": "Superspeciality in Reproductive Medicine",
+      "image": "/assets/doctors/ihr-opd.png"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Once in a month (3rd Friday of every month)",
+      "time": "10:00 AM onwards",
+      "appointment_required": true
+    },
+    "fees": 1000,
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    },
+    "highlights": [
+      {
+        "title": "Since",
+        "value": "1980"
+      },
+      {
+        "title": "Successful Deliveries",
+        "value": "50,000+"
+      },
+      {
+        "title": "IVF Cases",
+        "value": "30,000+"
+      }
+    ],
+    "description": {
+      "english": "The dream may come a little late, but nothing is impossible in today's medical treatment.",
+      "bengali": [
+        "আপনার মাতৃত্বের স্বপ্ন পূরণের সঙ্গী",
+        "আজই করুন পরামর্শ, নতুন জীবনের শুরু হোক এখান থেকেই!",
+        "যোগাযোগ করুন !!"
+      ]
+    }
+  },
+  {
+    "id": "dr-rupanjali-deshmukh",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Rupanjali Deshmukh",
+      "qualification": [
+        "BDS",
+        "MDS"
+      ],
+      "designation": "Oral & Maxillo Facial Surgeon",
+      "hospital_affiliation": "Metro-City Diagnostics",
+      "specialization": "Oral & Maxillofacial Surgery",
+      "image": "/assets/doctors/dr-rupanjali-deshmukh.png"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "4:00 PM to 5:00 PM",
       "appointment_required": true
     },
     "fees": 500,

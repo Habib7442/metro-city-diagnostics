@@ -59,7 +59,7 @@ const CATEGORIES = [
   { id: 'paediatrics', label: 'Paediatrics', specs: ['Paediatrics'] },
   { id: 'urology', label: 'Urology', specs: ['Urology'] },
   { id: 'pulmonology', label: 'Pulmonology', specs: ['Pulmonology'] },
-  { id: 'other', label: 'Other Specialties', specs: ['Ophthalmology', 'Psychiatry'] }
+  { id: 'other', label: 'Other Specialties', specs: ['Ophthalmology', 'Psychiatry', 'Oral & Maxillofacial Surgery'] }
 ];
 
 export default function DoctorsCatalog({ doctors }: DoctorsCatalogProps) {
@@ -99,6 +99,9 @@ export default function DoctorsCatalog({ doctors }: DoctorsCatalogProps) {
       return matchesCategory && matchesSearch;
     });
   }, [doctors, selectedCategory, searchQuery]);
+
+  const ihrDoctor = useMemo(() => filteredDoctors.find(d => d.id === 'ihr-opd'), [filteredDoctors]);
+  const regularDoctors = useMemo(() => filteredDoctors.filter(d => d.id !== 'ihr-opd'), [filteredDoctors]);
 
   return (
     <div className="space-y-10">
@@ -152,7 +155,7 @@ export default function DoctorsCatalog({ doctors }: DoctorsCatalogProps) {
                   <span>{cat.label}</span>
                   <span
                     className={`inline-flex items-center justify-center px-1.5 py-0.5 rounded-full text-[10px] ${
-                      isActive ? 'bg-gold-500 text-white' : 'bg-neutral-200/80 text-neutral-600'
+                      isActive ? 'bg-blue-600 text-white' : 'bg-neutral-200/80 text-neutral-600'
                     }`}
                   >
                     {count}
@@ -185,10 +188,19 @@ export default function DoctorsCatalog({ doctors }: DoctorsCatalogProps) {
 
       {/* Doctors Grid */}
       {filteredDoctors.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {filteredDoctors.map((entry) => (
-            <DoctorCard key={entry.id} entry={entry} />
-          ))}
+        <div className="space-y-8 max-w-5xl mx-auto">
+          {regularDoctors.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {regularDoctors.map((entry) => (
+                <DoctorCard key={entry.id} entry={entry} />
+              ))}
+            </div>
+          )}
+          {ihrDoctor && (
+            <div className="w-full pt-4">
+              <DoctorCard key={ihrDoctor.id} entry={ihrDoctor} isHorizontal={true} />
+            </div>
+          )}
         </div>
       ) : (
         <div className="text-center py-16 bg-white rounded-xl border border-neutral-200 max-w-5xl mx-auto p-8 shadow-sm">
@@ -202,7 +214,7 @@ export default function DoctorsCatalog({ doctors }: DoctorsCatalogProps) {
               setSelectedCategory('all');
               setSearchQuery('');
             }}
-            className="mt-5 px-5 py-2.5 rounded bg-gold-500 hover:bg-gold-600 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-sm"
+            className="mt-5 px-5 py-2.5 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-sm"
           >
             Show All Doctors
           </button>

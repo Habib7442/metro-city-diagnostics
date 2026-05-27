@@ -28,7 +28,7 @@ export default function MobileStickyBar() {
         <Link
           href="/services?category=package"
           id="mobile-sticky-packages"
-          className="relative flex flex-col items-center justify-center bg-gold-500 text-white active:bg-gold-600 transition-colors"
+          className="relative flex flex-col items-center justify-center bg-blue-600 text-white active:bg-blue-700 transition-colors"
         >
           <span className="absolute -top-2 left-1/2 -translate-x-1/2 flex h-4 items-center justify-center rounded-full bg-gradient-to-r from-red-500 to-rose-600 px-2 text-[8px] font-black uppercase tracking-widest text-white shadow-[0_2px_8px_rgba(225,29,72,0.5)] border border-white animate-pulse">
             HOT
