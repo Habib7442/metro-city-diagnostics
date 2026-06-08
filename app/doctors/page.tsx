@@ -6,7 +6,7 @@ import { buildMetadata, jsonLdProps, organizationJsonLd } from '@/lib/seo';
 export const metadata: Metadata = buildMetadata({
   title: 'Dr. Debanjali Das & Specialized Consultants — Book Appointment',
   description:
-    'Book consultation appointments at Metro-City Diagnostics. Consult Dr. Debanjali Das (MD Medicine), Resident Physician, for trusted general physician healthcare in Silchar.',
+    'Book consultation appointments at Metro-City Diagnostics. Consult Dr. Debanjali Das (MD Medicine), Consultant Medicine Specialist, for trusted general physician healthcare in Silchar.',
   path: '/doctors',
   keywords: ['pathologist Silchar', 'radiologist Silchar', 'diagnostic consultant Silchar'],
 });

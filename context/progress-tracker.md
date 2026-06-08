@@ -91,6 +91,7 @@
 * Synced the clinic timing hours card in [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx) to match the global updated hours.
 * Configured the Google review-writing link in the global constants and integrated highly visible, highlighted review CTA buttons into the main desktop navbar and mobile navigation drawer.
 * Removed the "Need Help? Call Us" phone number display block from the main desktop navbar to declutter layout space.
+* Updated Dr. Debanjali Das's specialization to "Internal Medicine Specialist" in [doctors.json](file:///e:/Web%20Dev/metro-city-diagnostics/lib/doctors.json) and synced [DoctorsCatalog.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/DoctorsCatalog.tsx) to map it under "Medicine & Diabetology".
 
 ## Next Up
 * Await user confirmation of the full-width horizontal scrolling gallery and layout styles.
