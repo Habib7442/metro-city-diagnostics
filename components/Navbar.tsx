@@ -38,15 +38,7 @@ export default function Navbar() {
               📍 Birbal Bazar, Meherpur, Silchar
             </span>
           </div>
-          <div className="flex items-center gap-5">
-            <a
-              href={SITE.social.googleBusiness}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 bg-gold-500 hover:bg-gold-600 text-navy-950 px-2.5 py-0.5 rounded text-[10px] font-extrabold transition-colors shadow-sm cursor-pointer"
-            >
-              ⭐ Write a Review
-            </a>
+          <div className="flex items-center gap-4">
             <a
               href={SITE.contact.phoneTel}
               className="flex items-center gap-1 hover:text-white transition-colors"
