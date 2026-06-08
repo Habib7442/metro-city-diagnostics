@@ -90,6 +90,7 @@
 * Upgraded the homepage hero H1 in [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx) to target "Best Diagnostic Centre in Silchar".
 * Synced the clinic timing hours card in [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx) to match the global updated hours.
 * Configured the Google review-writing link in the global constants and integrated highly visible, highlighted review CTA buttons into the main desktop navbar and mobile navigation drawer.
+* Removed the "Need Help? Call Us" phone number display block from the main desktop navbar to declutter layout space.
 
 ## Next Up
 * Await user confirmation of the full-width horizontal scrolling gallery and layout styles.

@@ -116,18 +116,6 @@ export default function Navbar() {
             >
               ⭐ Write a Review
             </a>
-            <a
-              href={SITE.contact.phoneTel}
-              className="flex flex-col items-end mr-2 text-right group"
-            >
-              <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-medium">
-                Need Help? Call Us
-              </span>
-              <span className="text-sm font-bold text-navy-900 group-hover:text-gold-600 transition-colors flex items-center gap-1">
-                <Phone className="h-3.5 w-3.5 text-gold-500" />
-                {SITE.contact.phoneDisplay}
-              </span>
-            </a>
             <Button
               asChild
               className="bg-blue-600 font-semibold text-white hover:bg-blue-700 hover:shadow-md transition-all rounded px-5 h-11"
