@@ -1,7 +1,7 @@
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { defaultMetadata } from "@/lib/seo";
+import { defaultMetadata, medicalBusinessJsonLd, websiteJsonLd, jsonLdProps } from "@/lib/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
@@ -42,6 +42,10 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
+      <head>
+        <script {...jsonLdProps(medicalBusinessJsonLd)} />
+        <script {...jsonLdProps(websiteJsonLd)} />
+      </head>
       <body
         className="min-h-full flex flex-col bg-background text-foreground font-sans pb-16 md:pb-0"
         suppressHydrationWarning

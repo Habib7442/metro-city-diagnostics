@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metro-City Diagnostics — How to Rank #1 for "Best Diagnostic Center Silchar"</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy:#0a2540; --teal:#0e7c86; --teal-d:#0a5e66; --teal-l:#e6f4f5;
+    --coral:#e2563c; --amber:#d98520; --blue:#2b6cb0; --green:#1f9d6b;
+    --ink:#16242f; --muted:#5b7083; --line:#e2e8ee; --bg:#ffffff; --bg-alt:#f5f9fb;
+    --shadow:0 1px 2px rgba(10,37,64,.06),0 8px 28px rgba(10,37,64,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg);line-height:1.62;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy);line-height:1.15;letter-spacing:-.02em}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 6%}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  a{color:var(--teal-d)}
+
+  /* HERO */
+  .hero{background:linear-gradient(160deg,#0a2540 0%,#0c3a4a 60%,#0e7c86 140%);color:#fff;padding:74px 0 66px}
+  .hero .wrap{padding-top:0;padding-bottom:0}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7fd4dc;border:1px solid rgba(127,212,220,.35);padding:6px 14px;border-radius:100px;margin-bottom:22px}
+  .hero h1{color:#fff;font-size:clamp(30px,5.2vw,50px);font-weight:800;max-width:18ch}
+  .hero p.lede{color:#cfe4ea;font-size:clamp(16px,2.1vw,19px);margin-top:20px;max-width:60ch}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px;font-size:14px;color:#a9cbd3}
+  .hero-meta b{color:#fff;font-weight:600}
+
+  /* VERDICT cards */
+  .verdict{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:stretch}
+  .verdict-main{background:var(--navy);color:#fff;border-radius:18px;padding:34px 32px}
+  .verdict-main h2{color:#fff;font-size:24px;margin-bottom:12px}
+  .verdict-main p{color:#cdd9e3;font-size:15.5px}
+  .verdict-main .big{font-size:15.5px;color:#fff;background:rgba(226,86,60,.18);border:1px solid rgba(226,86,60,.5);border-radius:12px;padding:14px 16px;margin-top:18px}
+  .verdict-main .big b{color:#ffb59f}
+  .scorecard{background:var(--bg-alt);border:1px solid var(--line);border-radius:18px;padding:28px 26px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+  .score-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+  .score-row:last-child{border-bottom:none;padding-bottom:0}
+  .score-num{font-family:'Plus Jakarta Sans';font-size:34px;font-weight:800;color:var(--navy);line-height:1}
+  .score-num.bad{color:var(--coral)}
+  .score-num.good{color:var(--green)}
+  .score-lbl{font-size:12.5px;color:var(--muted);text-align:right;max-width:16ch}
+
+  .lead{font-size:18px;color:var(--ink)}
+  .muted{color:var(--muted)}
+  h2.sec{font-size:clamp(23px,3.4vw,30px);font-weight:800;margin-bottom:6px}
+  .sec-sub{color:var(--muted);font-size:15.5px;margin-bottom:30px;max-width:70ch}
+  .kicker{font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+
+  /* chart */
+  .chart-card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:26px 24px 14px;box-shadow:var(--shadow)}
+  .chart-wrap{position:relative;height:430px}
+  .chart-note{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+
+  /* levers */
+  .levers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .lever{background:var(--bg);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:14px;padding:24px 22px}
+  .lever h3{font-size:18px;margin:6px 0 8px}
+  .lever .tag{font-size:12px;font-weight:700;color:var(--teal-d);letter-spacing:.04em}
+  .lever p{font-size:14.5px;color:var(--muted)}
+  .lever .you{margin-top:14px;font-size:13.5px;background:var(--teal-l);border-radius:9px;padding:10px 12px;color:var(--teal-d)}
+  .lever .you b{color:var(--navy)}
+
+  /* issues */
+  .issue{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .issue:last-child{border-bottom:none}
+  .sev{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:6px 11px;border-radius:7px;height:fit-content;white-space:nowrap}
+  .sev.crit{background:#fdece8;color:#c0341c;border:1px solid #f4c4b8}
+  .sev.high{background:#fdf2e2;color:#a8650c;border:1px solid #f1d9af}
+  .sev.med{background:#eaf1fb;color:#235a99;border:1px solid #c5d8f1}
+  .issue h3{font-size:17.5px;margin-bottom:5px}
+  .issue p{font-size:14.5px;color:var(--muted)}
+  .issue .fix{font-size:14px;color:var(--ink);margin-top:9px;padding-left:14px;border-left:3px solid var(--teal)}
+  .issue .fix b{color:var(--teal-d)}
+
+  /* callout / copy blocks */
+  .callout{background:var(--bg-alt);border:1px solid var(--line);border-left:4px solid var(--coral);border-radius:0 12px 12px 0;padding:20px 22px;margin:22px 0}
+  .callout.bad b{color:var(--coral)}
+  .copy{background:#0e2233;color:#e8f1f4;border-radius:12px;padding:20px 22px;font-size:14.5px;line-height:1.7;margin:14px 0}
+  .copy .lbl{display:block;font-family:'Plus Jakarta Sans';font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#7fd4dc;margin-bottom:10px;font-weight:700}
+  .copy .meta-small{font-size:12.5px;color:#9fc0ca;margin-top:12px}
+
+  /* roadmap */
+  .phase{display:grid;grid-template-columns:140px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border-bottom:none}
+  .phase-when{font-family:'Plus Jakarta Sans';font-weight:700}
+  .phase-when .p{font-size:18px;color:var(--navy)}
+  .phase-when .d{font-size:13px;color:var(--teal);font-weight:600;margin-top:2px}
+  .phase ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .phase li{position:relative;padding-left:26px;font-size:15px;color:var(--ink)}
+  .phase li::before{content:"";position:absolute;left:2px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--teal)}
+  .phase li b{color:var(--navy)}
+
+  /* lists / chips */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px}
+  .checklist{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .checklist li{position:relative;padding-left:30px;font-size:15px}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;color:var(--green);font-weight:800;background:#e6f6ee;width:21px;height:21px;border-radius:6px;display:grid;place-items:center;font-size:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
+  .chip{background:var(--teal-l);color:var(--teal-d);font-size:13px;font-weight:600;padding:7px 13px;border-radius:8px;border:1px solid #cfe7e9}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .kpi{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center}
+  .kpi .n{font-family:'Plus Jakarta Sans';font-weight:800;font-size:21px;color:var(--teal-d)}
+  .kpi .l{font-size:13px;color:var(--muted);margin-top:5px}
+
+  .target-banner{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-d) 100%);color:#fff;border-radius:16px;padding:30px 32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+  .target-banner h3{color:#fff;font-size:21px;max-width:24ch}
+  .target-banner .nums{display:flex;gap:30px}
+  .target-banner .nums div{text-align:center}
+  .target-banner .nums .v{font-family:'Plus Jakarta Sans';font-weight:800;font-size:30px}
+  .target-banner .nums .k{font-size:12.5px;color:#cdeef1}
+
+  footer{background:var(--navy);color:#9db4c4;padding:34px 0;font-size:13px;text-align:center}
+  footer b{color:#fff}
+
+  @media(max-width:760px){
+    .verdict,.levers,.grid2,.kpi-grid{grid-template-columns:1fr}
+    .kpi-grid{grid-template-columns:1fr 1fr}
+    .phase{grid-template-columns:1fr;gap:10px}
+    .target-banner .nums{gap:20px}
+    .chart-wrap{height:520px}
+  }
+</style>
+<style>
+.ha-img-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;background:#f4f4f5;border:1px dashed #d4d4d8;border-radius:8px;color:#71717a;font-size:12px;font-family:system-ui,sans-serif;min-height:80px;padding:16px;box-sizing:border-box;animation:ha-img-pulse 1.5s ease-in-out infinite}
+.ha-img-placeholder.ha-failed{animation:none;opacity:.7}
+@keyframes ha-img-pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@media(prefers-color-scheme:dark){.ha-img-placeholder{background:#27272a;border-color:#3f3f46;color:#a1a1aa}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">● Local SEO Audit &amp; Growth Plan</span>
+    <h1>How Metro-City Diagnostics can rank at the top for "best diagnostic center Silchar"</h1>
+    <p class="lede">Your reviews are excellent (4.8★) — but you're nearly invisible in Google's local results because of three fixable gaps. Here's exactly what's holding you back and the 60–90 day plan to climb into the Map Pack.</p>
+    <div class="hero-meta">
+      <span>Business: <b>Metro-City Diagnostics</b></span>
+      <span>Location: <b>Birbal Bazar, Meherpur, Silchar</b></span>
+      <span>Analysis date: <b>June 2026</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- VERDICT -->
+<section>
+  <div class="wrap">
+    <div class="verdict">
+      <div class="verdict-main">
+        <h2>The bottom line</h2>
+        <p>Metro-City Diagnostics has the <b style="color:#7fd4dc">quality</b> to rank — a 4.8★ rating ties you with the best labs in Silchar. What you're missing is <b style="color:#7fd4dc">prominence</b>: review volume, a complete profile, and citations. You currently don't show up in the top results for "diagnostic centre silchar," while rivals with 100–540 reviews dominate the map.</p>
+        <div class="big">Your single biggest lever: <b>reviews.</b> You have 25; the leaders have 100–540. Closing that gap — combined with three quick profile fixes — is what moves you into the top 3.</div>
+      </div>
+      <div class="scorecard">
+        <div class="score-row"><div class="score-num good">4.8★</div><div class="score-lbl">Your rating — already best-in-class</div></div>
+        <div class="score-row"><div class="score-num bad">25</div><div class="score-lbl">Your reviews — far behind rivals</div></div>
+        <div class="score-row"><div class="score-num bad">1</div><div class="score-lbl">Profile category (should be 4–6)</div></div>
+        <div class="score-row"><div class="score-num bad">✕</div><div class="score-lbl">Business description is broken (wrong business + topic)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIVE LANDSCAPE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">The Competitive Landscape</div>
+    <h2 class="sec">Where you stand vs. Silchar's diagnostic centers</h2>
+    <p class="sec-sub">Google ranks "prominent" businesses higher — and in local search, review count is the loudest prominence signal. This is the gap, visualized. Your rating is elite; your review volume is the outlier.</p>
+    <div class="chart-card">
+      <div class="chart-wrap"><canvas id="reviewChart"></canvas></div>
+      <p class="chart-note">Google review counts, Silchar diagnostic centers — June 2026. Metro-City Diagnostics highlighted in coral.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW GOOGLE RANKS -->
+<section style="background:var(--bg-alt)">
+  <div class="wrap">
+    <div class="kicker">How Local Ranking Works</div>
+    <h2 class="sec">Google ranks local businesses on 3 things</h2>
+    <p class="sec-sub">Every "diagnostic center near me" or "best diagnostic center Silchar" result is decided by these three levers. You can't change one of them — but the other two are entirely in your control.</p>
+    <div class="levers">
+      <div class="lever">
+        <span class="tag">LEVER 1</span>
+        <h3>Relevance</h3>
+        <p>How well your profile matches what the person searched. Driven by your categories, business name, description, services list, and website content.</p>
+        <div class="you"><b>Your status:</b> Weak. Only 1 category, and your description is about the wrong topic. Big, fast wins available here.</div>
+      </div>
+      <div class="lever">
+        <span class="tag">LEVER 2</span>
+        <h3>Distance</h3>
+        <p>How close you are to the person searching. You can't move your building — but an accurate address, correct map pin, and neighborhood keywords help Google place you.</p>
+        <div class="you"><b>Your status:</b> Fine. Meherpur address is set. Just keep the pin and NAP accurate everywhere.</div>
+      </div>
+      <div class="lever">
+        <span class="tag">LEVER 3</span>
+        <h3>Prominence</h3>
+        <p>How well-known and trusted you are. Driven by review count &amp; velocity, rating, citations across the web, backlinks, and how active your profile is.</p>
+        <div class="you"><b>Your status:</b> The main gap. Strong rating, but too few reviews and thin web presence. This is where the 90-day plan focuses.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT -->
+<section>
+  <div class="wrap">
+    <div class="kicker">The Audit</div>
+    <h2 class="sec">What's holding you back — in priority order</h2>
+    <p class="sec-sub">Fix these top-to-bottom. The first one is urgent and costs nothing but five minutes.</p>
+
+    <div class="issue">
+      <span class="sev crit">Critical</span>
+      <div>
+        <h3>Your business description is for the wrong business</h3>
+        <p>Right now your Google profile description talks about <b>neurology, a "brain specialist," and "SS Sales and Service" on "Hailakandi Road"</b> — none of which is Metro-City Diagnostics in Meherpur. This confuses Google about what you do and makes patients distrust the listing.</p>
+        <div class="fix"><b>Fix today:</b> Replace it with a diagnostics-focused, Silchar-keyworded description (copy-paste version provided below).</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <span class="sev high">High</span>
+      <div>
+        <h3>Only 25 reviews — the leaders have 100 to 540</h3>
+        <p>Your 4.8★ is excellent, but review <em>volume</em> is the strongest local-ranking signal and your biggest gap. Pathkind (538), Apollo (242), S R Metro (238) and Optima (142) all dwarf you on count.</p>
+        <div class="fix"><b>Fix:</b> Launch a systematic review engine (below). Target 100+ reviews in 90 days, then keep a steady flow of 8–15 new reviews a week.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <span class="sev high">High</span>
+      <div>
+        <h3>Only one profile category</h3>
+        <p>You're listed only as "Diagnostic center." Each category you add is a new search you can rank for (X-ray, ultrasound, blood test, pathology).</p>
+        <div class="fix"><b>Fix:</b> Keep "Diagnostic center" as primary, then add secondary categories you genuinely offer: <b>Medical laboratory, X-ray lab, Pathologist, Medical diagnostic imaging center, Blood testing service, Ultrasound diagnostic service.</b></div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <span class="sev high">High</span>
+      <div>
+        <h3>Thin services list</h3>
+        <p>Google lets you list every test and package as a "service" with its own description — a major relevance booster most local labs ignore.</p>
+        <div class="fix"><b>Fix:</b> Add every service with a short keyword-rich description: CBC, lipid profile, thyroid (TSH/T3/T4), HbA1c, liver &amp; kidney function, X-ray, ECG, ultrasound (USG), full-body health packages, home sample collection.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <span class="sev med">Medium</span>
+      <div>
+        <h3>Few photos &amp; no regular updates</h3>
+        <p>Profiles with fresh, plentiful photos and weekly posts get more views and signal an active, trustworthy business.</p>
+        <div class="fix"><b>Fix:</b> Upload 25–50+ real photos (signage/exterior, reception, equipment, sample-collection room, staff, sample reports), then add new ones monthly. Post weekly (see cadence below).</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <span class="sev med">Medium</span>
+      <div>
+        <h3>Almost no attributes set</h3>
+        <p>Only "wheelchair accessible" and "LGBTQ+ friendly" are on. Attributes feed both relevance and the filters patients use.</p>
+        <div class="fix"><b>Fix:</b> Turn on every true attribute: appointments &amp; online booking, on-site services, home sample collection, restroom, parking, UPI/card payments, languages spoken (Bengali, Hindi, English), women's health.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <span class="sev med">Medium</span>
+      <div>
+        <h3>Empty Q&amp;A and no review responses</h3>
+        <p>The Questions &amp; Answers box is unused, and replying to reviews is itself a ranking and trust signal.</p>
+        <div class="fix"><b>Fix:</b> Seed 5–8 common questions and answers yourself, and reply to <b>every</b> review — thank the positives, calmly resolve the negatives.</div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <span class="sev med">Medium</span>
+      <div>
+        <h3>Website is good, but under-optimized for "Silchar"</h3>
+        <p>Your site (metrocitydiagnostics.com) is well-built with the right sections — but the page title leads with "Barak Valley" instead of the keyword people actually search: <b>Silchar</b>. Schema markup and per-test pages are likely missing.</p>
+        <div class="fix"><b>Fix:</b> Put "Diagnostic Centre in Silchar" in the title tag &amp; H1, add MedicalBusiness/LocalBusiness schema (with address, hours, geo, rating), and build one page per major test for long-tail searches like "thyroid test cost in Silchar."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COPY-PASTE ASSETS -->
+<section style="background:var(--bg-alt)">
+  <div class="wrap">
+    <div class="kicker">Ready-to-Use Assets</div>
+    <h2 class="sec">Copy-paste these in today</h2>
+    <p class="sec-sub">No writing required — adjust the details to match what you actually offer, then paste straight into your Google Business Profile.</p>
+
+    <div class="callout bad">
+      <b>⚠ Remove this immediately</b> — your current description: <em>"Searching for a top neurologist in Assam… At SS Sales and Service, our expert brain specialist in Silchar… neurology hospital on Hailakandi Road…"</em> This is the wrong business and the wrong location. It is actively costing you ranking and trust.
+    </div>
+
+    <div class="copy">
+      <span class="lbl">✦ New Google Business Description (paste this)</span>
+      Metro-City Diagnostics is a trusted diagnostic centre in Meherpur, Silchar, serving the Barak Valley with accurate and affordable pathology and radiology services. We offer blood tests, full-body health checkup packages, X-ray, ECG, ultrasound (USG) and a wide range of laboratory investigations — with free home sample collection across Silchar. Backed by modern equipment, experienced technicians and quality-checked processes, we deliver reliable reports fast, many on the same day. Conveniently located at Co-operative, Birbal Bazar, Meherpur, with easy online booking and digital reports on WhatsApp. Visit Metro-City Diagnostics for dependable diagnostics your family can trust.
+      <span class="meta-small">Tip: only claim certifications (e.g. NABL/ICMR) if you actually hold them. Keep it under 750 characters.</span>
+    </div>
+
+    <div class="copy">
+      <span class="lbl">✦ Review-request message (WhatsApp / SMS after report delivery)</span>
+      Namaste 🙏 Thank you for choosing Metro-City Diagnostics. We hope your experience was smooth. Would you take 30 seconds to share a quick Google review? It genuinely helps other families in Silchar find reliable diagnostics: [your-review-link]. Thank you! — Team Metro-City Diagnostics
+      <span class="meta-small">Set up your short review link in GBP → "Ask for reviews" → "Get more reviews," then turn it into a QR code for the reception desk and report folders.</span>
+    </div>
+
+    <div class="grid2" style="margin-top:26px">
+      <div>
+        <h3 style="font-size:16px;margin-bottom:12px;color:var(--navy)">Q&amp;A to seed on your profile</h3>
+        <ul class="checklist">
+          <li>Do you offer home sample collection? <span class="muted">→ Yes, free across Silchar. Call +91 99573 57278.</span></li>
+          <li>What are your timings? <span class="muted">→ Open until 8:30 PM.</span></li>
+          <li>How soon will I get my report? <span class="muted">→ Many reports same day, digital copy on WhatsApp.</span></li>
+          <li>Do you do X-ray, ECG &amp; ultrasound? <span class="muted">→ Yes.</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:16px;margin-bottom:12px;color:var(--navy)">Weekly Google Post ideas</h3>
+        <ul class="checklist">
+          <li>Health package of the month (with price)</li>
+          <li>Free home sample collection reminder</li>
+          <li>Awareness day tips (diabetes, thyroid, heart)</li>
+          <li>New test or equipment announcement</li>
+          <li>Festival / seasonal health checkup offers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW ENGINE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Your #1 Lever</div>
+    <h2 class="sec">Building a review engine (the right way)</h2>
+    <p class="sec-sub">This is what closes the gap with Pathkind and Apollo. The goal isn't a one-time burst — it's a steady, genuine flow that Google rewards over months.</p>
+    <div class="grid2">
+      <ul class="checklist">
+        <li><b>Get your short review link</b> from GBP and turn it into a QR code.</li>
+        <li><b>Place the QR everywhere:</b> reception desk, report folders, invoices, sample-collection bags.</li>
+        <li><b>Train the front desk</b> to personally ask every satisfied patient at report handover.</li>
+        <li><b>Send the WhatsApp message</b> automatically when each report is delivered.</li>
+      </ul>
+      <ul class="checklist">
+        <li><b>Reply to every review</b> within 24–48 hrs — it's a ranking signal.</li>
+        <li><b>Encourage natural detail</b> — patients mentioning "blood test," "ultrasound," or "Silchar" boosts keyword relevance.</li>
+        <li><b>Keep velocity steady</b> (8–15/week) — a sudden spike looks fake to Google.</li>
+        <li><b>Never buy fake reviews</b> — Google detects them and can suspend your profile.</li>
+      </ul>
+    </div>
+    <div class="target-banner" style="margin-top:30px">
+      <h3>90-day review target to enter the top tier</h3>
+      <div class="nums">
+        <div><div class="v">25</div><div class="k">Today</div></div>
+        <div><div class="v">→</div><div class="k"></div></div>
+        <div><div class="v">100+</div><div class="k">Day 90</div></div>
+        <div><div class="v">10/wk</div><div class="k">Steady pace</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CITATIONS -->
+<section style="background:var(--bg-alt)">
+  <div class="wrap">
+    <div class="kicker">Off-Profile Prominence</div>
+    <h2 class="sec">Citations &amp; directories that matter in India</h2>
+    <p class="sec-sub">Every listing where your <b>Name, Address &amp; Phone (NAP)</b> appear — identically — tells Google you're a real, established business. List on these, using the exact same details every time.</p>
+    <h3 style="font-size:15px;color:var(--navy);margin-bottom:10px">Healthcare-specific (highest value for a lab)</h3>
+    <div class="chips" style="margin-bottom:22px">
+      <span class="chip">Practo</span><span class="chip">Tata 1mg Labs</span><span class="chip">Lybrate</span><span class="chip">Credihealth</span><span class="chip">Bajaj Finserv Health</span><span class="chip">DocPrime</span>
+    </div>
+    <h3 style="font-size:15px;color:var(--navy);margin-bottom:10px">General local directories</h3>
+    <div class="chips" style="margin-bottom:22px">
+      <span class="chip">Justdial</span><span class="chip">Sulekha</span><span class="chip">IndiaMART</span><span class="chip">AskLaila</span><span class="chip">Bing Places</span><span class="chip">Apple Business Connect (Maps)</span><span class="chip">Yellow Pages India</span>
+    </div>
+    <h3 style="font-size:15px;color:var(--navy);margin-bottom:10px">Social &amp; trust signals</h3>
+    <div class="chips" style="margin-bottom:24px">
+      <span class="chip">Facebook Page</span><span class="chip">Instagram</span><span class="chip">WhatsApp Business</span><span class="chip">YouTube (lab tour, tips)</span>
+    </div>
+    <div class="callout" style="border-left-color:var(--teal)">
+      <b style="color:var(--teal-d)">Use this exact NAP everywhere</b><br>
+      <b>Name:</b> Metro-City Diagnostics &nbsp;|&nbsp; <b>Address:</b> Co-operative, Birbal Bazar, Meherpur, Silchar, Assam 788015 &nbsp;|&nbsp; <b>Phone:</b> +91 99573 57278 &nbsp;|&nbsp; <b>Web:</b> metrocitydiagnostics.com<br>
+      <span class="muted" style="font-size:13.5px">Even small differences (abbreviations, a missing landmark) weaken the signal. Copy-paste, don't retype.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section>
+  <div class="wrap">
+    <div class="kicker">The Plan</div>
+    <h2 class="sec">Your 60–90 day roadmap</h2>
+    <p class="sec-sub">Quick wins first (they're free and fast), then the compounding work — reviews and citations — that pulls you into the top 3.</p>
+
+    <div class="phase">
+      <div class="phase-when"><div class="p">Week 1</div><div class="d">Quick wins</div></div>
+      <ul>
+        <li><b>Fix the description</b> — paste the new one above (5 minutes, highest urgency).</li>
+        <li><b>Add 4–6 categories</b> and fill out the full <b>services</b> list with descriptions.</li>
+        <li><b>Turn on all true attributes</b> (booking, home collection, payments, languages, parking).</li>
+        <li><b>Upload 20–30 real photos</b> and set up your <b>review link + QR code</b>.</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-when"><div class="p">Weeks 2–4</div><div class="d">Build momentum</div></div>
+      <ul>
+        <li><b>Launch the review engine</b> — front-desk asks + WhatsApp messages on every report.</li>
+        <li><b>Claim top citations</b> — Practo, Justdial, 1mg, Bing Places, Apple Maps — with identical NAP.</li>
+        <li><b>Start weekly Google Posts</b> and <b>seed the Q&amp;A</b> section.</li>
+        <li><b>Reply to every existing and new review.</b></li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-when"><div class="p">Month 2</div><div class="d">Deepen</div></div>
+      <ul>
+        <li><b>Optimize the website</b> — "Silchar" in title/H1, add medical-business schema, embed your Google Map.</li>
+        <li><b>Build per-test pages</b> for long-tail searches (MRI/CT/thyroid + "in Silchar").</li>
+        <li><b>Expand citations &amp; social</b>; keep review velocity at ~10/week.</li>
+        <li><b>Check GBP Insights</b> — see which searches and actions are growing.</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-when"><div class="p">Month 3</div><div class="d">Compound &amp; win</div></div>
+      <ul>
+        <li><b>Cross 100+ reviews</b> with a steady flow — the threshold where Map Pack movement shows.</li>
+        <li><b>Double down</b> on whatever Insights say is working (calls, directions, bookings).</li>
+        <li><b>Earn a few local backlinks</b> — partner clinics, doctors, local news/health features.</li>
+        <li><b>Maintain</b> weekly posts, fresh photos, and review replies as a permanent habit.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section style="background:var(--bg-alt)">
+  <div class="wrap">
+    <div class="kicker">Measure It</div>
+    <h2 class="sec">Track these every month</h2>
+    <p class="sec-sub">All available free inside Google Business Profile "Insights" plus a weekly manual check of your map ranking.</p>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="n">Map rank</div><div class="l">Position for "diagnostic centre silchar" &amp; related</div></div>
+      <div class="kpi"><div class="n">Reviews</div><div class="l">Total count &amp; new-per-week velocity</div></div>
+      <div class="kpi"><div class="n">Actions</div><div class="l">Calls, direction requests, website clicks</div></div>
+      <div class="kpi"><div class="n">Searches</div><div class="l">How many found you, &amp; via which keywords</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Metro-City Diagnostics — Local SEO Audit &amp; Growth Plan</b></p>
+    <p style="margin-top:6px">Data from Google Maps &amp; public listings, June 2026. Review counts and rankings shift over time — re-check monthly. Only claim certifications and services you genuinely provide.</p>
+  </div>
+</footer>
+
+<script>
+  const data = [
+    {name:'Pathkind Labs (Hailakandi Rd)', reviews:538, rating:4.8},
+    {name:'Apollo Diagnostics (Bharat Scans)', reviews:242, rating:4.8},
+    {name:'S R Metro', reviews:238, rating:4.4},
+    {name:'Pathkind Labs (1st Link Rd)', reviews:188, rating:4.9},
+    {name:'Optima Diagnostics', reviews:142, rating:4.7},
+    {name:'Apollo Ambicapatty', reviews:126, rating:4.9},
+    {name:'GoodHealth Centre', reviews:115, rating:3.6},
+    {name:'Pixel Diagnostic Centre', reviews:107, rating:4.8},
+    {name:'A One Diagnostics', reviews:26, rating:4.7},
+    {name:'Metro-City Diagnostics (YOU)', reviews:25, rating:4.8}
+  ];
+  const labels = data.map(d=>d.name);
+  const reviews = data.map(d=>d.reviews);
+  const colors = data.map(d=> d.name.includes('YOU') ? '#e2563c' : '#0e7c86');
+  const colorsBorder = data.map(d=> d.name.includes('YOU') ? '#c0341c' : '#0a5e66');
+
+  new Chart(document.getElementById('reviewChart'), {
+    type:'bar',
+    data:{ labels, datasets:[{ label:'Google reviews', data:reviews, backgroundColor:colors, borderColor:colorsBorder, borderWidth:1.5, borderRadius:6, barThickness:'flex', maxBarThickness:30 }]},
+    options:{
+      indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{ callbacks:{ label:(c)=> ` ${c.parsed.x} reviews  ·  ${data[c.dataIndex].rating}★` }, backgroundColor:'#0a2540', padding:12, titleFont:{family:'Plus Jakarta Sans'} }
+      },
+      scales:{
+        x:{ beginAtZero:true, grid:{color:'#eef3f6'}, ticks:{color:'#5b7083', font:{family:'Inter'}}, title:{display:true, text:'Number of Google reviews', color:'#5b7083', font:{family:'Inter',size:12}} },
+        y:{ grid:{display:false}, ticks:{color:'#16242f', font:{family:'Inter', size:12.5, weight:'500'}} }
+      }
+    }
+  });
+</script>
+<script>
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && window.parent !== window) {
+    window.parent.postMessage({ type: 'close-fullscreen' }, '*');
+  }
+});
+</script>
+<!-- broken-img-handler -->
+<script>
+(function(){
+  if(window.__brokenImgHandler)return;
+  window.__brokenImgHandler=true;
+  var MAX=5,DELAYS=[2000,4000,8000,16000,32000];
+  document.addEventListener('error',function(e){
+    var img=e.target;
+    if(!img||img.tagName!=='IMG')return;
+    var liveSrc=img.getAttribute('src');
+    var src=img.dataset.haOriginalSrc||liveSrc;
+    if(!src)return;
+    if(img.dataset.haOriginalSrc&&liveSrc&&liveSrc!==img.dataset.haOriginalSrc&&liveSrc.indexOf('_r=')<0){src=liveSrc;img.dataset.haOriginalSrc=src;img.dataset.haRetryCount='0'}
+    else if(!img.dataset.haOriginalSrc){img.dataset.haOriginalSrc=src}
+    var attempt=parseInt(img.dataset.haRetryCount||'0',10);
+    if(img.dataset.haPhId){var old=document.getElementById(img.dataset.haPhId);if(old)old.remove()}
+    var ph=document.createElement('div');
+    ph.className='ha-img-placeholder'+(attempt>=MAX?' ha-failed':'');
+    ph.id='ha-ph-'+Math.random().toString(36).slice(2,9);
+    var w=img.getAttribute('width');var h=img.getAttribute('height');
+    if(w)ph.style.width=w+(isNaN(Number(w))?'':'px');
+    else if(img.style.width)ph.style.width=img.style.width;
+    else if(img.width>1)ph.style.width=img.width+'px';
+    if(h)ph.style.height=h+(isNaN(Number(h))?'':'px');
+    else if(img.style.height)ph.style.height=img.style.height;
+    else if(img.height>1)ph.style.height=img.height+'px';
+    ph.textContent=attempt>=MAX?'Image unavailable':'Loading image\u2026';
+    img.dataset.haPhId=ph.id;
+    if(img.dataset.haOrigDisplay==null)img.dataset.haOrigDisplay=img.style.display||'';
+    img.style.display='none';
+    img.insertAdjacentElement('afterend',ph);
+    if(attempt<MAX){
+      img.dataset.haRetryCount=String(attempt+1);
+      setTimeout(function(){
+        if(!img.isConnected)return;
+        if(img.dataset.haOriginalSrc!==src)return;
+        if(img.complete&&img.naturalWidth>0)return;
+        var curSrc=img.getAttribute('src');
+        if(curSrc&&curSrc.indexOf(src)!==0)return;
+        var fresh=src+(src.indexOf('?')>=0?'&':'?')+'_r='+(attempt+1)+'_'+Date.now();
+        img.src=fresh;
+      },DELAYS[attempt]);
+    }
+  },true);
+  document.addEventListener('load',function(e){
+    var img=e.target;
+    if(!img||img.tagName!=='IMG')return;
+    if(img.dataset.haPhId){
+      var ph=document.getElementById(img.dataset.haPhId);
+      if(ph)ph.remove();
+      delete img.dataset.haPhId;
+      img.style.display=img.dataset.haOrigDisplay||'';
+      delete img.dataset.haOrigDisplay;
+      delete img.dataset.haOriginalSrc;
+      delete img.dataset.haRetryCount;
+    }
+  },true);
+})();
+</script>
+</body>
+</html>

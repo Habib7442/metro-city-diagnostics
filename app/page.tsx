@@ -100,11 +100,10 @@ export default function Home() {
               </div>
 
               <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.1]">
-                Accurate Diagnostics, <br />
+                Best Diagnostic Centre <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-300">
-                  Trusted Care
-                </span>{' '}
-                for Silchar
+                  in Silchar
+                </span>
               </h1>
 
               <p className="max-w-xl text-base leading-relaxed text-neutral-300 sm:text-lg">
@@ -896,7 +895,7 @@ export default function Home() {
                   <div>
                     <h4 className="font-semibold text-navy-950 text-sm">Timings</h4>
                     <p className="text-xs text-neutral-500 mt-1">
-                      Mon - Sat: 7 AM - 8 PM <br /> Sun: 7 AM - 1 PM
+                      Mon - Sat: 7:30 AM - 8:30 PM <br /> Sun: Closed
                     </p>
                   </div>
                 </div>

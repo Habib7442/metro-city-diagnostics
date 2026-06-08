@@ -80,6 +80,15 @@
 * Integrated the new `/gallery` page into the global sticky Navbar (both desktop and mobile slide-out drawer) and the company Footer navigation systems.
 * Verified error-free compilation of the entire codebase.
 * Implemented an ultra-premium, full-width continuous infinite horizontal scrolling gallery marquee (left-to-right) on the Homepage Hero section, positioned directly underneath the columns grid. Features larger aspect-ratio thumbnails with glowing gold borders, a slowed-down loop timing of 42s for relaxed readability, an outer glassmorphic container with wider side fade gradients, and interactive hover-pause scaling features.
+* Removed the "Other Specialties" category filter on `/doctors` page and added "Eye Surgeon", "Oral & Maxillo Facial Surgeon", and "Neuro Psychiatrist" as three separate, direct filter buttons.
+* Updated Dr. Debanjali Das's designation in [doctors.json](file:///e:/Web%20Dev/metro-city-diagnostics/lib/doctors.json) from "Resident Physician" to "Consultant Medicine Specialist".
+* Added "ENT Head & Neck Surgeon" to the "ENT" filter specs to ensure Dr. Fakrul Islam Mozumder is correctly filtered under the ENT category.
+* Synced all doctor database specializations with their respective categories in [DoctorsCatalog.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/DoctorsCatalog.tsx) by adding "Medicine & Diabetologist" to "Medicine & Diabetology" specs and "Superspeciality in Reproductive Medicine" to "Gynaecology & IVF" specs.
+* Renamed the "Neurosurgery" category to "Neurology & Neurosurgery" to match both specializations, and reordered the filter tabs so "Urology" and "Pulmonology" follow right after it.
+* Optimized global SEO parameters in [seo.ts](file:///e:/Web%20Dev/metro-city-diagnostics/lib/seo.ts) (tagline, descriptions, keywords) targeting "Diagnostic Centre in Silchar" search queries based on the local SEO audit.
+* Injected structured JSON-LD data schemas (`MedicalBusiness` and `WebSite`) inside the root layout's [layout.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/layout.tsx) `<head>` tag.
+* Upgraded the homepage hero H1 in [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx) to target "Best Diagnostic Centre in Silchar".
+* Synced the clinic timing hours card in [page.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/app/page.tsx) to match the global updated hours.
 
 ## Next Up
 * Await user confirmation of the full-width horizontal scrolling gallery and layout styles.

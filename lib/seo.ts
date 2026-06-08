@@ -30,10 +30,10 @@ export const SITE = {
   name: 'Metro-City Diagnostics',
   shortName: 'Metro-City',
   legalName: 'Metro-City Diagnostics',
-  tagline: 'Trusted diagnostics for the Barak Valley',
+  tagline: 'Diagnostic Centre in Silchar — Trusted Pathology & Radiology Services',
   description:
-    'Metro-City Diagnostics is a leading diagnostic center in Silchar, Assam. ' +
-    'Accurate pathology, radiology, ultrasound, ECG, and X-ray services with home sample collection.',
+    'Metro-City Diagnostics is a trusted diagnostic centre in Meherpur, Silchar, serving the Barak Valley with accurate and affordable pathology and radiology services. ' +
+    'We offer blood tests, full-body health checkup packages, X-ray, ECG, ultrasound (USG), and home sample collection across Silchar.',
   url: 'https://metrocitydiagnostics.com',
   locale: 'en_IN',
   language: 'en-IN',
@@ -64,9 +64,7 @@ export const SITE = {
   },
 
   hours: [
-    // Replace with actual hours.
-    { days: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], opens: '07:00', closes: '20:00' },
-    { days: ['Su'], opens: '07:00', closes: '13:00' },
+    { days: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], opens: '07:30', closes: '20:30' },
   ],
 
   ratings: {

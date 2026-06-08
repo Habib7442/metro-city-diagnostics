@@ -50,16 +50,18 @@ interface DoctorsCatalogProps {
 
 const CATEGORIES = [
   { id: 'all', label: 'All Specialities' },
-  { id: 'medicine', label: 'Medicine & Diabetology', specs: ['General Physician', 'Medicine & Diabetology', 'General Medicine'] },
-  { id: 'neurosurgery', label: 'Neurosurgery', specs: ['Neurosurgery'] },
-  { id: 'surgery', label: 'Surgery', specs: ['General & Laparoscopic Surgery'] },
-  { id: 'gynaecology', label: 'Gynaecology & IVF', specs: ['Obstetrics & Gynecology', 'IVF & Infertility Treatment'] },
-  { id: 'orthopedics', label: 'Orthopedics', specs: ['Orthopedics'] },
-  { id: 'ent', label: 'ENT', specs: ['ENT (Ear, Nose & Throat)'] },
-  { id: 'paediatrics', label: 'Paediatrics', specs: ['Paediatrics'] },
+  { id: 'medicine', label: 'Medicine & Diabetology', specs: ['General Physician', 'Medicine & Diabetology', 'General Medicine', 'Medicine & Diabetologist'] },
+  { id: 'neurosurgery', label: 'Neurology & Neurosurgery', specs: ['Neurosurgery', 'Neurology'] },
   { id: 'urology', label: 'Urology', specs: ['Urology'] },
   { id: 'pulmonology', label: 'Pulmonology', specs: ['Pulmonology'] },
-  { id: 'other', label: 'Other Specialties', specs: ['Ophthalmology', 'Psychiatry', 'Oral & Maxillofacial Surgery'] }
+  { id: 'surgery', label: 'Surgery', specs: ['General & Laparoscopic Surgery'] },
+  { id: 'gynaecology', label: 'Gynaecology & IVF', specs: ['Obstetrics & Gynecology', 'IVF & Infertility Treatment', 'Superspeciality in Reproductive Medicine'] },
+  { id: 'orthopedics', label: 'Orthopedics', specs: ['Orthopedics'] },
+  { id: 'ent', label: 'ENT', specs: ['ENT (Ear, Nose & Throat)', 'ENT Head & Neck Surgeon'] },
+  { id: 'paediatrics', label: 'Paediatrics', specs: ['Paediatrics'] },
+  { id: 'eye-surgeon', label: 'Eye Surgeon', specs: ['Ophthalmology'] },
+  { id: 'oral-maxillofacial', label: 'Oral & Maxillo Facial Surgeon', specs: ['Oral & Maxillofacial Surgery'] },
+  { id: 'neuro-psychiatrist', label: 'Neuro Psychiatrist', specs: ['Psychiatry'] }
 ];
 
 export default function DoctorsCatalog({ doctors }: DoctorsCatalogProps) {
