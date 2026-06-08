@@ -38,7 +38,15 @@ export default function Navbar() {
               📍 Birbal Bazar, Meherpur, Silchar
             </span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
+            <a
+              href={SITE.social.googleBusiness}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 bg-gold-500 hover:bg-gold-600 text-navy-950 px-2.5 py-0.5 rounded text-[10px] font-extrabold transition-colors shadow-sm cursor-pointer"
+            >
+              ⭐ Write a Review
+            </a>
             <a
               href={SITE.contact.phoneTel}
               className="flex items-center gap-1 hover:text-white transition-colors"
@@ -108,6 +116,14 @@ export default function Navbar() {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden lg:flex lg:items-center lg:gap-4">
+            <a
+              href={SITE.social.googleBusiness}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 border border-gold-500/80 hover:bg-gold-500/10 text-gold-700 font-bold px-3 py-2 rounded text-xs transition-all shadow-sm cursor-pointer mr-1"
+            >
+              ⭐ Write a Review
+            </a>
             <a
               href={SITE.contact.phoneTel}
               className="flex flex-col items-end mr-2 text-right group"
@@ -181,6 +197,15 @@ export default function Navbar() {
             );
           })}
           <div className="pt-6 border-t border-neutral-100 mt-4 px-4 flex flex-col gap-4">
+            <a
+              href={SITE.social.googleBusiness}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="flex items-center gap-2.5 rounded-lg border border-gold-300 bg-gold-50/50 hover:bg-gold-50 py-3.5 px-4 text-base font-bold text-gold-700 justify-center transition-colors shadow-sm cursor-pointer"
+            >
+              ⭐ Write a Google Review
+            </a>
             <div className="flex items-center gap-3 text-sm text-neutral-600">
               <Clock className="h-5 w-5 text-gold-500 flex-shrink-0" />
               <span>

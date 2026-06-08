@@ -77,7 +77,7 @@ export const SITE = {
   social: {
     facebook: '', // 'https://facebook.com/metrocitydiagnostics'
     instagram: '', // 'https://instagram.com/metrocitydiagnostics'
-    googleBusiness: '', // GBP URL when known
+    googleBusiness: 'https://g.page/r/CQDHJDBocAP2EBM/review',
   },
 } as const;
 
