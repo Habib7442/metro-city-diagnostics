@@ -120,6 +120,12 @@ const getUpcomingDoctorDates = (daysStr: string, timeStr: string, count = 6): { 
 export default function BookingForm() {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<'lab' | 'doctor'>('lab');
+
+  const queryDoctorId = searchParams.get('doctor') || '';
+  const isPreselected = !!queryDoctorId && doctorsData.some((d) => d.id === queryDoctorId);
+  const dropdownDoctors = isPreselected
+    ? doctorsData.filter((doc) => doc.id === queryDoctorId)
+    : doctorsData;
   
   const [formState, setFormState] = useState<BookingFormData>({
     name: '',
@@ -685,8 +691,8 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                       onChange={handleChange}
                       className="w-full rounded border border-neutral-200 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent bg-white transition-all"
                     >
-                      <option value="">-- Choose Specialist Doctor --</option>
-                      {doctorsData.map((doc) => (
+                      {!isPreselected && <option value="">-- Choose Specialist Doctor --</option>}
+                      {dropdownDoctors.map((doc) => (
                         <option key={doc.id} value={doc.id}>
                           {doc.doctor.name} - {doc.doctor.designation} ({typeof doc.fees === 'string' ? doc.fees : `₹${doc.fees || 500}`})
                         </option>
