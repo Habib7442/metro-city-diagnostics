@@ -59,7 +59,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
       : `Hello, I would like to book an appointment with ${entry.doctor.name} at Metro-City Diagnostics.`;
     const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const url = isMobile
-      ? `whatsapp://send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`
+      ? `https://api.whatsapp.com/send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`
       : `https://web.whatsapp.com/send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`;
     if (isMobile) {
       window.location.href = url;

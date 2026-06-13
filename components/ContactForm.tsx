@@ -65,7 +65,7 @@ ${formState.message}`;
 
       const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       const whatsappUrl = isMobile
-        ? `whatsapp://send?phone=919957357278&text=${encodeURIComponent(message)}`
+        ? `https://api.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`
         : `https://web.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`;
       
       if (isMobile) {
