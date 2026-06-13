@@ -4,7 +4,7 @@ import Razorpay from 'razorpay';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { amount } = body;
+    const { amount, bookingDetails } = body;
 
     if (amount === undefined || amount === null) {
       return NextResponse.json({ success: false, error: 'Amount is required' }, { status: 400 });
@@ -34,6 +34,26 @@ export async function POST(req: Request) {
     };
 
     const order = await razorpay.orders.create(options);
+
+    // Log pending transaction to Google Sheet if webhook is configured
+    const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+    if (webhookUrl && bookingDetails) {
+      try {
+        const logPayload = {
+          ...bookingDetails,
+          orderId: order.id,
+          amount: parsedAmount / 100, // Convert to INR
+          status: 'PENDING',
+        };
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(logPayload),
+        });
+      } catch (logErr) {
+        console.error('Google Sheets Integration: Error logging PENDING status:', logErr);
+      }
+    }
 
     return NextResponse.json({
       success: true,

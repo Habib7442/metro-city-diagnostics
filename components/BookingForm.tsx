@@ -312,6 +312,7 @@ export default function BookingForm() {
     amountInPaise: number,
     selectedDoctor: any,
     selectedService: any,
+    bookingDetails: any,
     successCallback: (orderId: string, paymentId: string) => void
   ) => {
     try {
@@ -323,11 +324,11 @@ export default function BookingForm() {
         return;
       }
 
-      // 1. Call Create Order API
+      // 1. Call Create Order API (passing full bookingDetails to log as PENDING)
       const res = await fetch('/api/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: amountInPaise }),
+        body: JSON.stringify({ amount: amountInPaise, bookingDetails }),
       });
 
       const orderData = await res.json();
@@ -348,7 +349,7 @@ export default function BookingForm() {
         handler: async function (response: any) {
           try {
             setIsSubmitting(true);
-            // 3. Verify signature on backend
+            // 3. Verify signature on backend (updates status to PAID)
             const verifyRes = await fetch('/api/verify-payment', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -382,6 +383,15 @@ export default function BookingForm() {
           ondismiss: function () {
             setIsSubmitting(false);
             setPaymentError('Payment was cancelled');
+            // Log CANCELLED status to Google Sheet
+            fetch('/api/log-booking', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderId: orderData.order_id,
+                status: 'CANCELLED',
+              }),
+            }).catch((err) => console.error('Google Sheets Integration: Error updating log to CANCELLED status:', err));
           },
         },
       };
@@ -390,6 +400,15 @@ export default function BookingForm() {
       rzp.on('payment.failed', function (resp: any) {
         setPaymentError(resp.error.description || 'Payment failed');
         setIsSubmitting(false);
+        // Log FAILED status to Google Sheet
+        fetch('/api/log-booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            orderId: orderData.order_id,
+            status: 'FAILED',
+          }),
+        }).catch((err) => console.error('Google Sheets Integration: Error updating log to FAILED status:', err));
       });
       rzp.open();
     } catch (err: any) {
@@ -420,6 +439,22 @@ export default function BookingForm() {
       const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : 500) : 500;
       amountInPaise = typeof fees === 'number' ? fees * 100 : 0;
     }
+
+    const bookingDetails = {
+      type: activeTab === 'lab' ? 'Lab Test / Package' : 'Doctor Consultation',
+      name: formState.name,
+      phone: formState.phone,
+      email: formState.email || 'N/A',
+      details: activeTab === 'lab'
+        ? (selectedService?.name || 'N/A')
+        : `Dr. ${selectedDoctor?.doctor.name || 'N/A'} (${selectedDoctor?.doctor.designation || 'N/A'})`,
+      preferredDate: formState.preferredDate,
+      preferredTime: formState.preferredTime,
+      homeCollection: activeTab === 'lab' ? formState.homeCollection : false,
+      address: activeTab === 'lab' && formState.homeCollection
+        ? `${formState.address}${formState.landmark ? ` (Landmark: ${formState.landmark})` : ''}`
+        : 'N/A',
+    };
 
     const processFinalBooking = (orderId?: string, paymentId?: string) => {
       let message = '';
@@ -477,9 +512,22 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
 
     // If amount is less than 100 paise (i.e. free booking or Price on Call), skip payment
     if (amountInPaise < 100) {
+      // Log the direct unpaid booking as CONFIRMED in the Google Sheet
+      fetch('/api/log-booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...bookingDetails,
+          amount: 0,
+          status: 'CONFIRMED',
+          orderId: 'N/A',
+          paymentId: 'N/A',
+        }),
+      }).catch((err) => console.error('Google Sheets Integration: Error logging direct booking:', err));
+
       processFinalBooking();
     } else {
-      handlePaymentAndSubmit(amountInPaise, selectedDoctor, selectedService, (orderId, paymentId) => {
+      handlePaymentAndSubmit(amountInPaise, selectedDoctor, selectedService, bookingDetails, (orderId, paymentId) => {
         setRazorpayOrderId(orderId);
         setRazorpayPaymentId(paymentId);
         processFinalBooking(orderId, paymentId);

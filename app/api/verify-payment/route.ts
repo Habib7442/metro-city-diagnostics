@@ -36,6 +36,24 @@ export async function POST(req: Request) {
       );
     }
 
+    // Update log status to PAID in Google Sheet if webhook is configured
+    const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+    if (webhookUrl) {
+      try {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            orderId: razorpay_order_id,
+            paymentId: razorpay_payment_id,
+            status: 'PAID',
+          }),
+        });
+      } catch (logErr) {
+        console.error('Google Sheets Integration: Error updating log to PAID status:', logErr);
+      }
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Payment verified successfully',
