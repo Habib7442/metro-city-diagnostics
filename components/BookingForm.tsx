@@ -498,18 +498,9 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
     }
   };
 
-  const handleDownloadInvoice = (overrideOrderId?: string, overridePaymentId?: string) => {
+  const handleDownloadInvoice = async (overrideOrderId?: string, overridePaymentId?: string) => {
     const activeOrderId = overrideOrderId || razorpayOrderId;
     const activePaymentId = overridePaymentId || razorpayPaymentId;
-
-    const escapeHtml = (str: string) =>
-      str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-      alert('Please allow popups to download/print the invoice.');
-      return;
-    }
 
     const patientName = formState.name;
     const patientPhone = formState.phone;
@@ -523,14 +514,14 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
     if (activeTab === 'lab') {
       const selectedService = services.find((s) => s.slug === formState.testSlug);
       description = selectedService ? `Lab Test / Package: ${selectedService.name}` : 'Lab Test / Package';
-      amountText = selectedService?.price ? `₹${selectedService.price}` : 'Price on Call';
+      amountText = selectedService?.price ? `Rs. ${selectedService.price}` : 'Price on Call';
     } else {
       const selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
       description = selectedDoctor 
         ? `Consultation: Dr. ${selectedDoctor.doctor.name} (${selectedDoctor.doctor.designation})`
         : 'Doctor Consultation';
       const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : DEFAULT_CONSULTATION_FEE) : DEFAULT_CONSULTATION_FEE;
-      amountText = typeof fees === 'string' ? fees : `₹${fees}`;
+      amountText = typeof fees === 'string' ? fees : `Rs. ${fees}`;
     }
 
     const currentFullDate = new Date().toLocaleDateString('en-IN', {
@@ -541,250 +532,138 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
       minute: '2-digit',
     });
 
-    const invoiceHtml = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>Receipt_Metro_City_Diagnostics</title>
-        <style>
-          body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: #1f2937;
-            margin: 0;
-            padding: 40px;
-            font-size: 14px;
-            line-height: 1.5;
-          }
-          .invoice-box {
-            max-width: 800px;
-            margin: auto;
-            border: 1px solid #e5e7eb;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-          }
-          .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #0a1f44;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-          }
-          .header-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-          }
-          .logo {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #0a1f44;
-            background-color: #ffffff;
-            flex-shrink: 0;
-          }
-          .clinic-info h1 {
-            color: #0a1f44;
-            margin: 0 0 5px 0;
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-          }
-          .clinic-info p {
-            margin: 3px 0;
-            color: #4b5563;
-            font-size: 12px;
-          }
-          .invoice-title {
-            text-align: right;
-          }
-          .invoice-title h2 {
-            margin: 0 0 10px 0;
-            color: #9c7b26;
-            font-size: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-          }
-          .invoice-title p {
-            margin: 3px 0;
-            font-size: 12px;
-            color: #6b7280;
-          }
-          .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 30px;
-          }
-          .section-title {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #9c7b26;
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 6px;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-          }
-          .details-block p {
-            margin: 6px 0;
-            font-size: 13px;
-          }
-          .details-block strong {
-            color: #111827;
-          }
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 30px;
-          }
-          th {
-            background-color: #f3f4f6;
-            color: #374151;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.5px;
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
-          }
-          td {
-            padding: 14px 12px;
-            border-bottom: 1px solid #e5e7eb;
-            font-size: 13.5px;
-          }
-          .text-right {
-            text-align: right;
-          }
-          .total-section {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 40px;
-          }
-          .total-table {
-            width: 250px;
-            margin-bottom: 0;
-          }
-          .total-table td {
-            padding: 8px 12px;
-            border-bottom: none;
-          }
-          .total-row {
-            font-weight: 800;
-            font-size: 16px;
-            color: #0a1f44;
-            border-top: 1px solid #e5e7eb;
-          }
-          .footer {
-            text-align: center;
-            border-top: 1px dashed #e5e7eb;
-            padding-top: 20px;
-            color: #9ca3af;
-            font-size: 11px;
-            margin-top: 50px;
-          }
-          @media print {
-            body {
-              padding: 0;
-            }
-            .invoice-box {
-              border: none;
-              box-shadow: none;
-              padding: 0;
-            }
-          }
-        </style>
-      </head>
-      <body>
-        <div class="invoice-box">
-          <div class="header">
-            <div class="header-left">
-              <img src="${window.location.origin}/logo.png" alt="Metro-City Diagnostics Logo" class="logo" />
-              <div class="clinic-info">
-                <h1>METRO-CITY DIAGNOSTICS</h1>
-                <p>Birbal Bazar, Meherpur, Silchar, Assam 788015</p>
-                <p>Phone: +91 99573 57278, +91 99540 25101</p>
-                <p>Email: metrocitydiagnostics1978@gmail.com</p>
-              </div>
-            </div>
-            <div class="invoice-title">
-              <h2>Payment Receipt</h2>
-              <p><strong>Receipt Date:</strong> ${currentFullDate}</p>
-              <p><strong>Order ID:</strong> ${escapeHtml(activeOrderId || 'N/A')}</p>
-              <p><strong>Payment ID:</strong> ${escapeHtml(activePaymentId || 'N/A')}</p>
-            </div>
-          </div>
-          
-          <div class="details-grid">
-            <div class="details-block">
-              <div class="section-title">Patient Details</div>
-              <p><strong>Name:</strong> ${escapeHtml(patientName)}</p>
-              <p><strong>Mobile:</strong> ${escapeHtml(patientPhone)}</p>
-              <p><strong>Email:</strong> ${escapeHtml(patientEmail)}</p>
-            </div>
-            <div class="details-block">
-              <div class="section-title">Appointment Summary</div>
-              <p><strong>Preferred Date:</strong> ${escapeHtml(preferredDate)}</p>
-              <p><strong>Preferred Time:</strong> ${escapeHtml(preferredTime)}</p>
-              <p><strong>Status:</strong> PAID (Online)</p>
-            </div>
-          </div>
-          
-          <table>
-            <thead>
-              <tr>
-                <th>Item / Description</th>
-                <th class="text-right">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <strong>${escapeHtml(description)}</strong><br>
-                  <span style="font-size: 11px; color: #6b7280;">Scheduled for ${escapeHtml(preferredDate)} (${escapeHtml(preferredTime)})</span>
-                </td>
-                <td class="text-right"><strong>${escapeHtml(amountText)}</strong></td>
-              </tr>
-            </tbody>
-          </table>
-          
-          <div class="total-section">
-            <table class="total-table">
-              <tr>
-                <td>Subtotal:</td>
-                <td class="text-right">${amountText}</td>
-              </tr>
-              <tr>
-                <td>Taxes (0%):</td>
-                <td class="text-right">₹0.00</td>
-              </tr>
-              <tr class="total-row">
-                <td>Total Paid:</td>
-                <td class="text-right">${amountText}</td>
-              </tr>
-            </table>
-          </div>
-          
-          <div class="footer">
-            <p>This is a secure computer-generated receipt for your diagnostics/consultation request.</p>
-            <p>Thank you for choosing Metro-City Diagnostics. For support, call +91 99573 57278.</p>
-          </div>
-        </div>
-        
-        <script>
-          window.onload = function() {
-            window.print();
-          }
-        </script>
-      </body>
-      </html>
-    `;
-    printWindow.document.write(invoiceHtml);
-    printWindow.document.close();
+    try {
+      const { jsPDF } = await import('jspdf');
+      const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+
+      // Colors
+      const navy = [10, 31, 68]; // #0a1f44
+      const gold = [156, 123, 38]; // #9c7b26
+      const gray = [107, 114, 128]; // #6b7280
+      const lightGray = [243, 244, 246]; // #f3f4f6
+
+      // Header Banner
+      doc.setFillColor(navy[0], navy[1], navy[2]);
+      doc.rect(0, 0, 210, 40, 'F');
+
+      // Title text
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.text('METRO-CITY DIAGNOSTICS', 15, 18);
+      
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.text('Birbal Bazar, Meherpur, Silchar, Assam 788015', 15, 25);
+      doc.text('Phone: +91 99573 57278 | Email: metrocitydiagnostics1978@gmail.com', 15, 30);
+
+      // Receipt Label
+      doc.setTextColor(gold[0], gold[1], gold[2]);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(14);
+      doc.text('PAYMENT RECEIPT', 195, 18, { align: 'right' });
+      
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.text(`Date: ${currentFullDate}`, 195, 25, { align: 'right' });
+      doc.text(`Payment ID: ${activePaymentId || 'N/A'}`, 195, 30, { align: 'right' });
+
+      // Patient Details Section
+      doc.setTextColor(navy[0], navy[1], navy[2]);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text('PATIENT DETAILS', 15, 55);
+      doc.setDrawColor(229, 231, 235);
+      doc.line(15, 57, 195, 57);
+
+      doc.setTextColor(0, 0, 0);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text(`Name: ${patientName}`, 15, 64);
+      doc.text(`Mobile: ${patientPhone}`, 15, 71);
+      doc.text(`Email: ${patientEmail}`, 15, 78);
+
+      // Booking Summary Section
+      doc.setTextColor(navy[0], navy[1], navy[2]);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text('APPOINTMENT SUMMARY', 115, 55);
+
+      doc.setTextColor(0, 0, 0);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text(`Preferred Date: ${preferredDate}`, 115, 64);
+      doc.text(`Preferred Time: ${preferredTime}`, 115, 71);
+      doc.text(`Payment Status: PAID (Online)`, 115, 78);
+
+      // Table Header
+      doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
+      doc.rect(15, 95, 180, 8, 'F');
+      
+      doc.setTextColor(navy[0], navy[1], navy[2]);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.text('ITEM / DESCRIPTION', 18, 100);
+      doc.text('AMOUNT', 192, 100, { align: 'right' });
+
+      // Table Body
+      doc.setTextColor(0, 0, 0);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text(description, 18, 112);
+      doc.text(amountText, 192, 112, { align: 'right' });
+      doc.line(15, 118, 195, 118);
+
+      // Totals
+      doc.setFont('helvetica', 'normal');
+      doc.text('Subtotal:', 140, 128);
+      doc.text(amountText, 192, 128, { align: 'right' });
+
+      doc.text('Taxes (0%):', 140, 134);
+      doc.text('Rs. 0.00', 192, 134, { align: 'right' });
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(navy[0], navy[1], navy[2]);
+      doc.text('Total Paid:', 140, 142);
+      doc.text(amountText, 192, 142, { align: 'right' });
+
+      // Transaction Info Box
+      doc.setFillColor(250, 250, 251);
+      doc.rect(15, 155, 180, 20, 'F');
+      doc.setDrawColor(229, 231, 235);
+      doc.rect(15, 155, 180, 20, 'S');
+
+      doc.setTextColor(navy[0], navy[1], navy[2]);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.text('TRANSACTION INFORMATION', 20, 160);
+
+      doc.setTextColor(gray[0], gray[1], gray[2]);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.text(`Razorpay Order ID: ${activeOrderId || 'N/A'}`, 20, 165);
+      doc.text(`Razorpay Payment ID: ${activePaymentId || 'N/A'}`, 20, 170);
+
+      // Footer
+      doc.setDrawColor(229, 231, 235);
+      doc.line(15, 260, 195, 260);
+      
+      doc.setTextColor(gray[0], gray[1], gray[2]);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.text('This is a secure computer-generated receipt for your diagnostics/consultation request.', 105, 268, { align: 'center' });
+      doc.text('Thank you for choosing Metro-City Diagnostics. For support, call +91 99573 57278.', 105, 273, { align: 'center' });
+
+      // Save PDF directly in the background
+      doc.save(`Receipt_Metro_City_Diagnostics_${activePaymentId || 'Booking'}.pdf`);
+    } catch (err) {
+      console.error('Failed to generate PDF invoice:', err);
+    }
   };
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
