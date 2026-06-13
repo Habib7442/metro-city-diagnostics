@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 function isValidPayload(payload: any): boolean {
-  if (typeof payload !== 'object' || payload === null) return false;
+  if (typeof payload !== 'object' || payload === null || Array.isArray(payload)) return false;
 
   // Case A: State Update (CANCELLED or FAILED)
   if (payload.status && ['CANCELLED', 'FAILED'].includes(payload.status)) {
@@ -11,8 +11,7 @@ function isValidPayload(payload: any): boolean {
   }
 
   // Case B: Full Booking Log
-  if (payload.status === 'PAID') return false; // Block PAID updates from client
-  if (payload.status && !['CONFIRMED', 'PENDING'].includes(payload.status)) return false;
+  if (payload.status && !['CONFIRMED', 'PENDING', 'PAID'].includes(payload.status)) return false;
 
   if (typeof payload.type !== 'string' || !['Lab Test / Package', 'Doctor Consultation'].includes(payload.type)) return false;
   if (typeof payload.name !== 'string' || payload.name.trim() === '') return false;
@@ -31,6 +30,17 @@ function isValidPayload(payload: any): boolean {
 export async function POST(req: Request) {
   try {
     const payload = await req.json();
+
+    // Validate required fields
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+      return NextResponse.json({ success: false, error: 'Payload must be a valid object' }, { status: 400 });
+    }
+
+    // Validate status field if present
+    const validStatuses = ['PENDING', 'PAID', 'CANCELLED', 'FAILED', 'CONFIRMED'];
+    if (payload.status && !validStatuses.includes(payload.status)) {
+      return NextResponse.json({ success: false, error: 'Invalid status value' }, { status: 400 });
+    }
 
     // 1. Rigorous payload validation
     if (!isValidPayload(payload)) {
