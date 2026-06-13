@@ -310,6 +310,74 @@ export default function BookingForm() {
     }
   };
 
+  const getWhatsAppMessage = (overrideOrderId?: string, overridePaymentId?: string) => {
+    let message = '';
+    const activeOrderId = overrideOrderId || razorpayOrderId;
+    const activePaymentId = overridePaymentId || razorpayPaymentId;
+
+    if (activeTab === 'lab') {
+      const selectedService = services.find((s) => s.slug === formState.testSlug);
+      const selectedTest = selectedService?.name || 'N/A';
+      const priceLabel = selectedService?.price ? `₹${selectedService.price}` : 'Price on Call (Quote Requested)';
+      message = `Hello Metro-City Diagnostics,
+
+I would like to book a Diagnostic Lab Test. Here are my details:
+
+📋 PATIENT DETAILS:
+• Name: ${formState.name}
+• Mobile: ${formState.phone}
+• Email: ${formState.email || 'N/A'}
+
+🔬 DIAGNOSTIC TEST DETAILS:
+• Test/Package: ${selectedTest}
+• Price / Fee: ${priceLabel}
+${activeOrderId && activePaymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order ID: ${activeOrderId}\n• Razorpay Payment ID: ${activePaymentId}` : ''}
+• Preferred Date: ${formState.preferredDate}
+• Preferred Time: ${formState.preferredTime}
+
+🏠 SAMPLE COLLECTION:
+• Home Collection: ${formState.homeCollection ? 'Yes (Requested)' : 'No (Walk-in)'}
+${formState.homeCollection ? `• Address: ${formState.address}\n• Landmark: ${formState.landmark || 'N/A'}` : ''}`;
+    } else {
+      const selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
+      const doctorName = selectedDoctor ? selectedDoctor.doctor.name : 'N/A';
+      const designation = selectedDoctor ? selectedDoctor.doctor.designation : 'N/A';
+      const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : DEFAULT_CONSULTATION_FEE) : DEFAULT_CONSULTATION_FEE;
+      const feeText = typeof fees === 'string' ? fees : `₹${fees || DEFAULT_CONSULTATION_FEE}`;
+      message = `Hello Metro-City Diagnostics,
+
+I would like to book a Specialist Doctor Consultation. Here are my details:
+
+📋 PATIENT DETAILS:
+• Name: ${formState.name}
+• Mobile: ${formState.phone}
+• Email: ${formState.email || 'N/A'}
+
+👨‍⚕️ CONSULTATION DETAILS:
+• Consultant Doctor: Dr. ${doctorName} (${designation})
+• Appointment Date: ${formState.preferredDate}
+• Timing Slot: ${formState.preferredTime}
+• Consultation Fee: ${feeText}
+${activeOrderId && activePaymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order ID: ${activeOrderId}\n• Razorpay Payment ID: ${activePaymentId}` : ''}
+• Clinic Location: Near Vivekananda Co-operative, Meherpur, Silchar`;
+    }
+    return message;
+  };
+
+  const handleSendWhatsApp = (overrideOrderId?: string, overridePaymentId?: string) => {
+    const message = getWhatsAppMessage(overrideOrderId, overridePaymentId);
+    const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const whatsappUrl = isMobile
+      ? `whatsapp://send?phone=919957357278&text=${encodeURIComponent(message)}`
+      : `https://web.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`;
+    
+    if (isMobile) {
+      window.location.href = whatsappUrl;
+    } else {
+      window.open(whatsappUrl, '_blank');
+    }
+  };
+
   const handlePaymentAndSubmit = async (
     amountInPaise: number,
     selectedDoctor: any,
@@ -752,63 +820,7 @@ export default function BookingForm() {
     };
 
     const processFinalBooking = (orderId?: string, paymentId?: string) => {
-      let message = '';
-
-      if (activeTab === 'lab') {
-        const selectedTest = selectedService?.name || 'N/A';
-        const priceLabel = selectedService?.price ? `₹${selectedService.price}` : 'Price on Call (Quote Requested)';
-        message = `Hello Metro-City Diagnostics,
-
-I would like to book a Diagnostic Lab Test. Here are my details:
-
-📋 PATIENT DETAILS:
-• Name: ${formState.name}
-• Mobile: ${formState.phone}
-• Email: ${formState.email || 'N/A'}
-
-🔬 DIAGNOSTIC TEST DETAILS:
-• Test/Package: ${selectedTest}
-• Price / Fee: ${priceLabel}
-${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order ID: ${orderId}\n• Razorpay Payment ID: ${paymentId}` : ''}
-• Preferred Date: ${formState.preferredDate}
-• Preferred Time: ${formState.preferredTime}
-
-🏠 SAMPLE COLLECTION:
-• Home Collection: ${formState.homeCollection ? 'Yes (Requested)' : 'No (Walk-in)'}
-${formState.homeCollection ? `• Address: ${formState.address}\n• Landmark: ${formState.landmark || 'N/A'}` : ''}`;
-      } else {
-        const doctorName = selectedDoctor ? selectedDoctor.doctor.name : 'N/A';
-        const designation = selectedDoctor ? selectedDoctor.doctor.designation : 'N/A';
-        const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : DEFAULT_CONSULTATION_FEE) : DEFAULT_CONSULTATION_FEE;
-        const feeText = typeof fees === 'string' ? fees : `₹${fees || DEFAULT_CONSULTATION_FEE}`;
-        message = `Hello Metro-City Diagnostics,
-
-I would like to book a Specialist Doctor Consultation. Here are my details:
-
-📋 PATIENT DETAILS:
-• Name: ${formState.name}
-• Mobile: ${formState.phone}
-• Email: ${formState.email || 'N/A'}
-
-👨‍⚕️ CONSULTATION DETAILS:
-• Consultant Doctor: Dr. ${doctorName} (${designation})
-• Appointment Date: ${formState.preferredDate}
-• Timing Slot: ${formState.preferredTime}
-• Consultation Fee: ${feeText}
-${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order ID: ${orderId}\n• Razorpay Payment ID: ${paymentId}` : ''}
-• Clinic Location: Near Vivekananda Co-operative, Meherpur, Silchar`;
-      }
-
-      const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      const whatsappUrl = isMobile
-        ? `whatsapp://send?phone=919957357278&text=${encodeURIComponent(message)}`
-        : `https://web.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`;
-      
-      if (isMobile) {
-        window.location.href = whatsappUrl;
-      } else {
-        window.open(whatsappUrl, '_blank');
-      }
+      handleSendWhatsApp(orderId, paymentId);
       setSubmitSuccess(true);
       setIsSubmitting(false);
     };
@@ -922,7 +934,7 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
             </div>
             <h2 className="text-2xl font-black text-navy-950 font-display mb-3">Booking Request Sent!</h2>
             <p className="text-sm text-neutral-500 max-w-md mx-auto leading-relaxed mb-8">
-              Thank you, <span className="font-bold text-navy-900">{formState.name}</span>. Your booking request has been securely compiled. We have redirected you to WhatsApp to instantly submit your booking details. Our helpdesk will call you within <span className="text-gold-700 font-bold">30 minutes</span> to finalize everything.
+              Thank you, <span className="font-bold text-navy-900">{formState.name}</span>. Your booking request has been securely compiled. Please click the <strong className="text-green-600 font-bold">"Send WhatsApp Details"</strong> button below if WhatsApp did not open automatically, to ensure your confirmation is sent directly to our helpdesk.
             </p>
 
             <div className="bg-neutral-50 rounded-xl p-6 border border-neutral-150 max-w-lg mx-auto text-left space-y-3 mb-8">
@@ -1006,6 +1018,22 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
+              <Button
+                type="button"
+                onClick={() => handleSendWhatsApp()}
+                className="bg-green-600 hover:bg-green-700 text-white font-extrabold h-11 px-6 rounded cursor-pointer w-full sm:w-auto flex items-center justify-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5 fill-current"
+                >
+                  <path d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z" fill="#25D366" />
+                  <path d="M12 4.3c-4.25 0-7.7 3.45-7.7 7.7 0 1.36.35 2.68 1.02 3.86l-1.09 3.98 4.07-1.07c1.14.62 2.43.95 3.73.95 4.25 0 7.7-3.45 7.7-7.7S16.25 4.3 12 4.3zm4.56 10.92c-.25.7-1.22 1.3-1.68 1.35-.46.05-.9-.15-2.88-.94-2.53-1.02-4.14-3.6-4.27-3.77-.12-.17-1.03-1.37-1.03-2.62 0-1.25.65-1.86.88-2.1.23-.25.5-.31.67-.31.17 0 .34 0 .49.01.16.01.37-.06.58.45.21.52.73 1.78.79 1.91.06.13.1.28.01.46-.08.18-.13.3-.26.45-.13.15-.27.34-.39.46-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9.1.09.2.18.3.26 1.04.81 1.83 1.05 2.14 1.18.3.13.48.11.66-.09.18-.21.78-.91.99-1.22.2-.31.41-.26.69-.16.27.1 1.72.81 2.02.96.3.15.5.22.57.35.07.13.07.75-.18 1.45z" fill="#FFF" fillRule="evenodd" />
+                </svg>
+                <span>Send WhatsApp Details</span>
+              </Button>
+
               {razorpayPaymentId && (
                 <Button
                   type="button"
