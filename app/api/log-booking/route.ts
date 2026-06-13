@@ -15,6 +15,8 @@ function isValidPayload(payload: any): boolean {
 
   if (typeof payload.type !== 'string' || !['Lab Test / Package', 'Doctor Consultation'].includes(payload.type)) return false;
   if (typeof payload.name !== 'string' || payload.name.trim() === '') return false;
+  if (typeof payload.age !== 'string' || payload.age.trim() === '') return false;
+  if (typeof payload.gender !== 'string' || !['Male', 'Female', 'Other'].includes(payload.gender)) return false;
   if (typeof payload.phone !== 'string' || payload.phone.trim().length < 10) return false;
   if (payload.email && typeof payload.email !== 'string') return false;
   if (typeof payload.details !== 'string' || payload.details.trim() === '') return false;

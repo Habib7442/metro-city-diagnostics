@@ -18,6 +18,8 @@ const DEFAULT_CONSULTATION_FEE = 550;
 
 type BookingFormData = {
   name: string;
+  age: string;
+  gender: string;
   phone: string;
   email: string;
   testSlug: string;
@@ -131,6 +133,8 @@ export default function BookingForm() {
   
   const [formState, setFormState] = useState<BookingFormData>({
     name: '',
+    age: '',
+    gender: '',
     phone: '',
     email: '',
     testSlug: '',
@@ -202,6 +206,19 @@ export default function BookingForm() {
     
     if (!formState.name.trim()) newErrors.name = 'Patient name is required';
     
+    if (!formState.age.trim()) {
+      newErrors.age = 'Age is required';
+    } else {
+      const parsedAge = parseInt(formState.age);
+      if (isNaN(parsedAge) || parsedAge <= 0 || parsedAge > 120) {
+        newErrors.age = 'Enter a valid age (1-120)';
+      }
+    }
+
+    if (!formState.gender) {
+      newErrors.gender = 'Gender selection is required';
+    }
+
     if (!formState.phone.trim()) {
       newErrors.phone = 'Mobile number is required';
     } else if (!/^\d{10}$/.test(formState.phone.replace(/[\s-+]/g, '').slice(-10))) {
@@ -325,6 +342,8 @@ I would like to book a Diagnostic Lab Test. Here are my details:
 
 PATIENT DETAILS:
 - Name: ${formState.name}
+- Age: ${formState.age} years
+- Gender: ${formState.gender}
 - Mobile: ${formState.phone}
 - Email: ${formState.email || 'N/A'}
 
@@ -350,6 +369,8 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
 
 PATIENT DETAILS:
 - Name: ${formState.name}
+- Age: ${formState.age} years
+- Gender: ${formState.gender}
 - Mobile: ${formState.phone}
 - Email: ${formState.email || 'N/A'}
 
@@ -585,8 +606,9 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
       doc.text(`Name: ${patientName}`, 15, 64);
-      doc.text(`Mobile: ${patientPhone}`, 15, 71);
-      doc.text(`Email: ${patientEmail}`, 15, 78);
+      doc.text(`Age / Gender: ${formState.age} yrs / ${formState.gender}`, 15, 71);
+      doc.text(`Mobile: ${patientPhone}`, 15, 78);
+      doc.text(`Email: ${patientEmail}`, 15, 85);
 
       // Booking Summary Section
       doc.setTextColor(navy[0], navy[1], navy[2]);
@@ -692,6 +714,8 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
     const bookingDetails = {
       type: activeTab === 'lab' ? 'Lab Test / Package' : 'Doctor Consultation',
       name: formState.name,
+      age: formState.age,
+      gender: formState.gender,
       phone: formState.phone,
       email: formState.email || 'N/A',
       details: activeTab === 'lab'
@@ -829,6 +853,10 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
                 <span className="font-extrabold text-navy-950">{formState.name}</span>
               </div>
               <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
+                <span className="text-neutral-400 font-medium">Age / Gender:</span>
+                <span className="font-extrabold text-navy-950">{formState.age} yrs / {formState.gender}</span>
+              </div>
+              <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
                 <span className="text-neutral-400 font-medium">Mobile Number:</span>
                 <span className="font-extrabold text-navy-950">{formState.phone}</span>
               </div>
@@ -940,6 +968,8 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
                   setPaymentError(null);
                   setFormState({
                     name: '',
+                    age: '',
+                    gender: '',
                     phone: '',
                     email: '',
                     testSlug: '',
@@ -999,7 +1029,46 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
                   {errors.phone && <span className="text-[11px] text-red-500 mt-1 block">{errors.phone}</span>}
                 </div>
 
-                <div className="md:col-span-2">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="age" className="block text-xs font-bold text-navy-950 uppercase tracking-wider mb-2">
+                      Age *
+                    </label>
+                    <input
+                      type="number"
+                      id="age"
+                      name="age"
+                      value={formState.age}
+                      onChange={handleChange}
+                      placeholder="Years"
+                      min="1"
+                      max="120"
+                      className="w-full rounded border border-neutral-200 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent bg-white transition-all"
+                    />
+                    {errors.age && <span className="text-[11px] text-red-500 mt-1 block">{errors.age}</span>}
+                  </div>
+
+                  <div>
+                    <label htmlFor="gender" className="block text-xs font-bold text-navy-950 uppercase tracking-wider mb-2">
+                      Gender *
+                    </label>
+                    <select
+                      id="gender"
+                      name="gender"
+                      value={formState.gender}
+                      onChange={handleChange}
+                      className="w-full rounded border border-neutral-200 px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent bg-white transition-all"
+                    >
+                      <option value="">-- Select --</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    {errors.gender && <span className="text-[11px] text-red-500 mt-1 block">{errors.gender}</span>}
+                  </div>
+                </div>
+
+                <div>
                   <label htmlFor="email" className="block text-xs font-bold text-navy-950 uppercase tracking-wider mb-2">
                     Email Address (Optional)
                   </label>
