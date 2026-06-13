@@ -100,7 +100,7 @@
 * Increased all diagnostic test prices in `lib/labtests.json` and checkup package prices in `lib/content.ts` by ₹50 to cover online gateway transaction fees, matching the doctor consultation price-harden pattern.
 * Added a demo doctor (`Dr. Payment Test (Demo)`) to `lib/doctors.json` with a ₹10 fee for real-time gateway checkout testing.
 * Fixed deprecated `React.FormEvent` issues in client components (`BookingForm.tsx`, `ContactForm.tsx`, `ServicesCatalog.tsx`) by replacing them with `React.SyntheticEvent`.
-* Hardened WhatsApp redirections to launch the native WhatsApp app directly on mobile devices (using `whatsapp://send`) and go straight to WhatsApp Web on desktops, bypassing the middle splash pages.
+* Resolved mobile redirection behavior by switching back to the native `whatsapp://send` protocol scheme for mobile devices, forcing browsers to open the native WhatsApp application directly instead of loading the api.whatsapp.com middle splash page. Sanitized all complex unicode emojis and bullet points from the pre-filled templates in [BookingForm.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/BookingForm.tsx), [ContactForm.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/ContactForm.tsx), and [DoctorCard.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/DoctorCard.tsx) to prevent parsing failures and encoding replacement characters () on mobile screens.
 
 ## Next Up
 * Await user confirmation of the full-width horizontal scrolling gallery and layout styles.

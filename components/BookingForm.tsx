@@ -318,48 +318,48 @@ export default function BookingForm() {
     if (activeTab === 'lab') {
       const selectedService = services.find((s) => s.slug === formState.testSlug);
       const selectedTest = selectedService?.name || 'N/A';
-      const priceLabel = selectedService?.price ? `₹${selectedService.price}` : 'Price on Call (Quote Requested)';
+      const priceLabel = selectedService?.price ? `Rs. ${selectedService.price}` : 'Price on Call (Quote Requested)';
       message = `Hello Metro-City Diagnostics,
 
 I would like to book a Diagnostic Lab Test. Here are my details:
 
-📋 PATIENT DETAILS:
-• Name: ${formState.name}
-• Mobile: ${formState.phone}
-• Email: ${formState.email || 'N/A'}
+PATIENT DETAILS:
+- Name: ${formState.name}
+- Mobile: ${formState.phone}
+- Email: ${formState.email || 'N/A'}
 
-🔬 DIAGNOSTIC TEST DETAILS:
-• Test/Package: ${selectedTest}
-• Price / Fee: ${priceLabel}
-${activeOrderId && activePaymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order ID: ${activeOrderId}\n• Razorpay Payment ID: ${activePaymentId}` : ''}
-• Preferred Date: ${formState.preferredDate}
-• Preferred Time: ${formState.preferredTime}
+DIAGNOSTIC TEST DETAILS:
+- Test/Package: ${selectedTest}
+- Price / Fee: ${priceLabel}
+${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpay Order ID: ${activeOrderId}\n- Razorpay Payment ID: ${activePaymentId}` : ''}
+- Preferred Date: ${formState.preferredDate}
+- Preferred Time: ${formState.preferredTime}
 
-🏠 SAMPLE COLLECTION:
-• Home Collection: ${formState.homeCollection ? 'Yes (Requested)' : 'No (Walk-in)'}
-${formState.homeCollection ? `• Address: ${formState.address}\n• Landmark: ${formState.landmark || 'N/A'}` : ''}`;
+SAMPLE COLLECTION:
+- Home Collection: ${formState.homeCollection ? 'Yes (Requested)' : 'No (Walk-in)'}
+${formState.homeCollection ? `- Address: ${formState.address}\n- Landmark: ${formState.landmark || 'N/A'}` : ''}`;
     } else {
       const selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
       const doctorName = selectedDoctor ? selectedDoctor.doctor.name : 'N/A';
       const designation = selectedDoctor ? selectedDoctor.doctor.designation : 'N/A';
       const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : DEFAULT_CONSULTATION_FEE) : DEFAULT_CONSULTATION_FEE;
-      const feeText = typeof fees === 'string' ? fees : `₹${fees || DEFAULT_CONSULTATION_FEE}`;
+      const feeText = typeof fees === 'string' ? fees : `Rs. ${fees || DEFAULT_CONSULTATION_FEE}`;
       message = `Hello Metro-City Diagnostics,
 
 I would like to book a Specialist Doctor Consultation. Here are my details:
 
-📋 PATIENT DETAILS:
-• Name: ${formState.name}
-• Mobile: ${formState.phone}
-• Email: ${formState.email || 'N/A'}
+PATIENT DETAILS:
+- Name: ${formState.name}
+- Mobile: ${formState.phone}
+- Email: ${formState.email || 'N/A'}
 
-👨‍⚕️ CONSULTATION DETAILS:
-• Consultant Doctor: Dr. ${doctorName} (${designation})
-• Appointment Date: ${formState.preferredDate}
-• Timing Slot: ${formState.preferredTime}
-• Consultation Fee: ${feeText}
-${activeOrderId && activePaymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order ID: ${activeOrderId}\n• Razorpay Payment ID: ${activePaymentId}` : ''}
-• Clinic Location: Near Vivekananda Co-operative, Meherpur, Silchar`;
+CONSULTATION DETAILS:
+- Consultant Doctor: Dr. ${doctorName} (${designation})
+- Appointment Date: ${formState.preferredDate}
+- Timing Slot: ${formState.preferredTime}
+- Consultation Fee: ${feeText}
+${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpay Order ID: ${activeOrderId}\n- Razorpay Payment ID: ${activePaymentId}` : ''}
+- Clinic Location: Near Vivekananda Co-operative, Meherpur, Silchar`;
     }
     return message;
   };
@@ -368,7 +368,7 @@ ${activeOrderId && activePaymentId ? `• Payment Status: PAID (Online)\n• Raz
     const message = getWhatsAppMessage(overrideOrderId, overridePaymentId);
     const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const whatsappUrl = isMobile
-      ? `https://api.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`
+      ? `whatsapp://send?phone=919957357278&text=${encodeURIComponent(message)}`
       : `https://web.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`;
     
     if (isMobile) {
