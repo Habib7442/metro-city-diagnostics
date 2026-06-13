@@ -98,6 +98,9 @@
 * Integrated Google Sheets database tracking for all booking transactions, logging initial details as `PENDING` upon order creation, updating status to `PAID` upon signature verification, logging `CANCELLED`/`FAILED` states, and adding direct `CONFIRMED` entries for unpaid lab bookings.
 * Added the rounded branding clinic logo (`public/logo.png`) to the downloaded/printed payment receipt header next to the clinic name with high-fidelity, circular-cropped styling.
 * Increased all diagnostic test prices in `lib/labtests.json` and checkup package prices in `lib/content.ts` by ₹50 to cover online gateway transaction fees, matching the doctor consultation price-harden pattern.
+* Added a demo doctor (`Dr. Payment Test (Demo)`) to `lib/doctors.json` with a ₹10 fee for real-time gateway checkout testing.
+* Fixed deprecated `React.FormEvent` issues in client components (`BookingForm.tsx`, `ContactForm.tsx`, `ServicesCatalog.tsx`) by replacing them with `React.SyntheticEvent`.
+* Hardened WhatsApp redirections to launch the native WhatsApp app directly on mobile devices (using `whatsapp://send`) and go straight to WhatsApp Web on desktops, bypassing the middle splash pages.
 
 ## Next Up
 * Await user confirmation of the full-width horizontal scrolling gallery and layout styles.
