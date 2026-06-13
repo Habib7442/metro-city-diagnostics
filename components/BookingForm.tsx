@@ -144,6 +144,21 @@ export default function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
+  const [razorpayOrderId, setRazorpayOrderId] = useState<string>('');
+  const [razorpayPaymentId, setRazorpayPaymentId] = useState<string>('');
+  const [paymentError, setPaymentError] = useState<string | null>(null);
+
+  // Load Razorpay Script on mount
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   // Sync with search parameters on mount / param changes
   useEffect(() => {
     const testSlug = searchParams.get('test') || '';
@@ -293,17 +308,123 @@ export default function BookingForm() {
     }
   };
 
+  const handlePaymentAndSubmit = async (
+    amountInPaise: number,
+    selectedDoctor: any,
+    selectedService: any,
+    successCallback: (orderId: string, paymentId: string) => void
+  ) => {
+    try {
+      setPaymentError(null);
+
+      if (!(window as any).Razorpay) {
+        setPaymentError('Razorpay payment gateway failed to load. Please check your internet connection and refresh.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // 1. Call Create Order API
+      const res = await fetch('/api/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: amountInPaise }),
+      });
+
+      const orderData = await res.json();
+      if (!orderData.success) {
+        setPaymentError(orderData.error || 'Failed to create payment order');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // 2. Open Razorpay checkout modal
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: 'Metro-City Diagnostics',
+        description: activeTab === 'lab' ? `Lab Test: ${selectedService?.name}` : `Consultation: Dr. ${selectedDoctor?.doctor.name}`,
+        order_id: orderData.order_id,
+        handler: async function (response: any) {
+          try {
+            setIsSubmitting(true);
+            // 3. Verify signature on backend
+            const verifyRes = await fetch('/api/verify-payment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              }),
+            });
+            const verifyData = await verifyRes.json();
+            if (verifyData.success) {
+              successCallback(response.razorpay_order_id, response.razorpay_payment_id);
+            } else {
+              setPaymentError(verifyData.error || 'Payment signature verification failed');
+              setIsSubmitting(false);
+            }
+          } catch (err) {
+            setPaymentError('Network error during payment verification');
+            setIsSubmitting(false);
+          }
+        },
+        prefill: {
+          name: formState.name,
+          contact: formState.phone,
+          email: formState.email || '',
+        },
+        theme: {
+          color: '#2563eb',
+        },
+        modal: {
+          ondismiss: function () {
+            setIsSubmitting(false);
+            setPaymentError('Payment was cancelled');
+          },
+        },
+      };
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.on('payment.failed', function (resp: any) {
+        setPaymentError(resp.error.description || 'Payment failed');
+        setIsSubmitting(false);
+      });
+      rzp.open();
+    } catch (err: any) {
+      setPaymentError(err.message || 'Payment initiation failed');
+      setIsSubmitting(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setPaymentError(null);
 
-    try {
+    // Calculate billing amount in paise
+    let amountInPaise = 0;
+    let selectedDoctor: any = null;
+    let selectedService: any = null;
+
+    if (activeTab === 'lab') {
+      selectedService = services.find((s) => s.slug === formState.testSlug);
+      if (selectedService && selectedService.price) {
+        amountInPaise = selectedService.price * 100;
+      }
+    } else {
+      selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
+      const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : 500) : 500;
+      amountInPaise = typeof fees === 'number' ? fees * 100 : 0;
+    }
+
+    const processFinalBooking = (orderId?: string, paymentId?: string) => {
       let message = '';
-      
+
       if (activeTab === 'lab') {
-        const selectedService = services.find((s) => s.slug === formState.testSlug);
         const selectedTest = selectedService?.name || 'N/A';
         const priceLabel = selectedService?.price ? `₹${selectedService.price}` : 'Price on Call (Quote Requested)';
         message = `Hello Metro-City Diagnostics,
@@ -318,6 +439,7 @@ I would like to book a Diagnostic Lab Test. Here are my details:
 🔬 DIAGNOSTIC TEST DETAILS:
 • Test/Package: ${selectedTest}
 • Price / Fee: ${priceLabel}
+${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order ID: ${orderId}\n• Razorpay Payment ID: ${paymentId}` : ''}
 • Preferred Date: ${formState.preferredDate}
 • Preferred Time: ${formState.preferredTime}
 
@@ -325,7 +447,6 @@ I would like to book a Diagnostic Lab Test. Here are my details:
 • Home Collection: ${formState.homeCollection ? 'Yes (Requested)' : 'No (Walk-in)'}
 ${formState.homeCollection ? `• Address: ${formState.address}\n• Landmark: ${formState.landmark || 'N/A'}` : ''}`;
       } else {
-        const selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
         const doctorName = selectedDoctor ? selectedDoctor.doctor.name : 'N/A';
         const designation = selectedDoctor ? selectedDoctor.doctor.designation : 'N/A';
         const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : 500) : 500;
@@ -344,16 +465,25 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
 • Appointment Date: ${formState.preferredDate}
 • Timing Slot: ${formState.preferredTime}
 • Consultation Fee: ${feeText}
+${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order ID: ${orderId}\n• Razorpay Payment ID: ${paymentId}` : ''}
 • Clinic Location: Near Vivekananda Co-operative, Meherpur, Silchar`;
       }
 
       const whatsappUrl = `https://wa.me/919957357278?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
       setSubmitSuccess(true);
-    } catch (err) {
-      console.error(err);
-    } finally {
       setIsSubmitting(false);
+    };
+
+    // If amount is less than 100 paise (i.e. free booking or Price on Call), skip payment
+    if (amountInPaise < 100) {
+      processFinalBooking();
+    } else {
+      handlePaymentAndSubmit(amountInPaise, selectedDoctor, selectedService, (orderId, paymentId) => {
+        setRazorpayOrderId(orderId);
+        setRazorpayPaymentId(paymentId);
+        processFinalBooking(orderId, paymentId);
+      });
     }
   };
 
@@ -505,11 +635,27 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                   </span>
                 </div>
               )}
+
+              {razorpayPaymentId && (
+                <>
+                  <div className="flex justify-between text-xs border-t border-neutral-200/40 pt-2 pb-2">
+                    <span className="text-neutral-400 font-medium">Payment ID:</span>
+                    <span className="font-mono text-[10px] font-extrabold text-navy-950">{razorpayPaymentId}</span>
+                  </div>
+                  <div className="flex justify-between text-xs border-b border-neutral-200/40 pb-2">
+                    <span className="text-neutral-400 font-medium">Payment Status:</span>
+                    <span className="font-extrabold text-green-700">PAID (Online)</span>
+                  </div>
+                </>
+              )}
             </div>
 
             <Button
               onClick={() => {
                 setSubmitSuccess(false);
+                setRazorpayOrderId('');
+                setRazorpayPaymentId('');
+                setPaymentError(null);
                 setFormState({
                   name: '',
                   phone: '',
@@ -845,6 +991,12 @@ I would like to book a Specialist Doctor Consultation. Here are my details:
                     </div>
                   </div>
                 )}
+              </div>
+            )}
+
+            {paymentError && (
+              <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-semibold leading-relaxed">
+                ⚠️ {paymentError}
               </div>
             )}
 

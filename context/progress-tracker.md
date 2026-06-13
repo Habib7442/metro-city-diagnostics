@@ -93,6 +93,7 @@
 * Removed the "Need Help? Call Us" phone number display block from the main desktop navbar to declutter layout space.
 * Updated Dr. Debanjali Das's specialization to "Internal Medicine Specialist" in [doctors.json](file:///e:/Web%20Dev/metro-city-diagnostics/lib/doctors.json) and synced [DoctorsCatalog.tsx](file:///e:/Web%20Dev/metro-city-diagnostics/components/DoctorsCatalog.tsx) to map it under "Medicine & Diabetology".
 * Filtered the specialist doctor dropdown selection list in the doctor consultation booking form to display only the pre-selected doctor and hide all other doctors when a doctor is pre-selected via query parameters, ensuring generic bookings still show the full list.
+* Integrated Razorpay Standard Web Checkout into the booking form, creating backend routes at `/api/create-order` and `/api/verify-payment`, dynamically loading the checkout SDK, and displaying verification summaries upon successful payment.
 
 ## Next Up
 * Await user confirmation of the full-width horizontal scrolling gallery and layout styles.
