@@ -96,6 +96,7 @@
 * Integrated Razorpay Standard Web Checkout into the booking form, creating backend routes at `/api/create-order` and `/api/verify-payment`, dynamically loading the checkout SDK, and displaying verification summaries upon successful payment.
 * Increased consultation fees by ₹50 for all doctors inside [doctors.json](file:///e:/Web%20Dev/metro-city-diagnostics/lib/doctors.json) to cover Razorpay payment gateway transaction and settlement fees.
 * Integrated Google Sheets database tracking for all booking transactions, logging initial details as `PENDING` upon order creation, updating status to `PAID` upon signature verification, logging `CANCELLED`/`FAILED` states, and adding direct `CONFIRMED` entries for unpaid lab bookings.
+* Added the rounded branding clinic logo (`public/logo.png`) to the downloaded/printed payment receipt header next to the clinic name with high-fidelity, circular-cropped styling.
 
 ## Next Up
 * Await user confirmation of the full-width horizontal scrolling gallery and layout styles.

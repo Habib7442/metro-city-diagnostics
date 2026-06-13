@@ -417,6 +417,289 @@ export default function BookingForm() {
     }
   };
 
+  const handleDownloadInvoice = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alert('Please allow popups to download/print the invoice.');
+      return;
+    }
+
+    const patientName = formState.name;
+    const patientPhone = formState.phone;
+    const patientEmail = formState.email || 'N/A';
+    const preferredDate = formState.preferredDate;
+    const preferredTime = formState.preferredTime;
+    
+    let description = 'N/A';
+    let amountText = 'N/A';
+    
+    if (activeTab === 'lab') {
+      const selectedService = services.find((s) => s.slug === formState.testSlug);
+      description = selectedService ? `Lab Test / Package: ${selectedService.name}` : 'Lab Test / Package';
+      amountText = selectedService?.price ? `₹${selectedService.price}` : 'Price on Call';
+    } else {
+      const selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
+      description = selectedDoctor 
+        ? `Consultation: Dr. ${selectedDoctor.doctor.name} (${selectedDoctor.doctor.designation})`
+        : 'Doctor Consultation';
+      const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : 550) : 550;
+      amountText = typeof fees === 'string' ? fees : `₹${fees}`;
+    }
+
+    const currentFullDate = new Date().toLocaleDateString('en-IN', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    const invoiceHtml = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Receipt_Metro_City_Diagnostics</title>
+        <style>
+          body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #1f2937;
+            margin: 0;
+            padding: 40px;
+            font-size: 14px;
+            line-height: 1.5;
+          }
+          .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            border: 1px solid #e5e7eb;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+          }
+          .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #0a1f44;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+          }
+          .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+          }
+          .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #0a1f44;
+            background-color: #ffffff;
+            flex-shrink: 0;
+          }
+          .clinic-info h1 {
+            color: #0a1f44;
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+          }
+          .clinic-info p {
+            margin: 3px 0;
+            color: #4b5563;
+            font-size: 12px;
+          }
+          .invoice-title {
+            text-align: right;
+          }
+          .invoice-title h2 {
+            margin: 0 0 10px 0;
+            color: #9c7b26;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          }
+          .invoice-title p {
+            margin: 3px 0;
+            font-size: 12px;
+            color: #6b7280;
+          }
+          .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+          }
+          .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #9c7b26;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+          }
+          .details-block p {
+            margin: 6px 0;
+            font-size: 13px;
+          }
+          .details-block strong {
+            color: #111827;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+          }
+          th {
+            background-color: #f3f4f6;
+            color: #374151;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+          }
+          td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13.5px;
+          }
+          .text-right {
+            text-align: right;
+          }
+          .total-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 40px;
+          }
+          .total-table {
+            width: 250px;
+            margin-bottom: 0;
+          }
+          .total-table td {
+            padding: 8px 12px;
+            border-bottom: none;
+          }
+          .total-row {
+            font-weight: 800;
+            font-size: 16px;
+            color: #0a1f44;
+            border-top: 1px solid #e5e7eb;
+          }
+          .footer {
+            text-align: center;
+            border-top: 1px dashed #e5e7eb;
+            padding-top: 20px;
+            color: #9ca3af;
+            font-size: 11px;
+            margin-top: 50px;
+          }
+          @media print {
+            body {
+              padding: 0;
+            }
+            .invoice-box {
+              border: none;
+              box-shadow: none;
+              padding: 0;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="invoice-box">
+          <div class="header">
+            <div class="header-left">
+              <img src="${window.location.origin}/logo.png" alt="Metro-City Diagnostics Logo" class="logo" />
+              <div class="clinic-info">
+                <h1>METRO-CITY DIAGNOSTICS</h1>
+                <p>Birbal Bazar, Meherpur, Silchar, Assam 788015</p>
+                <p>Phone: +91 99573 57278, +91 99540 25101</p>
+                <p>Email: metrocitydiagnostics1978@gmail.com</p>
+              </div>
+            </div>
+            <div class="invoice-title">
+              <h2>Payment Receipt</h2>
+              <p><strong>Receipt Date:</strong> ${currentFullDate}</p>
+              <p><strong>Order ID:</strong> ${razorpayOrderId || 'N/A'}</p>
+              <p><strong>Payment ID:</strong> ${razorpayPaymentId || 'N/A'}</p>
+            </div>
+          </div>
+          
+          <div class="details-grid">
+            <div class="details-block">
+              <div class="section-title">Patient Details</div>
+              <p><strong>Name:</strong> ${patientName}</p>
+              <p><strong>Mobile:</strong> ${patientPhone}</p>
+              <p><strong>Email:</strong> ${patientEmail}</p>
+            </div>
+            <div class="details-block">
+              <div class="section-title">Appointment Summary</div>
+              <p><strong>Preferred Date:</strong> ${preferredDate}</p>
+              <p><strong>Preferred Time:</strong> ${preferredTime}</p>
+              <p><strong>Status:</strong> PAID (Online)</p>
+            </div>
+          </div>
+          
+          <table>
+            <thead>
+              <tr>
+                <th>Item / Description</th>
+                <th class="text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>${description}</strong><br>
+                  <span style="font-size: 11px; color: #6b7280;">Scheduled for ${preferredDate} (${preferredTime})</span>
+                </td>
+                <td class="text-right"><strong>${amountText}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="total-section">
+            <table class="total-table">
+              <tr>
+                <td>Subtotal:</td>
+                <td class="text-right">${amountText}</td>
+              </tr>
+              <tr>
+                <td>Taxes (0%):</td>
+                <td class="text-right">₹0.00</td>
+              </tr>
+              <tr class="total-row">
+                <td>Total Paid:</td>
+                <td class="text-right">${amountText}</td>
+              </tr>
+            </table>
+          </div>
+          
+          <div class="footer">
+            <p>This is a secure computer-generated receipt for your diagnostics/consultation request.</p>
+            <p>Thank you for choosing Metro-City Diagnostics. For support, call +91 99573 57278.</p>
+          </div>
+        </div>
+        
+        <script>
+          window.onload = function() {
+            window.print();
+          }
+        </script>
+      </body>
+      </html>
+    `;
+    printWindow.document.write(invoiceHtml);
+    printWindow.document.close();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
@@ -698,29 +981,43 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
               )}
             </div>
 
-            <Button
-              onClick={() => {
-                setSubmitSuccess(false);
-                setRazorpayOrderId('');
-                setRazorpayPaymentId('');
-                setPaymentError(null);
-                setFormState({
-                  name: '',
-                  phone: '',
-                  email: '',
-                  testSlug: '',
-                  doctorId: '',
-                  preferredDate: '',
-                  preferredTime: '',
-                  homeCollection: false,
-                  address: '',
-                  landmark: '',
-                });
-              }}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold h-11 px-6 rounded cursor-pointer"
-            >
-              Submit Another Booking
-            </Button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
+              {razorpayPaymentId && (
+                <Button
+                  type="button"
+                  onClick={handleDownloadInvoice}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold h-11 px-6 rounded cursor-pointer w-full sm:w-auto flex items-center justify-center gap-2"
+                >
+                  <FileText className="h-4.5 w-4.5" />
+                  <span>Download Receipt (PDF)</span>
+                </Button>
+              )}
+
+              <Button
+                type="button"
+                onClick={() => {
+                  setSubmitSuccess(false);
+                  setRazorpayOrderId('');
+                  setRazorpayPaymentId('');
+                  setPaymentError(null);
+                  setFormState({
+                    name: '',
+                    phone: '',
+                    email: '',
+                    testSlug: '',
+                    doctorId: '',
+                    preferredDate: '',
+                    preferredTime: '',
+                    homeCollection: false,
+                    address: '',
+                    landmark: '',
+                  });
+                }}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold h-11 px-6 rounded cursor-pointer w-full sm:w-auto"
+              >
+                Submit Another Booking
+              </Button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-8">
