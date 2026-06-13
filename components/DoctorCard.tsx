@@ -57,10 +57,18 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
     const message = entry.id === 'ihr-opd'
       ? `Hello, I would like to pre-register and book a spot for the upcoming ${entry.doctor.name} at Metro-City Diagnostics.`
       : `Hello, I would like to book an appointment with ${entry.doctor.name} at Metro-City Diagnostics.`;
+    const isAndroid = typeof window !== 'undefined' && /Android/i.test(navigator.userAgent);
     const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const url = isMobile
-      ? `whatsapp://send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`
-      : `https://web.whatsapp.com/send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`;
+    
+    let url = '';
+    if (isAndroid) {
+      url = `intent://send/?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+    } else if (isMobile) {
+      url = `whatsapp://send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`;
+    } else {
+      url = `https://web.whatsapp.com/send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`;
+    }
+    
     if (isMobile) {
       window.location.href = url;
     } else {

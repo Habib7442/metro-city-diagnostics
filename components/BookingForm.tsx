@@ -366,10 +366,17 @@ ${activeOrderId && activePaymentId ? `- Payment Status: PAID (Online)\n- Razorpa
 
   const handleSendWhatsApp = (overrideOrderId?: string, overridePaymentId?: string) => {
     const message = getWhatsAppMessage(overrideOrderId, overridePaymentId);
+    const isAndroid = typeof window !== 'undefined' && /Android/i.test(navigator.userAgent);
     const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const whatsappUrl = isMobile
-      ? `whatsapp://send?phone=919957357278&text=${encodeURIComponent(message)}`
-      : `https://web.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`;
+    
+    let whatsappUrl = '';
+    if (isAndroid) {
+      whatsappUrl = `intent://send/?phone=919957357278&text=${encodeURIComponent(message)}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+    } else if (isMobile) {
+      whatsappUrl = `whatsapp://send?phone=919957357278&text=${encodeURIComponent(message)}`;
+    } else {
+      whatsappUrl = `https://web.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`;
+    }
     
     if (isMobile) {
       window.location.href = whatsappUrl;
