@@ -1,18 +1,38 @@
 import { NextResponse } from 'next/server';
 import Razorpay from 'razorpay';
+import { services } from '@/lib/content';
+import doctorsData from '@/lib/doctors.json';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { amount, bookingDetails } = body;
+    const { doctorId, testSlug, bookingDetails } = body;
 
-    if (amount === undefined || amount === null) {
-      return NextResponse.json({ success: false, error: 'Amount is required' }, { status: 400 });
+    // Server-side price calculation
+    let calculatedAmount = 0; // in Paise
+
+    if (testSlug) {
+      const service = services.find((s) => s.slug === testSlug);
+      if (!service) {
+        return NextResponse.json({ success: false, error: 'Selected service/test not found' }, { status: 400 });
+      }
+      if (!service.price) {
+        return NextResponse.json({ success: false, error: 'Selected service has no online price (Price on Call)' }, { status: 400 });
+      }
+      calculatedAmount = service.price * 100;
+    } else if (doctorId) {
+      const doctor = doctorsData.find((d) => d.id === doctorId);
+      if (!doctor) {
+        return NextResponse.json({ success: false, error: 'Selected consultant doctor not found' }, { status: 400 });
+      }
+      const fees = doctor.fees !== undefined ? doctor.fees : 550;
+      calculatedAmount = typeof fees === 'number' ? fees * 100 : 55000;
+    } else {
+      return NextResponse.json({ success: false, error: 'Either doctorId or testSlug is required' }, { status: 400 });
     }
 
-    const parsedAmount = parseInt(amount, 10);
-    if (isNaN(parsedAmount) || parsedAmount < 100) {
-      return NextResponse.json({ success: false, error: 'Amount must be at least 100 paise' }, { status: 400 });
+    if (calculatedAmount < 100) {
+      return NextResponse.json({ success: false, error: 'Amount must be at least ₹1 (100 paise)' }, { status: 400 });
     }
 
     const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
@@ -28,29 +48,49 @@ export async function POST(req: Request) {
     });
 
     const options = {
-      amount: parsedAmount,
+      amount: calculatedAmount,
       currency: 'INR',
       receipt: `rcpt_${Date.now()}`,
     };
 
-    const order = await razorpay.orders.create(options);
+    let timeoutId: NodeJS.Timeout | undefined;
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timeoutId = setTimeout(() => reject(new Error('Razorpay API request timed out')), 10000);
+    });
+
+    let order;
+    try {
+      order = await Promise.race([
+        razorpay.orders.create(options),
+        timeoutPromise,
+      ]);
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
+    }
 
     // Log pending transaction to Google Sheet if webhook is configured
     const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+    const loggingSecret = process.env.LOGGING_SECRET;
     if (webhookUrl && bookingDetails) {
+      const abortController = new AbortController();
+      const timeoutId = setTimeout(() => abortController.abort(), 5000); // 5 second timeout
       try {
         const logPayload = {
           ...bookingDetails,
           orderId: order.id,
-          amount: parsedAmount / 100, // Convert to INR
+          amount: calculatedAmount / 100, // Convert to INR
           status: 'PENDING',
+          token: loggingSecret, // Secure token verification in Apps Script
         };
         await fetch(webhookUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(logPayload),
+          signal: abortController.signal,
         });
+        clearTimeout(timeoutId);
       } catch (logErr) {
+        clearTimeout(timeoutId);
         console.error('Google Sheets Integration: Error logging PENDING status:', logErr);
       }
     }
@@ -72,3 +112,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: false, error: err.message || 'Internal server error during order creation' }, { status: 500 });
   }
 }
+

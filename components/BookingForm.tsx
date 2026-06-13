@@ -328,7 +328,11 @@ export default function BookingForm() {
       const res = await fetch('/api/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: amountInPaise, bookingDetails }),
+        body: JSON.stringify({
+          doctorId: formState.doctorId,
+          testSlug: formState.testSlug,
+          bookingDetails,
+        }),
       });
 
       const orderData = await res.json();

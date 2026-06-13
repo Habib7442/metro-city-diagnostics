@@ -38,7 +38,10 @@ export async function POST(req: Request) {
 
     // Update log status to PAID in Google Sheet if webhook is configured
     const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+    const loggingSecret = process.env.LOGGING_SECRET;
     if (webhookUrl) {
+      const abortController = new AbortController();
+      const timeoutId = setTimeout(() => abortController.abort(), 5000); // 5 second timeout
       try {
         await fetch(webhookUrl, {
           method: 'POST',
@@ -47,9 +50,13 @@ export async function POST(req: Request) {
             orderId: razorpay_order_id,
             paymentId: razorpay_payment_id,
             status: 'PAID',
+            token: loggingSecret,
           }),
+          signal: abortController.signal,
         });
+        clearTimeout(timeoutId);
       } catch (logErr) {
+        clearTimeout(timeoutId);
         console.error('Google Sheets Integration: Error updating log to PAID status:', logErr);
       }
     }
