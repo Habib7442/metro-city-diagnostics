@@ -78,7 +78,7 @@ export async function POST(req: Request) {
     };
 
     const abortController = new AbortController();
-    const timeoutId = setTimeout(() => abortController.abort(), 5000); // 5 second timeout
+    const timeoutId = setTimeout(() => abortController.abort(), 10000); // 10 second timeout
 
     let res;
     try {
@@ -94,8 +94,11 @@ export async function POST(req: Request) {
       clearTimeout(timeoutId);
     } catch (fetchErr: any) {
       clearTimeout(timeoutId);
-      console.error('Google Sheets Integration: Webhook fetch error or timeout:', fetchErr);
-      return NextResponse.json({ success: false, error: 'Database write timed out or network failed' }, { status: 504 });
+      if (fetchErr.name === 'AbortError') {
+        console.error('Google Sheets Integration: Webhook request timed out');
+        return NextResponse.json({ success: false, error: 'Webhook request timed out' }, { status: 504 });
+      }
+      throw fetchErr;
     }
 
     if (!res.ok) {

@@ -29,7 +29,11 @@ export async function POST(req: Request) {
       .update(text)
       .digest('hex');
 
-    if (expectedSignature !== razorpay_signature) {
+    const expectedSignatureBuffer = Buffer.from(expectedSignature, 'hex');
+    const receivedSignatureBuffer = Buffer.from(razorpay_signature, 'hex');
+
+    if (expectedSignatureBuffer.length !== receivedSignatureBuffer.length ||
+        !crypto.timingSafeEqual(expectedSignatureBuffer, receivedSignatureBuffer)) {
       return NextResponse.json(
         { success: false, error: 'Payment verification failed: Signature mismatch' },
         { status: 400 }

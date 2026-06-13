@@ -14,6 +14,8 @@ import { services } from '@/lib/content';
 import doctorsData from '@/lib/doctors.json';
 import { cn } from '@/lib/utils';
 
+const DEFAULT_CONSULTATION_FEE = 550;
+
 type BookingFormData = {
   name: string;
   phone: string;
@@ -421,7 +423,13 @@ export default function BookingForm() {
     }
   };
 
-  const handleDownloadInvoice = () => {
+  const handleDownloadInvoice = (overrideOrderId?: string, overridePaymentId?: string) => {
+    const activeOrderId = overrideOrderId || razorpayOrderId;
+    const activePaymentId = overridePaymentId || razorpayPaymentId;
+
+    const escapeHtml = (str: string) =>
+      str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
     const printWindow = window.open('', '_blank');
     if (!printWindow) {
       alert('Please allow popups to download/print the invoice.');
@@ -446,7 +454,7 @@ export default function BookingForm() {
       description = selectedDoctor 
         ? `Consultation: Dr. ${selectedDoctor.doctor.name} (${selectedDoctor.doctor.designation})`
         : 'Doctor Consultation';
-      const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : 550) : 550;
+      const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : DEFAULT_CONSULTATION_FEE) : DEFAULT_CONSULTATION_FEE;
       amountText = typeof fees === 'string' ? fees : `₹${fees}`;
     }
 
@@ -631,22 +639,22 @@ export default function BookingForm() {
             <div class="invoice-title">
               <h2>Payment Receipt</h2>
               <p><strong>Receipt Date:</strong> ${currentFullDate}</p>
-              <p><strong>Order ID:</strong> ${razorpayOrderId || 'N/A'}</p>
-              <p><strong>Payment ID:</strong> ${razorpayPaymentId || 'N/A'}</p>
+              <p><strong>Order ID:</strong> ${escapeHtml(activeOrderId || 'N/A')}</p>
+              <p><strong>Payment ID:</strong> ${escapeHtml(activePaymentId || 'N/A')}</p>
             </div>
           </div>
           
           <div class="details-grid">
             <div class="details-block">
               <div class="section-title">Patient Details</div>
-              <p><strong>Name:</strong> ${patientName}</p>
-              <p><strong>Mobile:</strong> ${patientPhone}</p>
-              <p><strong>Email:</strong> ${patientEmail}</p>
+              <p><strong>Name:</strong> ${escapeHtml(patientName)}</p>
+              <p><strong>Mobile:</strong> ${escapeHtml(patientPhone)}</p>
+              <p><strong>Email:</strong> ${escapeHtml(patientEmail)}</p>
             </div>
             <div class="details-block">
               <div class="section-title">Appointment Summary</div>
-              <p><strong>Preferred Date:</strong> ${preferredDate}</p>
-              <p><strong>Preferred Time:</strong> ${preferredTime}</p>
+              <p><strong>Preferred Date:</strong> ${escapeHtml(preferredDate)}</p>
+              <p><strong>Preferred Time:</strong> ${escapeHtml(preferredTime)}</p>
               <p><strong>Status:</strong> PAID (Online)</p>
             </div>
           </div>
@@ -661,10 +669,10 @@ export default function BookingForm() {
             <tbody>
               <tr>
                 <td>
-                  <strong>${description}</strong><br>
-                  <span style="font-size: 11px; color: #6b7280;">Scheduled for ${preferredDate} (${preferredTime})</span>
+                  <strong>${escapeHtml(description)}</strong><br>
+                  <span style="font-size: 11px; color: #6b7280;">Scheduled for ${escapeHtml(preferredDate)} (${escapeHtml(preferredTime)})</span>
                 </td>
-                <td class="text-right"><strong>${amountText}</strong></td>
+                <td class="text-right"><strong>${escapeHtml(amountText)}</strong></td>
               </tr>
             </tbody>
           </table>
@@ -723,7 +731,7 @@ export default function BookingForm() {
       }
     } else {
       selectedDoctor = doctorsData.find((d) => d.id === formState.doctorId);
-      const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : 500) : 500;
+      const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : DEFAULT_CONSULTATION_FEE) : DEFAULT_CONSULTATION_FEE;
       amountInPaise = typeof fees === 'number' ? fees * 100 : 0;
     }
 
@@ -771,8 +779,8 @@ ${formState.homeCollection ? `• Address: ${formState.address}\n• Landmark: $
       } else {
         const doctorName = selectedDoctor ? selectedDoctor.doctor.name : 'N/A';
         const designation = selectedDoctor ? selectedDoctor.doctor.designation : 'N/A';
-        const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : 500) : 500;
-        const feeText = typeof fees === 'string' ? fees : `₹${fees || 500}`;
+        const fees = selectedDoctor ? (selectedDoctor.fees !== undefined ? selectedDoctor.fees : DEFAULT_CONSULTATION_FEE) : DEFAULT_CONSULTATION_FEE;
+        const feeText = typeof fees === 'string' ? fees : `₹${fees || DEFAULT_CONSULTATION_FEE}`;
         message = `Hello Metro-City Diagnostics,
 
 I would like to book a Specialist Doctor Consultation. Here are my details:
@@ -818,6 +826,10 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
         setRazorpayOrderId(orderId);
         setRazorpayPaymentId(paymentId);
         processFinalBooking(orderId, paymentId);
+        // Automatically open the printed invoice/download layout
+        setTimeout(() => {
+          handleDownloadInvoice(orderId, paymentId);
+        }, 300);
       });
     }
   };
@@ -947,8 +959,8 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
                     <span className="font-extrabold text-emerald-700">
                       {(() => {
                         const feeVal = doctorsData.find((d) => d.id === formState.doctorId)?.fees;
-                        const fees = feeVal !== undefined ? feeVal : 500;
-                        return typeof fees === 'string' ? fees : `₹${fees || 500}`;
+                        const fees = feeVal !== undefined ? feeVal : DEFAULT_CONSULTATION_FEE;
+                        return typeof fees === 'string' ? fees : `₹${fees || DEFAULT_CONSULTATION_FEE}`;
                       })()}
                     </span>
                   </div>
@@ -989,7 +1001,7 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
               {razorpayPaymentId && (
                 <Button
                   type="button"
-                  onClick={handleDownloadInvoice}
+                  onClick={() => handleDownloadInvoice()}
                   className="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold h-11 px-6 rounded cursor-pointer w-full sm:w-auto flex items-center justify-center gap-2"
                 >
                   <FileText className="h-4.5 w-4.5" />
@@ -1189,7 +1201,7 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
                       {!isPreselected && <option value="">-- Choose Specialist Doctor --</option>}
                       {dropdownDoctors.map((doc) => (
                         <option key={doc.id} value={doc.id}>
-                          {doc.doctor.name} - {doc.doctor.designation} ({typeof doc.fees === 'string' ? doc.fees : `₹${doc.fees || 500}`})
+                          {doc.doctor.name} - {doc.doctor.designation} ({typeof doc.fees === 'string' ? doc.fees : `₹${doc.fees || DEFAULT_CONSULTATION_FEE}`})
                         </option>
                       ))}
                     </select>
@@ -1261,7 +1273,7 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
                             Selected Timing Slot & Fee
                           </h4>
                           <p className="mt-1 text-sm text-navy-800 font-medium">
-                            Dr. {selectedDoc.doctor.name} will consult on <span className="font-extrabold text-navy-950">{selectedDoc.timing.days}</span> at <span className="font-extrabold text-navy-950">{selectedDoc.timing.time}</span>. Consultation Fee: <span className="font-extrabold text-emerald-700">{typeof selectedDoc.fees === 'string' ? selectedDoc.fees : `₹${selectedDoc.fees || 500}`}</span>.
+                            Dr. {selectedDoc.doctor.name} will consult on <span className="font-extrabold text-navy-950">{selectedDoc.timing.days}</span> at <span className="font-extrabold text-navy-950">{selectedDoc.timing.time}</span>. Consultation Fee: <span className="font-extrabold text-emerald-700">{typeof selectedDoc.fees === 'string' ? selectedDoc.fees : `₹${selectedDoc.fees || DEFAULT_CONSULTATION_FEE}`}</span>.
                           </p>
                           <p className="mt-1.5 text-[10px] text-navy-600/80 leading-relaxed font-semibold italic">
                             * The appointment slot is dynamically pre-filled to match this doctor's precise hospital timing profile.
