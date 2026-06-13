@@ -6,21 +6,21 @@
       "tests": [
         {
           "name": "Stool RE Test",
-          "price": 200,
+          "price": 250,
           "currency": "INR",
           "description": "Measures acidity or alkalinity of stool to identify digestive issues.",
           "unit": "per test"
         },
         {
           "name": "Occult Blood Stool Test",
-          "price": 250,
+          "price": 300,
           "currency": "INR",
           "description": "Detects hidden blood in stool samples.",
           "unit": "per test"
         },
         {
           "name": "Stool Culture Test",
-          "price": 1200,
+          "price": 1250,
           "currency": "INR",
           "description": "Checks bacterial infections in the digestive tract.",
           "unit": "per test"
@@ -33,49 +33,49 @@
       "tests": [
         {
           "name": "Complete Blood Count with ESR (CBC + ESR)",
-          "price": 550,
+          "price": 600,
           "currency": "INR",
           "description": "Measures overall health and detects disorders.",
           "unit": "per test"
         },
         {
           "name": "Blood Sugar Test",
-          "price": 70,
+          "price": 120,
           "currency": "INR",
           "description": "Checks glucose level in blood.",
           "unit": "per test"
         },
         {
           "name": "Lipid Profile Test",
-          "price": 900,
+          "price": 950,
           "currency": "INR",
           "description": "Measures cholesterol and triglyceride levels.",
           "unit": "per test"
         },
         {
           "name": "Liver Function Test with GGT",
-          "price": 1000,
+          "price": 1050,
           "currency": "INR",
           "description": "Evaluates liver health and function.",
           "unit": "per test"
         },
         {
           "name": "Kidney Function Test with Electrolytes",
-          "price": 1200,
+          "price": 1250,
           "currency": "INR",
           "description": "Checks kidney performance and health.",
           "unit": "per test"
         },
         {
           "name": "Thyroid Profile Test",
-          "price": 550,
+          "price": 600,
           "currency": "INR",
           "description": "Assesses thyroid hormone levels.",
           "unit": "per test"
         },
         {
           "name": "Hemoglobin Test",
-          "price": 150,
+          "price": 200,
           "currency": "INR",
           "description": "Measures hemoglobin concentration in blood.",
           "unit": "per test"
@@ -88,21 +88,21 @@
       "tests": [
         {
           "name": "Routine Urine Test",
-          "price": 200,
+          "price": 250,
           "currency": "INR",
           "description": "General urine analysis for infections and kidney issues.",
           "unit": "per test"
         },
         {
           "name": "Urine Culture Test",
-          "price": 650,
+          "price": 700,
           "currency": "INR",
           "description": "Detects urinary tract infections.",
           "unit": "per test"
         },
         {
           "name": "Pregnancy Urine Test",
-          "price": 100,
+          "price": 150,
           "currency": "INR",
           "description": "Detects pregnancy hormones.",
           "unit": "per test"
@@ -115,7 +115,7 @@
       "tests": [
         {
           "name": "Sputum Culture Test",
-          "price": 600,
+          "price": 650,
           "currency": "INR",
           "description": "Checks lung infections using sputum samples.",
           "unit": "per test"
@@ -142,7 +142,7 @@
         },
         {
           "name": "Echocardiography",
-          "price": 2000,
+          "price": 2050,
           "currency": "INR",
           "description": "Ultrasound imaging for heart diagnosis.",
           "unit": "per scan"
@@ -169,21 +169,21 @@
       "tests": [
         {
           "name": "NCV (Nerve Conduction Velocity)",
-          "price": 3000,
+          "price": 3050,
           "currency": "INR",
           "description": "A diagnostic test used to evaluate nerve damage and nerve function by measuring the speed of electrical signals through nerves.",
           "unit": "per test"
         },
         {
           "name": "EEG (Electroencephalogram)",
-          "price": 2000,
+          "price": 2050,
           "currency": "INR",
           "description": "A test that records electrical activity in the brain and helps diagnose epilepsy, seizures, sleep disorders, and other neurological conditions.",
           "unit": "per test"
         },
         {
           "name": "EMG (Electromyography)",
-          "price": 5500,
+          "price": 5550,
           "currency": "INR",
           "description": "A diagnostic procedure used to assess muscle health and nerve cells controlling muscles by measuring electrical activity.",
           "unit": "per test"
@@ -196,7 +196,7 @@
       "tests": [
         {
           "name": "ECG (Electrocardiogram)",
-          "price": 500,
+          "price": 550,
           "currency": "INR",
           "description": "A heart monitoring test that records the electrical activity of the heart to detect irregular heartbeat, heart disease, and cardiac abnormalities.",
           "unit": "per test"
@@ -209,7 +209,7 @@
       "tests": [
         {
           "name": "BERA (Brainstem Evoked Response Audiometry)",
-          "price": 3000,
+          "price": 3050,
           "currency": "INR",
           "description": "A hearing assessment test that evaluates the auditory nerve and brainstem response to sound, commonly used for infants and hearing disorder diagnosis.",
           "unit": "per test"
