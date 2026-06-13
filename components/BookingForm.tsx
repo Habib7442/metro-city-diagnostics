@@ -712,7 +712,7 @@ export default function BookingForm() {
     printWindow.document.close();
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
@@ -799,8 +799,16 @@ ${orderId && paymentId ? `• Payment Status: PAID (Online)\n• Razorpay Order 
 • Clinic Location: Near Vivekananda Co-operative, Meherpur, Silchar`;
       }
 
-      const whatsappUrl = `https://wa.me/919957357278?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+      const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const whatsappUrl = isMobile
+        ? `whatsapp://send?phone=919957357278&text=${encodeURIComponent(message)}`
+        : `https://web.whatsapp.com/send?phone=919957357278&text=${encodeURIComponent(message)}`;
+      
+      if (isMobile) {
+        window.location.href = whatsappUrl;
+      } else {
+        window.open(whatsappUrl, '_blank');
+      }
       setSubmitSuccess(true);
       setIsSubmitting(false);
     };

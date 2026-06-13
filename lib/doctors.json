@@ -787,5 +787,44 @@
     "services": {
       "trusted_general_physician_near": "Silchar"
     }
+  },
+  {
+    "id": "dr-payment-test",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Payment Test (Demo)",
+      "qualification": [
+        "MD (Testing)"
+      ],
+      "designation": "Demo Doctor for Payments",
+      "hospital_affiliation": "Metro-City Diagnostics",
+      "specialization": "Payment Verification",
+      "image": "/assets/doctors/dr-rupanjali-deshmukh.png"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "9:00 AM to 5:00 PM",
+      "appointment_required": true
+    },
+    "fees": 10,
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    }
   }
 ]

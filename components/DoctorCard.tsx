@@ -51,9 +51,22 @@ interface DoctorCardProps {
 
 export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardProps) {
   const [isQualExpanded, setIsQualExpanded] = useState(false);
-  const waUrl = entry.id === 'ihr-opd'
-    ? `https://wa.me/91${entry.contact.whatsapp_number}?text=Hello%2C%20I%20would%20like%20to%20pre-register%20and%20book%20a%20spot%20for%20the%20upcoming%20${encodeURIComponent(entry.doctor.name)}%20at%20Metro-City%20Diagnostics.`
-    : `https://wa.me/91${entry.contact.whatsapp_number}?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment%20with%20${encodeURIComponent(entry.doctor.name)}%20at%20Metro-City%20Diagnostics.`;
+
+  const handleWhatsAppClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const message = entry.id === 'ihr-opd'
+      ? `Hello, I would like to pre-register and book a spot for the upcoming ${entry.doctor.name} at Metro-City Diagnostics.`
+      : `Hello, I would like to book an appointment with ${entry.doctor.name} at Metro-City Diagnostics.`;
+    const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const url = isMobile
+      ? `whatsapp://send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`
+      : `https://web.whatsapp.com/send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`;
+    if (isMobile) {
+      window.location.href = url;
+    } else {
+      window.open(url, '_blank');
+    }
+  };
 
   // Render timing section jsx helper to keep code DRY
   const renderTimings = () => (
@@ -121,11 +134,10 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
           <Link href={`/book?doctor=${entry.id}`}>Book Appointment</Link>
         </Button>
       )}
-      <a
-        href={waUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center justify-center gap-2 rounded border border-neutral-200 bg-white hover:bg-neutral-50 py-2.5 text-xs font-bold text-neutral-800 transition-colors w-full"
+      <button
+        type="button"
+        onClick={handleWhatsAppClick}
+        className="flex items-center justify-center gap-2 rounded border border-neutral-200 bg-white hover:bg-neutral-50 py-2.5 text-xs font-bold text-neutral-800 transition-colors w-full cursor-pointer"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +148,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
           <path fill="#FFF" fillRule="evenodd" d="M12 4.3c-4.25 0-7.7 3.45-7.7 7.7 0 1.36.35 2.68 1.02 3.86l-1.09 3.98 4.07-1.07c1.14.62 2.43.95 3.73.95 4.25 0 7.7-3.45 7.7-7.7S16.25 4.3 12 4.3zm4.56 10.92c-.25.7-1.22 1.3-1.68 1.35-.46.05-.9-.15-2.88-.94-2.53-1.02-4.14-3.6-4.27-3.77-.12-.17-1.03-1.37-1.03-2.62 0-1.25.65-1.86.88-2.1.23-.25.5-.31.67-.31.17 0 .34 0 .49.01.16.01.37-.06.58.45.21.52.73 1.78.79 1.91.06.13.1.28.01.46-.08.18-.13.3-.26.45-.13.15-.27.34-.39.46-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9.1.09.2.18.3.26 1.04.81 1.83 1.05 2.14 1.18.3.13.48.11.66-.09.18-.21.78-.91.99-1.22.2-.31.41-.26.69-.16.27.1 1.72.81 2.02.96.3.15.5.22.57.35.07.13.07.75-.18 1.45z" />
         </svg>
         WhatsApp Consult Inquiry
-      </a>
+      </button>
     </div>
   );
 

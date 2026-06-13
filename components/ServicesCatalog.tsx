@@ -60,7 +60,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
     updateParams(val, searchQuery);
   };
 
-  const handleSearchSubmit = (e: React.FormEvent) => {
+  const handleSearchSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     updateParams(activeCategory, searchQuery);
   };
