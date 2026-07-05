@@ -75,7 +75,6 @@ export default function Navbar() {
                   <Star className="h-3 w-3 fill-current" />
                   <Star className="h-3 w-3 fill-current" />
                 </div>
-                <span className="text-[10px] text-neutral-400 font-medium">(824+ Google Reviews)</span>
               </div>
             </a>
 
