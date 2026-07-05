@@ -68,7 +68,7 @@ ${formState.message}`;
       
       let whatsappUrl = '';
       if (isAndroid) {
-        whatsappUrl = `intent://send/?phone=919957357278&text=${encodeURIComponent(message)}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+        whatsappUrl = `intent://send?phone=919957357278&text=${encodeURIComponent(message)}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
       } else if (isMobile) {
         whatsappUrl = `whatsapp://send?phone=919957357278&text=${encodeURIComponent(message)}`;
       } else {

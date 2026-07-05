@@ -62,7 +62,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
     
     let url = '';
     if (isAndroid) {
-      url = `intent://send/?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+      url = `intent://send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
     } else if (isMobile) {
       url = `whatsapp://send?phone=91${entry.contact.whatsapp_number}&text=${encodeURIComponent(message)}`;
     } else {
