@@ -35,7 +35,7 @@ export const SITE = {
     'Metro-City Diagnostics is a trusted diagnostic centre in Meherpur, Silchar, serving the Barak Valley with accurate and affordable pathology and radiology services. ' +
     'We offer blood tests, full-body health checkup packages, X-ray, ECG, ultrasound (USG), and home sample collection across Silchar. ' +
     '4.8-star rated by 824+ patients.',
-  url: 'https://metrocitydiagnostics.com',
+  url: 'https://www.metrocitydiagnostics.com',
   locale: 'en_IN',
   language: 'en-IN',
   defaultOgImage: '/og-image.jpg', // 1200x630
