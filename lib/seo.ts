@@ -349,7 +349,7 @@ function dayCodeToName(code: string): string {
 /** Used in the homepage <head>. The "primary" entity for the business. */
 export const medicalBusinessJsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['MedicalBusiness', 'MedicalClinic', 'LocalBusiness'],
+  '@type': ['MedicalBusiness', 'MedicalClinic', 'LocalBusiness', 'MedicalOrganization'],
   '@id': `${SITE.url}/#organization`,
   name: SITE.name,
   alternateName: ['Metro City Diagnostics', 'Metrocity Diagnostics'],
@@ -412,7 +412,7 @@ export const medicalBusinessJsonLd = {
 /** Organization schema for non-home pages. */
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': ['Organization', 'MedicalOrganization'],
   '@id': `${SITE.url}/#organization`,
   name: SITE.name,
   url: SITE.url,
