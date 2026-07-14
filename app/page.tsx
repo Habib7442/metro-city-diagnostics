@@ -24,6 +24,13 @@ import { Button } from '@/components/ui/button';
 import doctorsData from '@/lib/doctors.json';
 import { cn } from '@/lib/utils';
 
+// Helper to format ISO dates in a timezone-independent way to prevent hydration mismatch
+const formatDate = (dateStr: string) => {
+  const [year, month, day] = dateStr.split('-');
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${parseInt(day, 10)} ${months[parseInt(month, 10) - 1]} ${year}`;
+};
+
 // Helper to parse review body (separate tags from comments)
 const parseReviewBody = (body: string) => {
   const lines = body.split('\n').map(l => l.trim()).filter(Boolean);
@@ -155,7 +162,7 @@ export default function Home() {
                 <div className="relative p-2 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl shadow-gold-500/5">
                   <div className="relative aspect-[3/2] w-full rounded-xl overflow-hidden shadow-lg shadow-gold-500/10 isolate">
                     <Image
-                      src="/assets/metro-city-diagnostics-exterior.png"
+                      src="/assets/metro-city-diagnostics-exterior.webp"
                       alt="Metro-City Diagnostics Clinic Entrance, Silchar"
                       fill
                       sizes="(max-w-768px) 100vw, 50vw"
@@ -224,7 +231,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 relative">
             {/* Step 1 */}
             <div className="bg-white rounded-lg p-8 border border-neutral-200/50 shadow-sm relative group hover:shadow-md transition-shadow">
-              <span className="absolute top-6 right-8 text-5xl font-black text-neutral-100 group-hover:text-gold-100 transition-colors">
+              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-neutral-100/40 group-hover:text-gold-100 transition-colors select-none">
                 01
               </span>
               <div className="bg-navy-50 h-12 w-12 rounded-full flex items-center justify-center text-navy-950 mb-6 font-semibold">
@@ -239,7 +246,7 @@ export default function Home() {
 
             {/* Step 2 */}
             <div className="bg-white rounded-lg p-8 border border-neutral-200/50 shadow-sm relative group hover:shadow-md transition-shadow">
-              <span className="absolute top-6 right-8 text-5xl font-black text-neutral-100 group-hover:text-gold-100 transition-colors">
+              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-neutral-100/40 group-hover:text-gold-100 transition-colors select-none">
                 02
               </span>
               <div className="bg-navy-50 h-12 w-12 rounded-full flex items-center justify-center text-navy-950 mb-6 font-semibold">
@@ -253,7 +260,7 @@ export default function Home() {
 
             {/* Step 3 */}
             <div className="bg-white rounded-lg p-8 border border-neutral-200/50 shadow-sm relative group hover:shadow-md transition-shadow">
-              <span className="absolute top-6 right-8 text-5xl font-black text-neutral-100 group-hover:text-gold-100 transition-colors">
+              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-neutral-100/40 group-hover:text-gold-100 transition-colors select-none">
                 03
               </span>
               <div className="bg-navy-50 h-12 w-12 rounded-full flex items-center justify-center text-navy-950 mb-6 font-semibold">
@@ -707,12 +714,19 @@ export default function Home() {
                   className="w-full h-full object-cover"
                   controls
                   preload="metadata"
-                  poster="/assets/banner.png"
+                  poster="/assets/banner.webp"
                   muted
                   loop
                   playsInline
                 >
                   <source src="/assets/business-video.mp4" type="video/mp4" />
+                  <track
+                    kind="captions"
+                    src="/assets/captions.vtt"
+                    srcLang="en"
+                    label="English captions"
+                    default
+                  />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -735,7 +749,7 @@ export default function Home() {
                     <ShieldCheck className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-navy-950 text-sm">Hygienic Sampling Booths</h4>
+                    <h3 className="font-semibold text-navy-950 text-sm">Hygienic Sampling Booths</h3>
                     <p className="text-xs text-neutral-500 mt-1">
                       Our collection stations are sanitized after every single appointment.
                     </p>
@@ -746,7 +760,7 @@ export default function Home() {
                     <Clock className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-navy-950 text-sm">Rapid Turnaround Processing</h4>
+                    <h3 className="font-semibold text-navy-950 text-sm">Rapid Turnaround Processing</h3>
                     <p className="text-xs text-neutral-500 mt-1">
                       Emergency samples are fast-tracked automatically by our laboratory sorting systems.
                     </p>
@@ -803,7 +817,7 @@ export default function Home() {
                         {initials}
                       </div>
                       <div className="min-w-0">
-                        <h5 className="font-bold text-navy-950 text-xs truncate">{review.author}</h5>
+                        <p className="font-bold text-navy-950 text-xs truncate">{review.author}</p>
                         <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-semibold mt-0.5">
                           <CheckCircle2 className="h-3 w-3 fill-emerald-100" />
                           <span>Verified Review</span>
@@ -819,11 +833,7 @@ export default function Home() {
                         ))}
                       </div>
                       <span className="text-[10px] text-neutral-400 font-medium">
-                        {new Date(review.date).toLocaleDateString('en-IN', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                        })}
+                        {formatDate(review.date)}
                       </span>
                     </div>
 
@@ -884,7 +894,7 @@ export default function Home() {
                 <div className="flex gap-4">
                   <MapPin className="h-5 w-5 text-gold-500 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-navy-950 text-sm">Landmarks</h4>
+                    <h3 className="font-semibold text-navy-950 text-sm">Landmarks</h3>
                     <p className="text-xs text-neutral-500 mt-1 leading-relaxed">
                       Adjacent to the Co-operative Bank, Meherpur Branch. Opposite Birbal Bazar, near the Vivekananda Statue.
                     </p>
@@ -893,7 +903,7 @@ export default function Home() {
                 <div className="flex gap-4">
                   <Clock className="h-5 w-5 text-gold-500 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-navy-950 text-sm">Timings</h4>
+                    <h3 className="font-semibold text-navy-950 text-sm">Timings</h3>
                     <p className="text-xs text-neutral-500 mt-1">
                       Mon - Sat: 7:30 AM - 8:30 PM <br /> Sun: Closed
                     </p>
@@ -902,7 +912,7 @@ export default function Home() {
                 <div className="flex gap-4">
                   <Phone className="h-5 w-5 text-gold-500 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-navy-950 text-sm">Direct Contact</h4>
+                    <h3 className="font-semibold text-navy-950 text-sm">Direct Contact</h3>
                     <a
                       href={SITE.contact.phoneTel}
                       className="text-xs font-bold text-navy-900 hover:text-gold-600 transition-colors"

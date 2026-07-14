@@ -189,9 +189,9 @@ export default function Footer() {
       </div>
 
       {/* Bottom section: Legal & Copyright */}
-      <div className="bg-navy-950 py-8 text-xs text-neutral-500 border-t border-navy-900/60">
+      <div className="bg-navy-950 py-8 text-xs text-neutral-400 border-t border-navy-900/60">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p>© {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</p>
+          <p>© 2026 {SITE.legalName}. All rights reserved.</p>
           <div className="flex items-center gap-6">
             {footerNav.legal.map((link) => (
               <Link
