@@ -78,6 +78,7 @@ export const SITE = {
     facebook: '', // 'https://facebook.com/metrocitydiagnostics'
     instagram: '', // 'https://instagram.com/metrocitydiagnostics'
     googleBusiness: 'https://g.page/r/CQDHJDBocAP2EBM/review',
+    googleMaps: 'https://www.google.com/maps/place/Metro-City+Diagnostics/@24.8015045,92.7856508,17z/data=!3m1!4b1!4m6!3m5!1s0x374e4bcc779b118d:0xf60370683024c700!8m2!3d24.8015045!4d92.7856508',
   },
 } as const;
 

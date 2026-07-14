@@ -203,7 +203,7 @@ export default function Footer() {
               </Link>
             ))}
             <a
-              href="https://google.com" // Update with GBP link
+              href={SITE.social.googleMaps}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-neutral-300 transition-colors flex items-center gap-1 text-[11px]"

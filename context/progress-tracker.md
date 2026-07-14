@@ -111,6 +111,7 @@
 * Fixed heading sequence errors: reordered `h4` tags to `h3` tags in the feature highlights and local maps sections, and changed patient review author names from `h5` to `<p>` tags to prevent document outline hierarchy skips.
 * Addressed audio/video validation guidelines: created a descriptive WebVTT track captions file (`public/assets/captions.vtt`) for the silent background clinic tour video, adding a default `<track>` node inside the `<video>` element.
 * Resolved React hydration mismatches on the homepage: hardcoded the static copyright year to `2026` in the footer component and implemented a timezone-independent date format helper (`formatDate`) for review timestamps to prevent rendering discrepancies between UTC build machines and user-local browsers.
+* Updated the footer Google Maps Location link to point directly to the verified Metro-City Diagnostics business location in Meherpur, Silchar.
 
 ## Next Up
 * Await user confirmation of the full-width horizontal scrolling gallery and layout styles.
