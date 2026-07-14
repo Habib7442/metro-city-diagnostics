@@ -247,7 +247,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
                       {badgeLabel}
                     </span>
                     {service.turnaroundHours && (
-                      <span className="text-xs text-neutral-400 flex items-center gap-1.5 font-medium">
+                      <span className="text-xs text-neutral-500 flex items-center gap-1.5 font-medium">
                         <Clock className="h-3.5 w-3.5 text-gold-500" />
                         {service.turnaroundHours} hr
                       </span>
@@ -271,7 +271,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
                       </ul>
                       {service.tests && (
                         <div className="mt-4 pt-3 border-t border-neutral-100">
-                          <span className="text-[10px] text-neutral-400 uppercase font-bold block mb-2 tracking-wider">
+                          <span className="text-[10px] text-neutral-500 uppercase font-bold block mb-2 tracking-wider">
                             Key Tests Included:
                           </span>
                           <div className="flex flex-wrap gap-1.5">
@@ -314,15 +314,15 @@ export default function ServicesCatalog({ initialServices }: Props) {
                 <div className="border-t border-neutral-100 pt-4 mt-2">
                   {/* Meta details */}
                   {service.sampleType && (
-                    <div className="flex items-center gap-1.5 text-xs text-neutral-400 mb-4">
-                      <span className="font-medium text-neutral-500">Sample:</span>
+                    <div className="flex items-center gap-1.5 text-xs text-neutral-500 mb-4">
+                      <span className="font-medium text-neutral-600">Sample:</span>
                       <span>{service.sampleType}</span>
                     </div>
                   )}
 
                   <div className="flex items-end justify-between mb-4">
                     <div>
-                      <span className="text-[10px] text-neutral-400 uppercase font-semibold block leading-tight">
+                      <span className="text-[10px] text-neutral-500 uppercase font-semibold block leading-tight">
                         Test Fee
                       </span>
                       {service.price ? (
@@ -331,7 +331,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
                             ₹{service.price}
                           </span>
                           {service.originalPrice && (
-                            <span className="text-sm text-neutral-400 line-through font-semibold">
+                            <span className="text-sm text-neutral-500 line-through font-semibold">
                               ₹{service.originalPrice}
                             </span>
                           )}
@@ -342,7 +342,7 @@ export default function ServicesCatalog({ initialServices }: Props) {
                         </span>
                       )}
                       {service.price && service.priceNote && (
-                        <span className="text-[10px] text-neutral-400 block mt-0.5">
+                        <span className="text-[10px] text-neutral-500 block mt-0.5">
                           *{service.priceNote}
                         </span>
                       )}

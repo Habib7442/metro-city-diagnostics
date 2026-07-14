@@ -231,7 +231,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 relative">
             {/* Step 1 */}
             <div className="bg-white rounded-lg p-8 border border-neutral-200/50 shadow-sm relative group hover:shadow-md transition-shadow">
-              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-neutral-100/40 group-hover:text-gold-100 transition-colors select-none">
+              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-slate-400 group-hover:text-gold-200 transition-colors select-none">
                 01
               </span>
               <div className="bg-navy-50 h-12 w-12 rounded-full flex items-center justify-center text-navy-950 mb-6 font-semibold">
@@ -246,7 +246,7 @@ export default function Home() {
 
             {/* Step 2 */}
             <div className="bg-white rounded-lg p-8 border border-neutral-200/50 shadow-sm relative group hover:shadow-md transition-shadow">
-              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-neutral-100/40 group-hover:text-gold-100 transition-colors select-none">
+              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-slate-400 group-hover:text-gold-200 transition-colors select-none">
                 02
               </span>
               <div className="bg-navy-50 h-12 w-12 rounded-full flex items-center justify-center text-navy-950 mb-6 font-semibold">
@@ -260,7 +260,7 @@ export default function Home() {
 
             {/* Step 3 */}
             <div className="bg-white rounded-lg p-8 border border-neutral-200/50 shadow-sm relative group hover:shadow-md transition-shadow">
-              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-neutral-100/40 group-hover:text-gold-100 transition-colors select-none">
+              <span aria-hidden="true" className="absolute top-6 right-8 text-5xl font-black text-slate-400 group-hover:text-gold-200 transition-colors select-none">
                 03
               </span>
               <div className="bg-navy-50 h-12 w-12 rounded-full flex items-center justify-center text-navy-950 mb-6 font-semibold">
@@ -345,17 +345,17 @@ export default function Home() {
                       {/* Consultation Fee Pill */}
                       <div className="flex items-center">
                         {typeof entry.fees === 'string' ? (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500 uppercase tracking-wider">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm border border-emerald-650 uppercase tracking-wider">
                             <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
                             Consultation Fee: {entry.fees}
                           </span>
                         ) : entry.fees === null ? (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500 uppercase tracking-wider">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm border border-emerald-650 uppercase tracking-wider">
                             <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
                             Consultation Fee: Contact for Pricing
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500 uppercase tracking-wider">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm border border-emerald-650 uppercase tracking-wider">
                             <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
                             Consultation Fee: ₹{entry.fees !== undefined && entry.fees !== null ? entry.fees : 500}
                           </span>
@@ -366,7 +366,7 @@ export default function Home() {
                       <div className="flex gap-3">
                         <UserCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
                         <div>
-                          <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
+                          <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                             Specialization
                           </span>
                           <span className="inline-block mt-1 text-xs font-bold text-navy-900 bg-navy-50/80 border border-navy-100/80 px-2.5 py-0.5 rounded-md shadow-sm">
@@ -545,7 +545,7 @@ export default function Home() {
                         {badgeLabel}
                       </span>
                       {service.turnaroundHours && (
-                        <span className="text-xs text-neutral-400 flex items-center gap-1 font-medium">
+                        <span className="text-xs text-neutral-500 flex items-center gap-1 font-medium">
                           <Clock className="h-3.5 w-3.5 text-gold-500" />
                           {service.turnaroundHours} hr
                         </span>
@@ -567,14 +567,14 @@ export default function Home() {
                             </li>
                           ))}
                           {service.includes.length > 6 && (
-                            <li className="flex items-center gap-2 text-xs text-neutral-400 font-bold italic">
+                            <li className="flex items-center gap-2 text-xs text-neutral-500 font-bold italic">
                               + {service.includes.length - 6} more
                             </li>
                           )}
                         </ul>
                         {service.tests && (
                           <div className="mt-4 pt-3 border-t border-neutral-100">
-                            <span className="text-[10px] text-neutral-400 uppercase font-bold block mb-2 tracking-wider">
+                            <span className="text-[10px] text-neutral-500 uppercase font-bold block mb-2 tracking-wider">
                               Key Tests Included:
                             </span>
                             <div className="flex flex-wrap gap-1.5">
@@ -617,7 +617,7 @@ export default function Home() {
                   <div className="border-t border-neutral-100 pt-4 mt-2">
                     <div className="flex items-end justify-between mb-4">
                       <div>
-                        <span className="text-[10px] text-neutral-400 uppercase font-semibold block leading-tight">
+                        <span className="text-[10px] text-neutral-500 uppercase font-semibold block leading-tight">
                           Price
                         </span>
                         {service.price ? (
@@ -626,7 +626,7 @@ export default function Home() {
                               ₹{service.price}
                             </span>
                             {service.originalPrice && (
-                              <span className="text-sm text-neutral-400 line-through font-semibold">
+                              <span className="text-sm text-neutral-500 line-through font-semibold">
                                 ₹{service.originalPrice}
                               </span>
                             )}
@@ -832,7 +832,7 @@ export default function Home() {
                           <Star key={i} className="h-3.5 w-3.5 fill-current" />
                         ))}
                       </div>
-                      <span className="text-[10px] text-neutral-400 font-medium">
+                      <span className="text-[10px] text-neutral-500 font-medium">
                         {formatDate(review.date)}
                       </span>
                     </div>
@@ -860,7 +860,7 @@ export default function Home() {
                   </div>
 
                   {/* Review Footnote and Trust indicator */}
-                  <div className="border-t border-neutral-100 pt-3 mt-4 flex items-center justify-between text-[10px] text-neutral-400 font-medium">
+                  <div className="border-t border-neutral-100 pt-3 mt-4 flex items-center justify-between text-[10px] text-neutral-500 font-medium">
                     <span className="flex items-center gap-1">
                       <Star className="h-3 w-3 fill-gold-500 text-gold-500" />
                       <span>5.0 Rating</span>

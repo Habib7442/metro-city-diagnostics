@@ -209,7 +209,7 @@ export default function AboutPage() {
                   <li className="flex items-start gap-3">
                     <Clock className="h-5 w-5 text-gold-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-xs font-semibold text-neutral-400 uppercase block">
+                      <span className="text-xs font-semibold text-neutral-500 uppercase block">
                         Operating Hours
                       </span>
                       <span className="text-sm font-bold text-navy-950 mt-1 block">
@@ -229,7 +229,7 @@ export default function AboutPage() {
                   <li className="flex items-start gap-3 border-t border-neutral-100 pt-4">
                     <MapPin className="h-5 w-5 text-gold-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-xs font-semibold text-neutral-400 uppercase block">
+                      <span className="text-xs font-semibold text-neutral-500 uppercase block">
                         Address Location
                       </span>
                       <span className="text-xs text-neutral-600 leading-relaxed block mt-1">
@@ -240,7 +240,7 @@ export default function AboutPage() {
                   <li className="flex items-start gap-3 border-t border-neutral-100 pt-4">
                     <ShieldCheck className="h-5 w-5 text-gold-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-xs font-semibold text-neutral-400 uppercase block">
+                      <span className="text-xs font-semibold text-neutral-500 uppercase block">
                         Our Certifications
                       </span>
                       <span className="text-xs text-neutral-600 leading-relaxed block mt-1">

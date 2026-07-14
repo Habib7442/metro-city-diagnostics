@@ -103,7 +103,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
   const renderFees = () => {
     if (typeof entry.fees === 'string') {
       return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500 uppercase tracking-wider">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm border border-emerald-600 uppercase tracking-wider">
           <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
           CONSULTATION FEE: {entry.fees}
         </span>
@@ -111,14 +111,14 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
     }
     if (entry.fees === null) {
       return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500 uppercase tracking-wider">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm border border-emerald-600 uppercase tracking-wider">
           <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
           CONSULTATION FEE: Contact for pricing
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-600 text-white shadow-sm border border-emerald-500">
+      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm border border-emerald-600">
         <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
         CONSULTATION FEE: ₹{entry.fees || 500}
       </span>
@@ -203,7 +203,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
               <div className="flex gap-2.5">
                 <UserCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
+                  <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                     Specialization
                   </span>
                   <span className="inline-block mt-1 text-xs font-bold text-navy-900 bg-navy-50/80 border border-navy-100/80 px-2.5 py-0.5 rounded-md shadow-sm">
@@ -216,7 +216,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
               <div className="flex gap-2.5">
                 <Award className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
+                  <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                     Qualifications
                   </span>
                   {entry.doctor.qualification.length > 2 && !isQualExpanded ? (
@@ -253,7 +253,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
               <div className="flex gap-2.5">
                 <ShieldCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
+                  <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                     Hospital Affiliation
                   </span>
                   <span className="text-xs text-neutral-600 italic block mt-1">
@@ -270,7 +270,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
               <div className="grid grid-cols-3 gap-4 bg-navy-50/30 p-3.5 rounded-lg border border-navy-100/40">
                 {entry.highlights.map((h, i) => (
                   <div key={i} className="text-center">
-                    <span className="block text-[9px] font-bold text-neutral-400 uppercase tracking-wider leading-none">
+                    <span className="block text-[9px] font-bold text-neutral-500 uppercase tracking-wider leading-none">
                       {h.title}
                     </span>
                     <span className="block text-sm font-extrabold text-navy-950 mt-1.5 leading-none">
@@ -371,7 +371,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
           <div className="flex gap-3">
             <UserCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
             <div>
-              <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
+              <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                 Specialization
               </span>
               <span className="inline-block mt-1 text-xs font-bold text-navy-900 bg-navy-50/80 border border-navy-100/80 px-2.5 py-0.5 rounded-md shadow-sm">
@@ -390,7 +390,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
           <div className="flex gap-3">
             <Award className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
             <div>
-              <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
+              <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                 Qualifications
               </span>
                   {entry.doctor.qualification.length > 2 && !isQualExpanded ? (
@@ -427,7 +427,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
           <div className="flex gap-3">
             <ShieldCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
             <div>
-              <span className="text-[10px] font-semibold text-neutral-400 block uppercase tracking-wider">
+              <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                 Hospital Affiliation
               </span>
               <span className="text-xs text-neutral-600 italic">
@@ -441,7 +441,7 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
             <div className="grid grid-cols-3 gap-2 bg-navy-50/30 p-2.5 rounded-lg border border-navy-100/40">
               {entry.highlights.map((h, i) => (
                 <div key={i} className="text-center">
-                  <span className="block text-[9px] font-bold text-neutral-400 uppercase tracking-wider leading-none">
+                  <span className="block text-[9px] font-bold text-neutral-500 uppercase tracking-wider leading-none">
                     {h.title}
                   </span>
                   <span className="block text-xs font-extrabold text-navy-950 mt-1.5 leading-none">

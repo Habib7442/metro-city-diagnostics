@@ -203,7 +203,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                       >
                         {rel.name}
                       </Link>
-                      <div className="flex items-center justify-between mt-1.5 text-[10px] text-neutral-400">
+                      <div className="flex items-center justify-between mt-1.5 text-[10px] text-neutral-500">
                         <span>₹{rel.price}</span>
                         <span>{rel.turnaroundHours} hr report</span>
                       </div>
