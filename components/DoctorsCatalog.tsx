@@ -50,6 +50,7 @@ interface DoctorsCatalogProps {
 
 const CATEGORIES = [
   { id: 'all', label: 'All Specialities' },
+  { id: 'cardiology', label: 'Cardiology', specs: ['Cardiology', 'Senior Consultant Physician & Cardiologist'] },
   { id: 'medicine', label: 'Medicine & Diabetology', specs: ['General Physician', 'Medicine & Diabetology', 'General Medicine', 'Medicine & Diabetologist', 'Internal Medicine Specialist'] },
   { id: 'neurosurgery', label: 'Neurology & Neurosurgery', specs: ['Neurosurgery', 'Neurology'] },
   { id: 'urology', label: 'Urology', specs: ['Urology'] },
