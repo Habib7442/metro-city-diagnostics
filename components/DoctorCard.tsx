@@ -51,6 +51,7 @@ interface DoctorCardProps {
 
 export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardProps) {
   const [isQualExpanded, setIsQualExpanded] = useState(false);
+  const [isAffilExpanded, setIsAffilExpanded] = useState(false);
 
   const handleWhatsAppClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -252,13 +253,41 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
               {/* Affiliation */}
               <div className="flex gap-2.5">
                 <ShieldCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
-                <div>
+                <div className="min-w-0 flex-1">
                   <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                     Hospital Affiliation
                   </span>
-                  <span className="text-xs text-neutral-600 italic block mt-1">
-                    {entry.doctor.hospital_affiliation || 'N/A'}
-                  </span>
+                  {entry.doctor.hospital_affiliation ? (
+                    entry.doctor.hospital_affiliation.length > 40 && !isAffilExpanded ? (
+                      <span className="text-xs text-neutral-600 italic block mt-1">
+                        <span className="line-clamp-1">{entry.doctor.hospital_affiliation}</span>
+                        <button
+                          type="button"
+                          onClick={() => setIsAffilExpanded(true)}
+                          className="text-xs font-bold text-gold-600 hover:text-gold-700 hover:underline mt-0.5 focus:outline-none cursor-pointer inline-block"
+                        >
+                          Read More
+                        </button>
+                      </span>
+                    ) : entry.doctor.hospital_affiliation.length > 40 && isAffilExpanded ? (
+                      <span className="text-xs text-neutral-600 italic block mt-1">
+                        {entry.doctor.hospital_affiliation}
+                        <button
+                          type="button"
+                          onClick={() => setIsAffilExpanded(false)}
+                          className="text-xs font-bold text-gold-600 hover:text-gold-700 hover:underline ml-1.5 focus:outline-none cursor-pointer inline"
+                        >
+                          Show Less
+                        </button>
+                      </span>
+                    ) : (
+                      <span className="text-xs text-neutral-600 italic block mt-1">
+                        {entry.doctor.hospital_affiliation}
+                      </span>
+                    )
+                  ) : (
+                    <span className="text-xs text-neutral-600 italic block mt-1">N/A</span>
+                  )}
                 </div>
               </div>
             </div>
@@ -426,13 +455,41 @@ export default function DoctorCard({ entry, isHorizontal = false }: DoctorCardPr
           {/* Affiliation */}
           <div className="flex gap-3">
             <ShieldCheck className="h-4.5 w-4.5 text-gold-500 flex-shrink-0 mt-0.5" />
-            <div>
+            <div className="min-w-0 flex-1">
               <span className="text-[10px] font-semibold text-neutral-500 block uppercase tracking-wider">
                 Hospital Affiliation
               </span>
-              <span className="text-xs text-neutral-600 italic">
-                {entry.doctor.hospital_affiliation || 'N/A'}
-              </span>
+              {entry.doctor.hospital_affiliation ? (
+                entry.doctor.hospital_affiliation.length > 40 && !isAffilExpanded ? (
+                  <span className="text-xs text-neutral-600 italic block mt-1">
+                    <span className="line-clamp-1">{entry.doctor.hospital_affiliation}</span>
+                    <button
+                      type="button"
+                      onClick={() => setIsAffilExpanded(true)}
+                      className="text-xs font-bold text-gold-600 hover:text-gold-700 hover:underline mt-0.5 focus:outline-none cursor-pointer inline-block"
+                    >
+                      Read More
+                    </button>
+                  </span>
+                ) : entry.doctor.hospital_affiliation.length > 40 && isAffilExpanded ? (
+                  <span className="text-xs text-neutral-600 italic block mt-1">
+                    {entry.doctor.hospital_affiliation}
+                    <button
+                      type="button"
+                      onClick={() => setIsAffilExpanded(false)}
+                      className="text-xs font-bold text-gold-600 hover:text-gold-700 hover:underline ml-1.5 focus:outline-none cursor-pointer inline"
+                    >
+                      Show Less
+                    </button>
+                  </span>
+                ) : (
+                  <span className="text-xs text-neutral-600 italic block mt-1">
+                    {entry.doctor.hospital_affiliation}
+                  </span>
+                )
+              ) : (
+                <span className="text-xs text-neutral-600 italic block mt-1">N/A</span>
+              )}
             </div>
           </div>
 
