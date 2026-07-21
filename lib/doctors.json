@@ -1,60 +1,5 @@
 [
   {
-    "id": "dr-devesh-kumar-singh",
-    "hospital": {
-      "name": "METRO-CITY DIAGNOSTICS",
-      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
-    },
-    "doctor": {
-      "name": "Dr. Devesh Kumar Singh",
-      "qualification": [
-        "MBBS",
-        "MD (Medicine)",
-        "Ex-Senior Registrar of Cardiology"
-      ],
-      "designation": "Senior Consultant Physician & Cardiologist",
-      "hospital_affiliation": "Ex-Senior Registrar of Cardiology Escorts Heart Institute (New Delhi), B.M. Birla Heart Research Centre (Kolkata), Apollo Hospital (Kolkata)",
-      "specialization": "Cardiology",
-      "image": "/assets/doctors/dr-devesh-kumar-singh.png"
-    },
-    "location": {
-      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
-      "pin_code": "788015",
-      "city": "Silchar",
-      "state": "Assam"
-    },
-    "contact": {
-      "phone_numbers": [
-        "9957357278",
-        "9954025101"
-      ],
-      "whatsapp_number": "9957357278"
-    },
-    "timing": {
-      "days": "Every Monday to Saturday",
-      "time": "10:30 AM to 11:30 AM",
-      "appointment_required": true
-    },
-    "fees": 600,
-    "services": {
-      "trusted_general_physician_near": "Silchar"
-    },
-    "highlights": [
-      {
-        "title": "Experience",
-        "value": "Escorts & Apollo"
-      },
-      {
-        "title": "Specialty",
-        "value": "Cardiac Care"
-      },
-      {
-        "title": "Diagnosis",
-        "value": "Accurate & Advanced"
-      }
-    ]
-  },
-  {
     "id": "dr-sachui-rongmei",
     "hospital": {
       "name": "METRO-CITY DIAGNOSTICS",
@@ -176,6 +121,61 @@
     "services": {
       "trusted_general_physician_near": "Silchar"
     }
+  },
+  {
+    "id": "dr-devesh-kumar-singh",
+    "hospital": {
+      "name": "METRO-CITY DIAGNOSTICS",
+      "tagline": "A COMPLETE DIAGNOSTIC CENTRE"
+    },
+    "doctor": {
+      "name": "Dr. Devesh Kumar Singh",
+      "qualification": [
+        "MBBS",
+        "MD (Medicine)",
+        "Ex-Senior Registrar of Cardiology"
+      ],
+      "designation": "Senior Consultant Physician & Cardiologist",
+      "hospital_affiliation": "Ex-Senior Registrar of Cardiology Escorts Heart Institute (New Delhi), B.M. Birla Heart Research Centre (Kolkata), Apollo Hospital (Kolkata)",
+      "specialization": "Cardiology",
+      "image": "/assets/doctors/dr-devesh-kumar-singh.png"
+    },
+    "location": {
+      "address": "Near Vivekananda Co-operative, Meherpur, Silchar-15, Cachar, Assam",
+      "pin_code": "788015",
+      "city": "Silchar",
+      "state": "Assam"
+    },
+    "contact": {
+      "phone_numbers": [
+        "9957357278",
+        "9954025101"
+      ],
+      "whatsapp_number": "9957357278"
+    },
+    "timing": {
+      "days": "Every Monday to Saturday",
+      "time": "10:30 AM to 11:30 AM",
+      "appointment_required": true
+    },
+    "fees": 600,
+    "services": {
+      "trusted_general_physician_near": "Silchar"
+    },
+    "highlights": [
+      {
+        "title": "Experience",
+        "value": "Escorts & Apollo"
+      },
+      {
+        "title": "Specialty",
+        "value": "Cardiac Care"
+      },
+      {
+        "title": "Diagnosis",
+        "value": "Accurate & Advanced"
+      }
+    ]
   },
   {
     "id": "dr-debanjali-das",
