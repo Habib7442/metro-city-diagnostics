@@ -126,3 +126,4 @@
 
 ## Session Notes
 * Setup of the root context folder is complete. The system will leverage these files to manage build context across sessions.
+* **Maintenance Mode (2026-10-30):** Site-wide maintenance notice enabled via `components/Maintenance.tsx`. In `app/layout.tsx`, Navbar, page content, Footer and MobileStickyBar are commented out (not deleted). To restore, uncomment that block and its imports, and remove `<Maintenance />`.

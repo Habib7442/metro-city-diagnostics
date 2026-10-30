@@ -2,9 +2,10 @@ import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { defaultMetadata, medicalBusinessJsonLd, websiteJsonLd, jsonLdProps } from "@/lib/seo";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import MobileStickyBar from "@/components/MobileStickyBar";
+// import Navbar from "@/components/Navbar";
+// import Footer from "@/components/Footer";
+// import MobileStickyBar from "@/components/MobileStickyBar";
+import Maintenance from "@/components/Maintenance";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,12 +51,16 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-background text-foreground font-sans pb-16 md:pb-0"
         suppressHydrationWarning
       >
+        {/* Site temporarily replaced with a maintenance notice. Restore the block below to bring the site back. */}
+        <Maintenance />
+        {/*
         <Navbar />
         <main className="flex-grow flex flex-col overflow-x-hidden">
           {children}
         </main>
         <Footer />
         <MobileStickyBar />
+        */}
       </body>
     </html>
   );
